@@ -4,6 +4,7 @@ import com.commerce.backend.converter.user.UserResponseConverter;
 import com.commerce.backend.dao.UserRepository;
 import com.commerce.backend.error.exception.InvalidArgumentException;
 import com.commerce.backend.error.exception.ResourceNotFoundException;
+import com.commerce.backend.model.entity.Role;
 import com.commerce.backend.model.entity.User;
 import com.commerce.backend.model.request.user.PasswordResetRequest;
 import com.commerce.backend.model.request.user.RegisterUserRequest;
@@ -28,8 +29,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
-                           PasswordEncoder passwordEncoder,
-                           UserResponseConverter userResponseConverter) {
+            PasswordEncoder passwordEncoder,
+            UserResponseConverter userResponseConverter) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userResponseConverter = userResponseConverter;
@@ -45,6 +46,8 @@ public class UserServiceImpl implements UserService {
         user.setEmail(registerUserRequest.getEmail());
         user.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
         user.setEmailVerified(0);
+
+        user.setRole(Role.CLIENT);
 
         return userRepository.save(user);
     }
@@ -62,7 +65,6 @@ public class UserServiceImpl implements UserService {
         }
         return userResponseConverter.apply(user.get());
     }
-
 
     @Override
     public User getUser() {
@@ -145,6 +147,5 @@ public class UserServiceImpl implements UserService {
         User user = getUser();
         return user.getEmailVerified() == 1;
     }
-
 
 }
