@@ -1,0 +1,109 @@
+@startuml "DomainModel"
+
+package ProductAggregate <<Rectangle>> {
+
+    class Product <<Entity>> {
+    - id: string
+    - name: string
+    - description: string
+    - price: Money
+    - quantity: int
+    }
+
+    class ProductVariant <<Entity>> {
+    - width: string
+    - height: string
+    - composition: string
+    - price: float
+    - cargoPrice: float
+    - taxPercent: float
+    - image: string
+    - stock: integer
+    }
+
+    class ProductCategory <<Entity>> {
+    - id: string
+    - name: string
+    }
+
+    class Color <<Entity>> {
+    id: long
+    name: string
+    hex: string
+    }
+}
+
+package ShoppingCartAggregate <<Rectangle>> {
+
+    class Cart <<Entity>> {
+    }
+
+    class CartItem <<Entity>> {
+    - amount
+    }
+
+    class Discount <<Entity>> {
+    - code: string
+    - discount_percent: integer
+    }
+}
+
+package OrderAggregate <<Rectangle>> {
+
+    class Order <<Entity>> {
+    - id: String
+    - user: User
+    }
+
+    class OrderDetail <<Entity>> {
+    - amount
+    }
+}
+
+package UserAggregate <<Rectangle>> {
+
+    class User <<Entity>> {
+    - id: string
+    - firstname: string
+    - lastname: string
+    - email: string
+    - password: string
+    - phone: string
+    - country: string
+    - state: string
+    - city: string
+    - zip: string
+    - address: string
+    - registrationDate: Date
+    }
+
+    class Address <<ValueObject>> {
+    - street: string
+    - city: string
+    - state: string
+    - zipCode: string
+    - country: string
+    }
+
+    enum Role {
+    ADMIN
+    MANAGER
+    CLIENT
+    }
+}
+
+User "1" --> "1" Address
+User "*" -> "1" Role
+User "1" --> "1" Cart
+User "1" --> "0..*" Order
+Cart "1" --> "1" Order
+Cart "1" --> "*" CartItem
+CartItem "1" --> "1" Product
+ProductCategory "1" --> "*" Product
+Product "1" --> "*" ProductVariant
+Color "1" --> "*" ProductVariant
+Discount "1" -> "*" Cart
+Discount "1" --> "*" Order
+Order "1" --> "*" OrderDetail
+OrderDetail "*" --> "1" ProductVariant
+@enduml
