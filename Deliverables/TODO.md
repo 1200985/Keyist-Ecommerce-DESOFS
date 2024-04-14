@@ -1,8 +1,9 @@
-  1ª parte:
-- Definir requisitos funcionais
-- Diagrama de arquitetura
-
-- Requisitos de Segurança (como é que vão autenticar os utilizadores, políticas de desenvolvimento de software seguro, etc.)
-- Abuse Cases (juntamente com os use cases)
-- Modelação de ameaças
-- Fazes DFD's (?)
+  # 1st part:
+- ~~Domain Model~~
+- ~~Define Functional Requirements~~
+- ~~Security Requirements (how user authentication will work, secure software development policies, etc.)~~
+- ~~Use Cases~~
+- Abuse Cases (can be together with the Use Cases)
+- Develop Architecture Diagram
+- Threat Modeling
+- Develop Data Flow Diagrams
