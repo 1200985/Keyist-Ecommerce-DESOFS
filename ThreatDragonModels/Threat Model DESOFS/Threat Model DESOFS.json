@@ -261,9 +261,19 @@
         "version": "2.2.0",
         "cells": [],
         "description": "As a Client, I want to change the password of my account"
+      },
+      {
+        "id": 4,
+        "title": "Sign In",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [],
+        "description": "As a Client, I want to sign in"
       }
     ],
-    "diagramTop": 4,
+    "diagramTop": 5,
     "reviewer": "FFS",
     "threatTop": 0
   }
