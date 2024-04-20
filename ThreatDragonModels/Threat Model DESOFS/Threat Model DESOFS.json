@@ -55,8 +55,8 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "de2a225b-48d1-4cb0-a618-02b4e450d85a",
             "zIndex": 1,
+            "id": "de2a225b-48d1-4cb0-a618-02b4e450d85a",
             "data": {
               "type": "tm.Process",
               "name": "Client Server",
@@ -92,8 +92,8 @@
             },
             "visible": true,
             "shape": "actor",
-            "id": "4f806690-93fc-4731-99aa-c982d99cde43",
             "zIndex": 2,
+            "id": "4f806690-93fc-4731-99aa-c982d99cde43",
             "data": {
               "type": "tm.Actor",
               "name": "Customer",
@@ -137,15 +137,15 @@
               "threats": []
             },
             "id": "716ce8f7-3b65-4756-80bd-8e532629cd69",
+            "labels": [
+              "Request"
+            ],
             "source": {
               "cell": "4f806690-93fc-4731-99aa-c982d99cde43"
             },
             "target": {
               "cell": "de2a225b-48d1-4cb0-a618-02b4e450d85a"
-            },
-            "labels": [
-              "Request"
-            ]
+            }
           },
           {
             "shape": "flow",
@@ -179,15 +179,15 @@
               "threats": []
             },
             "id": "28bd69b0-3e98-4d2a-b949-e1917e928ec0",
+            "labels": [
+              "Request"
+            ],
             "source": {
               "cell": "de2a225b-48d1-4cb0-a618-02b4e450d85a"
             },
             "target": {
               "cell": "a9427e16-0979-4b91-b3e6-ddd46445df93"
-            },
-            "labels": [
-              "Request"
-            ]
+            }
           },
           {
             "position": {
@@ -210,8 +210,8 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "a9427e16-0979-4b91-b3e6-ddd46445df93",
             "zIndex": 11,
+            "id": "a9427e16-0979-4b91-b3e6-ddd46445df93",
             "data": {
               "type": "tm.Process",
               "name": "Resource Server",
