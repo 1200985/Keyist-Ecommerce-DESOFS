@@ -673,6 +673,33 @@
                 "y": 410
               }
             ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Internet",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "97290bd2-5eda-4bd6-8da0-ea222d8e7e58",
+            "source": {
+              "x": 100,
+              "y": 450
+            },
+            "target": {
+              "x": 580,
+              "y": 130
+            },
+            "vertices": [],
+            "labels": [
+              "Internet"
+            ]
           }
         ],
         "description": "As a Client, I want to change the password of my account"
