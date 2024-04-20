@@ -2,7 +2,7 @@
   "version": "2.2.0",
   "summary": {
     "title": "Threat Model DESOFS",
-    "owner": "Tomás Cancela",
+    "owner": "M1B_8",
     "description": "Product E-Commerce Website",
     "id": 0
   },
@@ -13,6 +13,9 @@
       },
       {
         "name": "Francisco Oliveira"
+      },
+      {
+        "name": "Tomás Cancela"
       }
     ],
     "diagrams": [
