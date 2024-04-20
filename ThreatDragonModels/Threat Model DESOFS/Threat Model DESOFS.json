@@ -45,8 +45,8 @@
             },
             "visible": true,
             "shape": "actor",
-            "zIndex": 1,
             "id": "28019543-4743-4165-8eea-ed1f71f700e9",
+            "zIndex": 1,
             "data": {
               "type": "tm.Actor",
               "name": "Client",
@@ -60,8 +60,8 @@
           },
           {
             "position": {
-              "x": 920,
-              "y": 170
+              "x": 880,
+              "y": 280
             },
             "size": {
               "width": 120,
@@ -79,8 +79,8 @@
             },
             "visible": true,
             "shape": "process",
-            "zIndex": 2,
             "id": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c",
+            "zIndex": 2,
             "data": {
               "type": "tm.Process",
               "name": "Resource Server",
@@ -97,8 +97,8 @@
           },
           {
             "position": {
-              "x": 750,
-              "y": 280
+              "x": 670,
+              "y": 510
             },
             "size": {
               "width": 120,
@@ -116,7 +116,6 @@
             },
             "visible": true,
             "shape": "process",
-            "zIndex": 4,
             "id": "8af3bd50-d280-4f1c-b4cf-0ce295730f42",
             "data": {
               "type": "tm.Process",
@@ -130,12 +129,13 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            }
+            },
+            "zIndex": 4
           },
           {
             "position": {
-              "x": 900,
-              "y": 390
+              "x": 1060,
+              "y": 500
             },
             "size": {
               "width": 160,
@@ -153,7 +153,6 @@
             },
             "visible": true,
             "shape": "process",
-            "zIndex": 5,
             "id": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3",
             "data": {
               "type": "tm.Process",
@@ -167,12 +166,13 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            }
+            },
+            "zIndex": 5
           },
           {
             "position": {
-              "x": 1130,
-              "y": 305
+              "x": 880,
+              "y": 470
             },
             "size": {
               "width": 120,
@@ -193,8 +193,8 @@
             },
             "visible": true,
             "shape": "store",
-            "zIndex": 6,
             "id": "9bdd3d7c-faab-4d06-83fc-8cbe7391cd13",
+            "zIndex": 6,
             "data": {
               "type": "tm.Store",
               "name": "mysql_db",
@@ -261,9 +261,192 @@
         "version": "2.2.0",
         "cells": [],
         "description": "As a Client, I want to change the password of my account"
+      },
+      {
+        "id": 4,
+        "title": "Sign In",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [
+          {
+            "position": {
+              "x": 940,
+              "y": 0
+            },
+            "size": {
+              "width": 440,
+              "height": 360
+            },
+            "shape": "trust-boundary-box",
+            "id": "c8508445-ce34-402c-bf88-ca0bc11bf2c6",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Limite de Confiança",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 1090,
+              "y": 230
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "mysql_db"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "79d123be-30bb-445b-9e64-74bac5fa2de2",
+            "zIndex": 0,
+            "data": {
+              "type": "tm.Store",
+              "name": "mysql_db",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1010,
+              "y": 73.00000000000003
+            },
+            "size": {
+              "width": 80,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Client server"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "d8d05fb1-cbbe-44de-ae69-844de354dac8",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Client server",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 1120,
+              "y": 63.00000000000003
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Resource server"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "b21fba4f-f81f-485e-9ecc-2e66901eec48",
+            "data": {
+              "type": "tm.Process",
+              "name": "Resource server",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            },
+            "zIndex": 2
+          },
+          {
+            "position": {
+              "x": 1264,
+              "y": 73.00000000000003
+            },
+            "size": {
+              "width": 80,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Authorization server"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "94f756e7-6da3-40db-8b40-6adc9ac1cc7c",
+            "data": {
+              "type": "tm.Process",
+              "name": "Authorization server",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            },
+            "zIndex": 3
+          }
+        ],
+        "description": "As a Client, I want to sign in"
       }
     ],
-    "diagramTop": 4,
+    "diagramTop": 5,
     "reviewer": "FFS",
     "threatTop": 0
   }
