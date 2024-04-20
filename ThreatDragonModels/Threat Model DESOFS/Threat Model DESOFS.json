@@ -2627,7 +2627,257 @@
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.2.0",
-        "cells": [],
+        "cells": [
+          {
+            "position": {
+              "x": 250,
+              "y": 240
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Client"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "b9af94fa-553f-4768-aaf5-4e55ee56280d",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Client",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 510,
+              "y": 150
+            },
+            "size": {
+              "width": 160,
+              "height": 220
+            },
+            "attrs": {
+              "text": {
+                "text": "Client Server"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "zIndex": 2,
+            "id": "8083a9c6-6c30-443b-869c-f41e2a620b55",
+            "data": {
+              "type": "tm.Process",
+              "name": "Client Server",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": true,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": true,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 650,
+              "y": 540
+            },
+            "size": {
+              "width": 120,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "mysql_db"
+              },
+              "topLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "5a4ca509-c423-436f-af98-87af5ad7eaad",
+            "zIndex": 3,
+            "data": {
+              "type": "tm.Store",
+              "name": "mysql_db",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 920,
+              "y": 160
+            },
+            "size": {
+              "width": 160,
+              "height": 220
+            },
+            "attrs": {
+              "text": {
+                "text": "Resource Server"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "8aa4be07-c26e-448a-9b48-c316fd965714",
+            "data": {
+              "type": "tm.Process",
+              "name": "Resource Server",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": true,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            },
+            "zIndex": 4
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "25c8b71e-1a9c-4147-9412-767e2326523b",
+            "source": {
+              "cell": "b9af94fa-553f-4768-aaf5-4e55ee56280d"
+            },
+            "target": {
+              "cell": "8083a9c6-6c30-443b-869c-f41e2a620b55"
+            },
+            "vertices": [
+              {
+                "x": 390,
+                "y": 340
+              },
+              {
+                "x": 450,
+                "y": 340
+              }
+            ],
+            "labels": [
+              "request"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "response",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "adcfef0a-3f9f-4aeb-bf6e-8fcd6f7f7098",
+            "source": {
+              "cell": "8083a9c6-6c30-443b-869c-f41e2a620b55"
+            },
+            "target": {
+              "cell": "b9af94fa-553f-4768-aaf5-4e55ee56280d"
+            },
+            "vertices": [
+              {
+                "x": 420,
+                "y": 190
+              }
+            ],
+            "labels": [
+              "response"
+            ]
+          }
+        ],
         "description": "As a client i want to add discount/coupon codes"
       }
     ],
