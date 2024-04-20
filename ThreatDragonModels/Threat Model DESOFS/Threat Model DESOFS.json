@@ -654,6 +654,32 @@
                   "new": false,
                   "number": 20,
                   "score": ""
+                },
+                {
+                  "id": "523121e8-5703-4475-91e3-e907a3928bfc",
+                  "title": "Insecure CAPTCHA Implementation (OWASP ID: A6:2017-Security Misconfiguration)",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Weak or poorly implemented CAPTCHA can be bypassed by automated scripts or attackers.",
+                  "mitigation": "Use strong CAPTCHA mechanisms, regularly update and monitor CAPTCHA effectiveness, combine CAPTCHA with other anti-automation measures.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 21,
+                  "score": ""
+                },
+                {
+                  "id": "198f88be-a9d2-45ff-984a-9399bd809081",
+                  "title": "Insufficient Anti-Automation (OWASP ID: A1:2017-Injection)",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attackers use automated tools or scripts to submit a large volume of fraudulent registrations.",
+                  "mitigation": " Implement CAPTCHA, rate limiting, and behavioral analysis to detect and block automated registration attempts.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 22,
+                  "score": ""
                 }
               ]
             },
@@ -684,7 +710,17 @@
                 "x": 430,
                 "y": 440
               }
-            ]
+            ],
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove",
+                "vertices",
+                "source-arrowhead",
+                "target-arrowhead"
+              ],
+              "name": null
+            }
           }
         ],
         "description": "I want to register a new account, using an email and password."
@@ -2034,6 +2070,6 @@
     ],
     "diagramTop": 5,
     "reviewer": "FFS",
-    "threatTop": 20
+    "threatTop": 22
   }
 }
