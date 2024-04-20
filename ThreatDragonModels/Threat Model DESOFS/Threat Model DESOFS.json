@@ -35,9 +35,19 @@
         "version": "2.2.0",
         "cells": [],
         "description": "As a Client, I want to change the password of my account"
+      },
+      {
+        "id": 4,
+        "title": "Add discount",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [],
+        "description": "As a client, I want to add a discount code on the checkout process"
       }
     ],
-    "diagramTop": 4,
+    "diagramTop": 5,
     "reviewer": "FFS",
     "threatTop": 0
   }
