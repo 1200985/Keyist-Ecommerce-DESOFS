@@ -2,15 +2,33 @@
   "version": "2.2.0",
   "summary": {
     "title": "Threat Model DESOFS",
-    "owner": "",
-    "description": "",
+    "owner": "Tomás Cancela",
+    "description": "Product E-Commerce Website",
     "id": 0
   },
   "detail": {
-    "contributors": [],
-    "diagrams": [],
-    "diagramTop": 1,
-    "reviewer": "",
+    "contributors": [
+      {
+        "name": "João Teixeira"
+      },
+      {
+        "name": "Francisco Oliveira"
+      }
+    ],
+    "diagrams": [
+      {
+        "id": 1,
+        "title": "Register Account",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [],
+        "description": "I want to register a new account, using an email and password."
+      }
+    ],
+    "diagramTop": 2,
+    "reviewer": "FFS",
     "threatTop": 0
   }
 }
