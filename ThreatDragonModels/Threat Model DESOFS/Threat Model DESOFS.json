@@ -3102,54 +3102,6 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "request the payment",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "id": "3b3b2761-0bea-41f5-a723-ccc67c9bc206",
-            "source": {
-              "cell": "14e87bf9-65ee-47ff-8163-7e1200f9fac2"
-            },
-            "target": {
-              "cell": "b9af94fa-553f-4768-aaf5-4e55ee56280d"
-            },
-            "labels": [
-              "request the payment"
-            ],
-            "vertices": [
-              {
-                "x": 440,
-                "y": 50
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
               "name": "request\n",
               "description": "",
               "outOfScope": false,
@@ -3302,6 +3254,19 @@
                   "new": false,
                   "number": 31,
                   "score": ""
+                },
+                {
+                  "id": "aa9f7830-ba60-4999-9b1a-525037bc1b0a",
+                  "title": "Insecure Direct Object References (OWASP ID: A4:2017-Insecure Direct Object References)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attackers manipulate order identifiers or URLs to access or modify other users' shopping carts or payment details.",
+                  "mitigation": "Implement proper access controls and authorization checks, use indirect object references, validate user permissions.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 32,
+                  "score": ""
                 }
               ]
             },
@@ -3323,6 +3288,69 @@
               {
                 "x": 450,
                 "y": 340
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "request the payment",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "6df9032c-1834-4b0b-bad1-2ae8c5126433",
+                  "title": "Insufficient Transport Layer Protection (OWASP ID: A6:2017-Security Misconfiguration)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Lack of HTTPS or weak encryption exposes payment and personal data during transmission.",
+                  "mitigation": "Implement HTTPS with strong encryption, use HSTS (HTTP Strict Transport Security), avoid mixed content.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 33,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "3b3b2761-0bea-41f5-a723-ccc67c9bc206",
+            "source": {
+              "cell": "14e87bf9-65ee-47ff-8163-7e1200f9fac2"
+            },
+            "target": {
+              "cell": "b9af94fa-553f-4768-aaf5-4e55ee56280d"
+            },
+            "labels": [
+              "request the payment"
+            ],
+            "vertices": [
+              {
+                "x": 440,
+                "y": 50
               }
             ]
           },
@@ -3406,6 +3434,6 @@
     ],
     "diagramTop": 8,
     "reviewer": "FFS",
-    "threatTop": 31
+    "threatTop": 33
   }
 }
