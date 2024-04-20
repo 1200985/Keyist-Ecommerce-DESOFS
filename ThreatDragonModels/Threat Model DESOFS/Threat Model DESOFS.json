@@ -832,15 +832,15 @@
               "threats": []
             },
             "id": "db035772-bc4b-41d5-8a60-79078df259f5",
+            "labels": [
+              "Token"
+            ],
             "source": {
               "cell": "94f756e7-6da3-40db-8b40-6adc9ac1cc7c"
             },
             "target": {
               "cell": "79d123be-30bb-445b-9e64-74bac5fa2de2"
             },
-            "labels": [
-              "Token"
-            ],
             "vertices": [
               {
                 "x": 1294,
@@ -1149,6 +1149,10 @@
               "cell": "d8d05fb1-cbbe-44de-ae69-844de354dac8"
             },
             "vertices": [
+              {
+                "x": 610,
+                "y": 180
+              },
               {
                 "x": 710,
                 "y": 280
