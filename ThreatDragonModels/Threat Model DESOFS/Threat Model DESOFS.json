@@ -714,6 +714,32 @@
                   "new": false,
                   "number": 14,
                   "score": ""
+                },
+                {
+                  "id": "98183dab-68a4-4631-a976-c7c8d7a426f2",
+                  "title": "Insecure Password Recovery OWASP-ID-010",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Weak or easily guessable password recovery mechanisms that allow unauthorized password changes.",
+                  "mitigation": "Implement secure password change processes with multi-factor authentication and security questions.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 15,
+                  "score": ""
+                },
+                {
+                  "id": "5d701c3f-e228-4922-9bcb-f71a6bfdc43a",
+                  "title": "Insufficient Logging and Monitoring OWASP-ATC-004",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "Inability to detect and alert on suspicious password change attempts or patterns",
+                  "mitigation": "Implement comprehensive logging, monitoring, and alerting mechanisms for password change events.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 16,
+                  "score": ""
                 }
               ]
             },
@@ -1648,6 +1674,6 @@
     ],
     "diagramTop": 5,
     "reviewer": "FFS",
-    "threatTop": 14
+    "threatTop": 16
   }
 }
