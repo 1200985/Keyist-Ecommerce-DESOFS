@@ -1054,26 +1054,6 @@
         "cells": [
           {
             "position": {
-              "x": 960,
-              "y": -250
-            },
-            "size": {
-              "width": 730,
-              "height": 610
-            },
-            "shape": "trust-boundary-box",
-            "zIndex": -1,
-            "id": "c8508445-ce34-402c-bf88-ca0bc11bf2c6",
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "Limite de Confiança",
-              "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
-            }
-          },
-          {
-            "position": {
               "x": 1330,
               "y": -170
             },
