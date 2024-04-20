@@ -203,9 +203,9 @@
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "isALog": false,
-              "isEncrypted": false,
+              "isEncrypted": true,
               "isSigned": false,
-              "storesCredentials": false,
+              "storesCredentials": true,
               "storesInventory": false,
               "threats": []
             }
@@ -400,6 +400,138 @@
                 "x": 590,
                 "y": 550
               }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "62d91bc3-9c62-46ff-bd2b-770f915dca99",
+            "source": {
+              "cell": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c"
+            },
+            "target": {
+              "cell": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3"
+            },
+            "labels": [
+              "request"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "response",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "9048d873-1a9e-4c9d-b961-39d1a37a45e0",
+            "source": {
+              "cell": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c"
+            },
+            "target": {
+              "cell": "8af3bd50-d280-4f1c-b4cf-0ce295730f42"
+            },
+            "labels": [
+              "response"
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "response",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "fc874503-c1ee-454a-91e0-8c8abcad0e67",
+            "source": {
+              "cell": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3"
+            },
+            "target": {
+              "cell": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c"
+            },
+            "vertices": [
+              {
+                "x": 930,
+                "y": 290
+              }
+            ],
+            "labels": [
+              "response"
             ]
           }
         ],
