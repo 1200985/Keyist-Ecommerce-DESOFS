@@ -2269,58 +2269,6 @@
               "protocol": "",
               "threats": []
             },
-            "id": "1f7f893e-a419-4d55-83bc-35d08aed89d9",
-            "source": {
-              "cell": "f8c5332c-3e29-4bc2-845b-5021c45145a0"
-            },
-            "target": {
-              "cell": "3ce24971-7de2-4ea4-bb59-806daf24e62b"
-            },
-            "labels": [
-              "request"
-            ],
-            "vertices": [
-              {
-                "x": 350,
-                "y": 360
-              },
-              {
-                "x": 430,
-                "y": 420
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "request",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
             "id": "bc9b31b3-2e9b-428a-8f77-3ba46758b1de",
             "source": {
               "cell": "3ce24971-7de2-4ea4-bb59-806daf24e62b"
@@ -2509,6 +2457,104 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "97823f15-f2b6-48cb-b095-c59c806aa07b",
+                  "title": "XSS (OWASP ID: A7:2017-Cross-Site Scripting (XSS))",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attackers inject malicious scripts into the product details or shopping cart pages, potentially stealing user information or executing unauthorized actions.",
+                  "mitigation": "Implement input validation and output encoding, use Content Security Policy (CSP), sanitize user-generated content.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 23,
+                  "score": ""
+                },
+                {
+                  "id": "dbd2e09f-a513-43da-a822-2a1b1f18e8c1",
+                  "title": "Insecure Direct Object References (IDOR) (OWASP ID: A4:2017-Insecure Direct Object References)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attackers manipulate product identifiers or URLs to access other users' shopping cart items or product details.",
+                  "mitigation": "Implement proper access controls and authorization checks, use indirect object references, validate user permissions.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 24,
+                  "score": ""
+                },
+                {
+                  "id": "364f9f86-5e95-4a9a-be59-34f15099d45d",
+                  "title": "Insecure Deserialization (OWASP ID: A8:2017-Insecure Deserialization)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attackers exploit insecure deserialization to manipulate the data structure or execute arbitrary code when adding a product to the shopping cart.",
+                  "mitigation": "Avoid using insecure deserialization, validate and sanitize serialized data, use strong data integrity checks.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 25,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "1f7f893e-a419-4d55-83bc-35d08aed89d9",
+            "source": {
+              "cell": "f8c5332c-3e29-4bc2-845b-5021c45145a0"
+            },
+            "target": {
+              "x": 550,
+              "y": 450
+            },
+            "labels": [
+              "request"
+            ],
+            "vertices": [
+              {
+                "x": 350,
+                "y": 360
+              },
+              {
+                "x": 430,
+                "y": 420
+              },
+              {
+                "x": 530,
+                "y": 452.5
+              }
+            ]
+          },
+          {
             "position": {
               "x": 772,
               "y": 215
@@ -2551,6 +2597,6 @@
     ],
     "diagramTop": 7,
     "reviewer": "FFS",
-    "threatTop": 22
+    "threatTop": 25
   }
 }
