@@ -3334,6 +3334,19 @@
                   "new": false,
                   "number": 33,
                   "score": ""
+                },
+                {
+                  "id": "fb42aabe-56e8-4e07-b809-f8719114fcf5",
+                  "title": "Payment Gateway Vulnerabilities (OWASP ID: A2:2017-Broken Authentication)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Vulnerabilities in payment gateway integration might allow attackers to manipulate payment data or bypass authentication.",
+                  "mitigation": "Choose reputable payment gateways, follow secure integration practices, monitor for gateway-specific vulnerabilities and patches.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 34,
+                  "score": ""
                 }
               ]
             },
@@ -3434,6 +3447,6 @@
     ],
     "diagramTop": 8,
     "reviewer": "FFS",
-    "threatTop": 33
+    "threatTop": 34
   }
 }
