@@ -400,8 +400,8 @@
                 "text": "Customer"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -415,9 +415,23 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": true,
-              "threats": []
+              "threats": [
+                {
+                  "id": "508b991e-30cb-4e4e-b5ff-b2f381d708bc",
+                  "title": "Client pretends to be the Client Server",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "The client spoofs his IP to be the same as the client server and sends direct requests to the resource server",
+                  "mitigation": "IP Whitelisting and Blacklisting",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 4,
+                  "score": ""
+                }
+              ]
             }
           },
           {
@@ -1428,6 +1442,6 @@
     ],
     "diagramTop": 5,
     "reviewer": "FFS",
-    "threatTop": 3
+    "threatTop": 4
   }
 }
