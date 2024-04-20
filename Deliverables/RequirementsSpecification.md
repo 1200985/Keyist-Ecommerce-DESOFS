@@ -74,7 +74,7 @@
 **As a Manager:**
 - **UC12:** I want to add a new Product, giving a name, description, price, category and product variants.
 - **UC13:** I want to edit the details of a Product.
-- **UC14:** I want to generate a Sales Report for a given date interval.
+- **UC14:** I want to import Products from a csv input file.
 
 **As an Admin:**
 - **UC15:** I want to remove client or manager accounts from the system.
