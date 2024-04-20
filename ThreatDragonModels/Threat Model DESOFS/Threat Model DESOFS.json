@@ -533,6 +533,101 @@
                 "y": 290
               }
             ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "confirm email",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "ef823523-257b-4db9-aeb2-bc91193c633e",
+            "source": {
+              "cell": "28019543-4743-4165-8eea-ed1f71f700e9"
+            },
+            "target": {
+              "cell": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3"
+            },
+            "labels": [
+              "confirm email"
+            ],
+            "vertices": [
+              {
+                "x": 350,
+                "y": 0
+              },
+              {
+                "x": 610,
+                "y": -50
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "sends confirmation email",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "protocol": "https",
+              "threats": []
+            },
+            "id": "ef04c772-70e6-4782-b91a-3ea9d81ec78b",
+            "source": {
+              "cell": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3"
+            },
+            "target": {
+              "x": 290,
+              "y": 170
+            },
+            "labels": [
+              "sends confirmation email"
+            ]
           }
         ],
         "description": "I want to register a new account, using an email and password."
