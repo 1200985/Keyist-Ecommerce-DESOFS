@@ -338,8 +338,8 @@
             },
             "visible": true,
             "shape": "actor",
-            "id": "a64ec604-48be-4ac9-b0d0-3b7df81ced85",
             "zIndex": 1,
+            "id": "a64ec604-48be-4ac9-b0d0-3b7df81ced85",
             "data": {
               "type": "tm.Actor",
               "name": "Client",
@@ -372,6 +372,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 3,
             "id": "7037f584-0c2c-4971-b409-c44b2e96bb15",
             "data": {
               "type": "tm.Process",
@@ -385,8 +386,7 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 3
+            }
           },
           {
             "position": {
@@ -409,6 +409,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 4,
             "id": "7314baf7-11c0-4a0a-917a-19fd512f197f",
             "data": {
               "type": "tm.Process",
@@ -422,8 +423,7 @@
               "isWebApplication": true,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 4
+            }
           },
           {
             "shape": "flow",
@@ -457,19 +457,23 @@
               "threats": []
             },
             "id": "d4119b0d-81b4-4809-9a39-f64527850552",
+            "labels": [
+              "Request"
+            ],
             "source": {
               "cell": "a64ec604-48be-4ac9-b0d0-3b7df81ced85"
             },
             "target": {
               "cell": "7314baf7-11c0-4a0a-917a-19fd512f197f"
             },
-            "labels": [
-              "Request"
-            ],
             "vertices": [
               {
                 "x": 240,
                 "y": 480
+              },
+              {
+                "x": 320,
+                "y": 530
               },
               {
                 "x": 350,
@@ -509,15 +513,15 @@
               "threats": []
             },
             "id": "7d9e5dc4-f604-4745-85cc-6ae301d94410",
+            "labels": [
+              "Response"
+            ],
             "source": {
               "cell": "7314baf7-11c0-4a0a-917a-19fd512f197f"
             },
             "target": {
               "cell": "a64ec604-48be-4ac9-b0d0-3b7df81ced85"
             },
-            "labels": [
-              "Response"
-            ],
             "vertices": [
               {
                 "x": 430,
@@ -557,15 +561,15 @@
               "threats": []
             },
             "id": "5de72edc-a3ac-4207-9742-803145a072b3",
+            "labels": [
+              "Request"
+            ],
             "source": {
               "cell": "7314baf7-11c0-4a0a-917a-19fd512f197f"
             },
             "target": {
               "cell": "7037f584-0c2c-4971-b409-c44b2e96bb15"
-            },
-            "labels": [
-              "Request"
-            ]
+            }
           },
           {
             "shape": "flow",
@@ -599,6 +603,9 @@
               "threats": []
             },
             "id": "1224f4f2-dccf-444e-aa23-bdc5b7c24e9f",
+            "labels": [
+              "Response"
+            ],
             "source": {
               "cell": "7037f584-0c2c-4971-b409-c44b2e96bb15"
             },
@@ -610,9 +617,6 @@
                 "x": 628,
                 "y": 530
               }
-            ],
-            "labels": [
-              "Response"
             ]
           },
           {
@@ -647,15 +651,15 @@
               "threats": []
             },
             "id": "c013a0a5-2cc2-47eb-8db5-30155136b1e0",
+            "labels": [
+              "changed user"
+            ],
             "source": {
               "cell": "7037f584-0c2c-4971-b409-c44b2e96bb15"
             },
             "target": {
               "cell": "6105e34b-6b4e-48cb-a774-c875dbf0ce34"
-            },
-            "labels": [
-              "changed user"
-            ]
+            }
           },
           {
             "shape": "trust-boundary-curve",
@@ -671,6 +675,9 @@
               "hasOpenThreats": false
             },
             "id": "a1edf829-ec53-445c-b9b1-c62c77dcc42b",
+            "labels": [
+              "Internet"
+            ],
             "source": {
               "x": 490,
               "y": 100
@@ -678,10 +685,7 @@
             "target": {
               "x": 90,
               "y": 620
-            },
-            "labels": [
-              "Internet"
-            ]
+            }
           },
           {
             "position": {
@@ -707,8 +711,8 @@
             },
             "visible": true,
             "shape": "store",
-            "id": "6105e34b-6b4e-48cb-a774-c875dbf0ce34",
             "zIndex": 11,
+            "id": "6105e34b-6b4e-48cb-a774-c875dbf0ce34",
             "data": {
               "type": "tm.Store",
               "name": "mysql_db",
