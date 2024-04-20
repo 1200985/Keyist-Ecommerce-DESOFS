@@ -2797,58 +2797,6 @@
             "connector": "smooth",
             "data": {
               "type": "tm.Flow",
-              "name": "request",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "id": "25c8b71e-1a9c-4147-9412-767e2326523b",
-            "labels": [
-              "request"
-            ],
-            "source": {
-              "cell": "b9af94fa-553f-4768-aaf5-4e55ee56280d"
-            },
-            "target": {
-              "cell": "8083a9c6-6c30-443b-869c-f41e2a620b55"
-            },
-            "vertices": [
-              {
-                "x": 390,
-                "y": 340
-              },
-              {
-                "x": 450,
-                "y": 340
-              }
-            ]
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
               "name": "response",
               "description": "",
               "outOfScope": false,
@@ -3273,6 +3221,99 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "4ae72789-f6ea-4e93-881a-200113ad4fb8",
+                  "title": "(COUPON) XSS (OWASP ID: A7:2017-Cross-Site Scripting (XSS))",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Attackers inject malicious scripts into the discount/coupon code input or display areas, potentially stealing user information or executing unauthorized actions.",
+                  "mitigation": "Implement input validation and output encoding, use Content Security Policy (CSP), sanitize user-generated content.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 28,
+                  "score": ""
+                },
+                {
+                  "id": "955b16b9-7a8d-4007-974b-0cbfd21a4357",
+                  "title": "(COUPON) Insecure Direct Object References (OWASP ID: A4:2017-Insecure Direct Object References)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": " Attackers manipulate discount/coupon code identifiers or URLs to access or redeem other users' codes",
+                  "mitigation": "Implement proper access controls and authorization checks, use indirect object references, validate user permissions",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 29,
+                  "score": ""
+                },
+                {
+                  "id": "8a55b7af-c528-4044-aae8-508e3846499a",
+                  "title": "(COUPON) Insecure CAPTCHA Implementation (OWASP ID: A6:2017-Security Misconfiguration)",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Weak or poorly implemented CAPTCHA can be bypassed by automated scripts or attackers during code redemption.",
+                  "mitigation": "Use strong CAPTCHA mechanisms, regularly update and monitor CAPTCHA effectiveness, combine CAPTCHA with other anti-automation measures.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 30,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "25c8b71e-1a9c-4147-9412-767e2326523b",
+            "labels": [
+              "request"
+            ],
+            "source": {
+              "cell": "b9af94fa-553f-4768-aaf5-4e55ee56280d"
+            },
+            "target": {
+              "cell": "8083a9c6-6c30-443b-869c-f41e2a620b55"
+            },
+            "vertices": [
+              {
+                "x": 390,
+                "y": 340
+              },
+              {
+                "x": 450,
+                "y": 340
+              }
+            ]
+          },
+          {
             "position": {
               "x": 670,
               "y": -140.0000000000001
@@ -3352,6 +3393,6 @@
     ],
     "diagramTop": 8,
     "reviewer": "FFS",
-    "threatTop": 27
+    "threatTop": 30
   }
 }
