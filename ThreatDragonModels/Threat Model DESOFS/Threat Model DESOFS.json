@@ -529,7 +529,7 @@
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": true,
-              "providesAuthentication": false,
+              "providesAuthentication": true,
               "threats": [
                 {
                   "id": "2de20f90-c032-4c00-a581-7d4c5e20efb9",
@@ -542,6 +542,19 @@
                   "modelType": "STRIDE",
                   "new": true,
                   "number": 2,
+                  "score": ""
+                },
+                {
+                  "id": "32567459-fe87-4300-95d2-4c75391a1cf8",
+                  "title": "Nova ameaça STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Spoofing",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": true,
+                  "number": 3,
                   "score": ""
                 }
               ]
@@ -1078,6 +1091,6 @@
     ],
     "diagramTop": 5,
     "reviewer": "FFS",
-    "threatTop": 2
+    "threatTop": 3
   }
 }
