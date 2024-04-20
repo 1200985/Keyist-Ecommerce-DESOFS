@@ -521,15 +521,15 @@
               "threats": []
             },
             "id": "ef823523-257b-4db9-aeb2-bc91193c633e",
+            "labels": [
+              "confirm email"
+            ],
             "source": {
               "cell": "28019543-4743-4165-8eea-ed1f71f700e9"
             },
             "target": {
               "cell": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3"
             },
-            "labels": [
-              "confirm email"
-            ],
             "vertices": [
               {
                 "x": 260,
@@ -577,16 +577,16 @@
               "threats": []
             },
             "id": "ef04c772-70e6-4782-b91a-3ea9d81ec78b",
+            "labels": [
+              "sends confirmation email"
+            ],
             "source": {
               "cell": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3"
             },
             "target": {
               "x": 290,
               "y": 170
-            },
-            "labels": [
-              "sends confirmation email"
-            ]
+            }
           },
           {
             "shape": "flow",
@@ -713,17 +713,33 @@
                 "x": 430,
                 "y": 440
               }
-            ],
-            "tools": {
-              "items": [
-                "boundary",
-                "button-remove",
-                "vertices",
-                "source-arrowhead",
-                "target-arrowhead"
-              ],
-              "name": null
-            }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "internet",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "8f42550f-1294-4971-9455-afa9e1cfc352",
+            "source": {
+              "x": 420,
+              "y": -160
+            },
+            "target": {
+              "x": 266,
+              "y": 528
+            },
+            "labels": [
+              "internet"
+            ]
           }
         ],
         "description": "I want to register a new account, using an email and password."
