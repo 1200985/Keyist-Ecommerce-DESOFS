@@ -45,8 +45,8 @@
             },
             "visible": true,
             "shape": "actor",
-            "id": "28019543-4743-4165-8eea-ed1f71f700e9",
             "zIndex": 1,
+            "id": "28019543-4743-4165-8eea-ed1f71f700e9",
             "data": {
               "type": "tm.Actor",
               "name": "Client",
@@ -60,8 +60,8 @@
           },
           {
             "position": {
-              "x": 880,
-              "y": 280
+              "x": 920,
+              "y": 170
             },
             "size": {
               "width": 120,
@@ -79,8 +79,8 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c",
             "zIndex": 2,
+            "id": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c",
             "data": {
               "type": "tm.Process",
               "name": "Resource Server",
@@ -97,8 +97,8 @@
           },
           {
             "position": {
-              "x": 670,
-              "y": 510
+              "x": 750,
+              "y": 280
             },
             "size": {
               "width": 120,
@@ -116,6 +116,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 4,
             "id": "8af3bd50-d280-4f1c-b4cf-0ce295730f42",
             "data": {
               "type": "tm.Process",
@@ -129,13 +130,12 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 4
+            }
           },
           {
             "position": {
-              "x": 1060,
-              "y": 500
+              "x": 900,
+              "y": 390
             },
             "size": {
               "width": 160,
@@ -153,6 +153,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 5,
             "id": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3",
             "data": {
               "type": "tm.Process",
@@ -166,13 +167,12 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 5
+            }
           },
           {
             "position": {
-              "x": 880,
-              "y": 470
+              "x": 1130,
+              "y": 305
             },
             "size": {
               "width": 120,
@@ -193,8 +193,8 @@
             },
             "visible": true,
             "shape": "store",
-            "id": "9bdd3d7c-faab-4d06-83fc-8cbe7391cd13",
             "zIndex": 6,
+            "id": "9bdd3d7c-faab-4d06-83fc-8cbe7391cd13",
             "data": {
               "type": "tm.Store",
               "name": "mysql_db",
@@ -261,19 +261,9 @@
         "version": "2.2.0",
         "cells": [],
         "description": "As a Client, I want to change the password of my account"
-      },
-      {
-        "id": 4,
-        "title": "Sign In",
-        "diagramType": "STRIDE",
-        "placeholder": "New STRIDE diagram description",
-        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
-        "version": "2.2.0",
-        "cells": [],
-        "description": "As a Client, I want to sign in"
       }
     ],
-    "diagramTop": 5,
+    "diagramTop": 4,
     "reviewer": "FFS",
     "threatTop": 0
   }
