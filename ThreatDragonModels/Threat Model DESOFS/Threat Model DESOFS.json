@@ -2622,7 +2622,7 @@
       },
       {
         "id": 7,
-        "title": "Add discount/coupon codes",
+        "title": "Checkout the Shopping Cart",
         "diagramType": "STRIDE",
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
@@ -2878,7 +2878,7 @@
             ]
           }
         ],
-        "description": "As a client i want to add discount/coupon codes"
+        "description": "As a Client I want to checkout the Shopping Cart"
       }
     ],
     "diagramTop": 8,
