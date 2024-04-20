@@ -38,13 +38,13 @@
       },
       {
         "id": 4,
-        "title": "Add discount",
+        "title": "Sign In",
         "diagramType": "STRIDE",
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.2.0",
         "cells": [],
-        "description": "As a client, I want to add a discount code on the checkout process"
+        "description": "As a Client, I want to sign in my account"
       }
     ],
     "diagramTop": 5,
