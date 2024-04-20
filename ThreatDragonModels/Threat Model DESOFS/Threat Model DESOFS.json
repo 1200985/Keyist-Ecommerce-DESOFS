@@ -418,9 +418,9 @@
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
-              "handlesCardPayment": false,
+              "handlesCardPayment": true,
               "handlesGoodsOrServices": false,
-              "isWebApplication": false,
+              "isWebApplication": true,
               "privilegeLevel": "",
               "threats": []
             }
@@ -806,15 +806,15 @@
               "threats": []
             },
             "id": "51edb788-c465-4107-a20e-5bd48cd21f0f",
+            "labels": [
+              "Request Token"
+            ],
             "source": {
               "cell": "d8d05fb1-cbbe-44de-ae69-844de354dac8"
             },
             "target": {
               "cell": "94f756e7-6da3-40db-8b40-6adc9ac1cc7c"
             },
-            "labels": [
-              "Request Token"
-            ],
             "vertices": [
               {
                 "x": 1180,
@@ -858,6 +858,9 @@
               "threats": []
             },
             "id": "2fa5c250-b2d0-4c29-a52e-57469e1cf72e",
+            "labels": [
+              "Response"
+            ],
             "source": {
               "cell": "94f756e7-6da3-40db-8b40-6adc9ac1cc7c"
             },
@@ -869,9 +872,6 @@
                 "x": 1220,
                 "y": 170
               }
-            ],
-            "labels": [
-              "Response"
             ]
           },
           {
@@ -925,6 +925,48 @@
                 "x": 1250,
                 "y": -180
               }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Token",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "db035772-bc4b-41d5-8a60-79078df259f5",
+            "source": {
+              "cell": "94f756e7-6da3-40db-8b40-6adc9ac1cc7c"
+            },
+            "target": {
+              "cell": "79d123be-30bb-445b-9e64-74bac5fa2de2"
+            },
+            "labels": [
+              "Token"
             ]
           }
         ],
