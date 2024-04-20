@@ -26,8 +26,8 @@
         "cells": [
           {
             "position": {
-              "x": 180,
-              "y": 150
+              "x": 90,
+              "y": 110
             },
             "size": {
               "width": 112.5,
@@ -60,8 +60,8 @@
           },
           {
             "position": {
-              "x": 600,
-              "y": 210
+              "x": 690,
+              "y": 230
             },
             "size": {
               "width": 120,
@@ -97,8 +97,8 @@
           },
           {
             "position": {
-              "x": 440,
-              "y": 410
+              "x": 530,
+              "y": 430
             },
             "size": {
               "width": 120,
@@ -134,8 +134,8 @@
           },
           {
             "position": {
-              "x": 720,
-              "y": 420
+              "x": 810,
+              "y": 440
             },
             "size": {
               "width": 120,
@@ -216,8 +216,8 @@
             },
             "vertices": [
               {
-                "x": 270,
-                "y": 370
+                "x": 360,
+                "y": 390
               }
             ]
           },
@@ -264,8 +264,8 @@
             },
             "vertices": [
               {
-                "x": 430,
-                "y": 260
+                "x": 520,
+                "y": 280
               }
             ]
           },
@@ -309,8 +309,8 @@
             },
             "vertices": [
               {
-                "x": 600,
-                "y": 390
+                "x": 690,
+                "y": 410
               }
             ]
           },
@@ -354,8 +354,8 @@
             },
             "vertices": [
               {
-                "x": 820,
-                "y": 240
+                "x": 910,
+                "y": 260
               }
             ]
           },
@@ -391,15 +391,15 @@
               "threats": []
             },
             "id": "c735f86f-dfc4-4b5c-bcd2-c55333b97b85",
+            "labels": [
+              "sends confirmation email"
+            ],
             "source": {
               "cell": "eaa10681-326f-4c5a-b049-23f7a5703eb5"
             },
             "target": {
               "cell": "28019543-4743-4165-8eea-ed1f71f700e9"
             },
-            "labels": [
-              "sends confirmation email"
-            ],
             "vertices": [
               {
                 "x": 550,
@@ -439,6 +439,9 @@
               "threats": []
             },
             "id": "af36aaf7-a5eb-4894-beb8-a40fe5d94d91",
+            "labels": [
+              "confirms registration"
+            ],
             "source": {
               "cell": "28019543-4743-4165-8eea-ed1f71f700e9"
             },
@@ -450,9 +453,6 @@
                 "x": 560,
                 "y": 180
               }
-            ],
-            "labels": [
-              "confirms registration"
             ]
           },
           {
@@ -487,6 +487,9 @@
               "threats": []
             },
             "id": "4a06a520-d4e5-40dd-9ba5-93da49179355",
+            "labels": [
+              "stores new user"
+            ],
             "source": {
               "cell": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c"
             },
@@ -495,18 +498,47 @@
             },
             "vertices": [
               {
-                "x": 760,
-                "y": 340
+                "x": 850,
+                "y": 360
+              }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Internet",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "50bf7cbc-f77e-407f-9c8d-3039b19d588c",
+            "source": {
+              "x": 590,
+              "y": -50
+            },
+            "target": {
+              "x": 170,
+              "y": 500
+            },
+            "vertices": [
+              {
+                "x": 300,
+                "y": 190
               }
             ],
             "labels": [
-              "stores new user"
+              "Internet"
             ]
           },
           {
             "position": {
-              "x": 775,
-              "y": 40
+              "x": 865,
+              "y": 60
             },
             "size": {
               "width": 130,
@@ -524,8 +556,8 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "eaa10681-326f-4c5a-b049-23f7a5703eb5",
             "zIndex": 11,
+            "id": "eaa10681-326f-4c5a-b049-23f7a5703eb5",
             "data": {
               "type": "tm.Process",
               "name": "JavaMailSender",
