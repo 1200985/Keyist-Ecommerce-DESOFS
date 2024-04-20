@@ -3282,6 +3282,10 @@
             },
             "vertices": [
               {
+                "x": 350,
+                "y": 310
+              },
+              {
                 "x": 390,
                 "y": 340
               },
@@ -3347,6 +3351,32 @@
                   "new": false,
                   "number": 34,
                   "score": ""
+                },
+                {
+                  "id": "4327b6d5-3c74-46dc-96bc-ef7e5a8436e5",
+                  "title": "Fraudulent Transactions (OWASP ID: A9:2017-Using Components with Known Vulnerabilities)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attackers exploit vulnerabilities to conduct fraudulent transactions or manipulate payment amounts.",
+                  "mitigation": "Implement fraud detection mechanisms, monitor for suspicious activity, regularly update and patch payment systems and components.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 35,
+                  "score": ""
+                },
+                {
+                  "id": "10c687a9-1dcc-49ae-b380-85d5328ad545",
+                  "title": "Denial of Service (OWASP ID: A10:2017-Insufficient Logging & Monitoring)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attackers flood the payment system with transaction requests, causing service degradation or denial of service.",
+                  "mitigation": "Implement rate limiting, use CDN (Content Delivery Network) or WAF (Web Application Firewall), monitor server performance and network traffic.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 37,
+                  "score": ""
                 }
               ]
             },
@@ -3364,6 +3394,10 @@
               {
                 "x": 440,
                 "y": 50
+              },
+              {
+                "x": 370,
+                "y": 130
               }
             ]
           },
@@ -3447,6 +3481,6 @@
     ],
     "diagramTop": 8,
     "reviewer": "FFS",
-    "threatTop": 34
+    "threatTop": 37
   }
 }
