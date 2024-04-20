@@ -4437,6 +4437,102 @@
             ]
           },
           {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "005aa1f9-28de-4dfa-a475-2f25d35977af",
+            "source": {
+              "cell": "e5a31a64-d52f-4c69-827c-9764e469dae4"
+            },
+            "target": {
+              "cell": "b7a8b737-ca20-41c0-8f5b-16a086fba8b2"
+            },
+            "labels": [
+              "request"
+            ],
+            "vertices": [
+              {
+                "x": 1380,
+                "y": 320
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "responds",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "e3fa2d98-882d-4f7b-9e95-722e900cb55c",
+            "source": {
+              "cell": "b7a8b737-ca20-41c0-8f5b-16a086fba8b2"
+            },
+            "target": {
+              "cell": "e5a31a64-d52f-4c69-827c-9764e469dae4"
+            },
+            "vertices": [
+              {
+                "x": 1350,
+                "y": 240
+              }
+            ],
+            "labels": [
+              "responds"
+            ]
+          },
+          {
             "position": {
               "x": 1080,
               "y": 210
@@ -4587,6 +4683,43 @@
               "privilegeLevel": "",
               "threats": []
             }
+          },
+          {
+            "position": {
+              "x": 1490,
+              "y": 150
+            },
+            "size": {
+              "width": 180,
+              "height": 200
+            },
+            "attrs": {
+              "text": {
+                "text": "Authorization Server"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "b7a8b737-ca20-41c0-8f5b-16a086fba8b2",
+            "data": {
+              "type": "tm.Process",
+              "name": "Authorization Server",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": true,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            },
+            "zIndex": 15
           }
         ]
       }
