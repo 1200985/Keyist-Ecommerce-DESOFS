@@ -402,8 +402,8 @@
                 "text": "Client Server"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
@@ -417,69 +417,27 @@
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "handlesCardPayment": true,
               "handlesGoodsOrServices": false,
               "isWebApplication": true,
               "privilegeLevel": "",
-              "threats": []
+              "threats": [
+                {
+                  "id": "c2bfc217-cc68-44dc-964d-b7b5fd29cfe6",
+                  "title": "DDOS",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Denial of service",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                }
+              ]
             }
-          },
-          {
-            "shape": "flow",
-            "attrs": {
-              "line": {
-                "stroke": "#333333",
-                "targetMarker": {
-                  "name": "block"
-                },
-                "sourceMarker": {
-                  "name": ""
-                },
-                "strokeDasharray": null
-              }
-            },
-            "width": 200,
-            "height": 100,
-            "zIndex": 10,
-            "connector": "smooth",
-            "data": {
-              "type": "tm.Flow",
-              "name": "Request",
-              "description": "",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "isBidirectional": false,
-              "isEncrypted": false,
-              "isPublicNetwork": false,
-              "protocol": "",
-              "threats": []
-            },
-            "id": "d4119b0d-81b4-4809-9a39-f64527850552",
-            "labels": [
-              "Request"
-            ],
-            "source": {
-              "cell": "a64ec604-48be-4ac9-b0d0-3b7df81ced85"
-            },
-            "target": {
-              "cell": "7314baf7-11c0-4a0a-917a-19fd512f197f"
-            },
-            "vertices": [
-              {
-                "x": 240,
-                "y": 480
-              },
-              {
-                "x": 320,
-                "y": 530
-              },
-              {
-                "x": 350,
-                "y": 530
-              }
-            ]
           },
           {
             "shape": "flow",
@@ -686,6 +644,107 @@
               "x": 90,
               "y": 620
             }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "fd583f98-c1f5-458a-a60a-e5361212eb33",
+                  "title": "XSS OWASP-ID-003",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": " Injecting malicious scripts that could manipulate the password change process or steal new passwords.",
+                  "mitigation": "Implement input validation, output encoding, and Content Security Policy (CSP).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 12,
+                  "score": ""
+                },
+                {
+                  "id": "62bf66b1-f707-4844-84fe-def7fb528d99",
+                  "title": "Insecure Password Storage OWASP-ID-009",
+                  "status": "Mitigated",
+                  "severity": "Medium",
+                  "type": "Information disclosure",
+                  "description": "New passwords stored in plaintext or weakly hashed form, making them susceptible to theft.",
+                  "mitigation": "Use strong cryptographic hashing and salt passwords before storing them.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 13,
+                  "score": ""
+                },
+                {
+                  "id": "4a831ffb-58c2-473f-94a0-75612b92744e",
+                  "title": "Insufficient Transport Layer Protection OWASP-ID-008",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Lack of HTTPS or weak encryption could expose the new password during transmission.",
+                  "mitigation": "Implement HTTPS with strong encryption, use HSTS (HTTP Strict Transport Security), and avoid mixed content.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 14,
+                  "score": ""
+                }
+              ]
+            },
+            "id": "d4119b0d-81b4-4809-9a39-f64527850552",
+            "labels": [
+              "Request"
+            ],
+            "source": {
+              "cell": "a64ec604-48be-4ac9-b0d0-3b7df81ced85"
+            },
+            "target": {
+              "cell": "7314baf7-11c0-4a0a-917a-19fd512f197f"
+            },
+            "vertices": [
+              {
+                "x": 266.25,
+                "y": 340
+              },
+              {
+                "x": 240,
+                "y": 480
+              },
+              {
+                "x": 320,
+                "y": 530
+              },
+              {
+                "x": 380,
+                "y": 567
+              }
+            ]
           },
           {
             "position": {
@@ -1589,6 +1648,6 @@
     ],
     "diagramTop": 5,
     "reviewer": "FFS",
-    "threatTop": 10
+    "threatTop": 14
   }
 }
