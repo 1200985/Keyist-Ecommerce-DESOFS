@@ -60,8 +60,8 @@
           },
           {
             "position": {
-              "x": 650,
-              "y": 180
+              "x": 680,
+              "y": 160
             },
             "size": {
               "width": 120,
@@ -134,8 +134,8 @@
           },
           {
             "position": {
-              "x": 830,
-              "y": 400
+              "x": 810,
+              "y": 420
             },
             "size": {
               "width": 160,
@@ -143,7 +143,7 @@
             },
             "attrs": {
               "text": {
-                "text": "Authorization Server"
+                "text": "JavaMailSender"
               },
               "body": {
                 "stroke": "#333333",
@@ -157,13 +157,13 @@
             "id": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3",
             "data": {
               "type": "tm.Process",
-              "name": "Authorization Server",
+              "name": "JavaMailSender",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "handlesCardPayment": false,
-              "handlesGoodsOrServices": false,
+              "handlesGoodsOrServices": true,
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
@@ -171,8 +171,8 @@
           },
           {
             "position": {
-              "x": 650,
-              "y": 370
+              "x": 670,
+              "y": 640
             },
             "size": {
               "width": 120,
@@ -242,15 +242,15 @@
               "threats": []
             },
             "id": "aa7bf8b4-208c-4731-98bb-6ff29d04f9f9",
+            "labels": [
+              "Request"
+            ],
             "source": {
               "cell": "28019543-4743-4165-8eea-ed1f71f700e9"
             },
             "target": {
               "cell": "8af3bd50-d280-4f1c-b4cf-0ce295730f42"
             },
-            "labels": [
-              "Request"
-            ],
             "vertices": [
               {
                 "x": 270,
@@ -290,6 +290,9 @@
               "threats": []
             },
             "id": "61263dc9-47a4-43c6-b62a-2c88a5dee985",
+            "labels": [
+              "Response"
+            ],
             "source": {
               "cell": "8af3bd50-d280-4f1c-b4cf-0ce295730f42"
             },
@@ -301,9 +304,102 @@
                 "x": 430,
                 "y": 260
               }
-            ],
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Request",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "234ac1fe-a577-477c-aa13-b10587b7c9da",
+            "source": {
+              "cell": "8af3bd50-d280-4f1c-b4cf-0ce295730f42"
+            },
+            "target": {
+              "cell": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c"
+            },
             "labels": [
-              "Response"
+              "Request"
+            ],
+            "vertices": [
+              {
+                "x": 590,
+                "y": 270
+              }
+            ]
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "stores new user",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "76fa339d-c41d-409b-9985-c819f8365747",
+            "source": {
+              "cell": "8af3bd50-d280-4f1c-b4cf-0ce295730f42"
+            },
+            "target": {
+              "cell": "9bdd3d7c-faab-4d06-83fc-8cbe7391cd13"
+            },
+            "labels": [
+              "stores new user"
+            ],
+            "vertices": [
+              {
+                "x": 590,
+                "y": 550
+              }
             ]
           }
         ],
