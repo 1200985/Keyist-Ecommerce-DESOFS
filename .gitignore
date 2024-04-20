@@ -50,3 +50,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Visual Paradigm ###
+*.vpp.bak_*
+*.vpp.lck

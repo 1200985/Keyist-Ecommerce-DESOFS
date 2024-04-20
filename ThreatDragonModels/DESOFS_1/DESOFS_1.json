@@ -1,0 +1,27 @@
+{
+  "version": "2.2.0",
+  "summary": {
+    "title": "DESOFS_1",
+    "owner": "Tomás Cancela",
+    "description": "",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "change_password",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [],
+        "description": "Diagram related to the use case of changing password"
+      }
+    ],
+    "diagramTop": 1,
+    "reviewer": "FFS",
+    "threatTop": 0
+  }
+}
