@@ -441,6 +441,40 @@
               "threats": []
             },
             "zIndex": 3
+          },
+          {
+            "position": {
+              "x": 552,
+              "y": 93.00000000000003
+            },
+            "size": {
+              "width": 112.5,
+              "height": 60
+            },
+            "attrs": {
+              "text": {
+                "text": "Client\n"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "a205d0b9-c77f-419b-a29a-8a6688d178af",
+            "zIndex": 4,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Client\n",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
           }
         ],
         "description": "As a Client, I want to sign in"
