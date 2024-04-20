@@ -59,20 +59,22 @@
 **As a Client:**
 - **UC1:** I want to register a new account, using an email and password.
 - **UC2:** I want to Sign In to an existent account, using an email and password.
-- **UC3:** I want to change my password.
-- **UC4:** I want to be able to see a list of available Products
-- **UC5:** I want to search for Product by name.
-- **UC6:** I want to filter Products, by category, price range or color.
-- **UC7:** I want to sort Products by price, in ascending or descending order.
-- **UC8:** I want to add Product to the Shopping Cart.
-  - **UC8.1:** I want to be able to add discount coupons/codes.
-  - **UC8.2:** I want to checkout the Order
-- **UC9:** I want to see my previous Orders.
+- **UC3:** I want to change my password. I shouldn't be able to change anyone else's password.
+- **UC4:** I want to view and edit my profile. I shouldn't be able to edit anyone else's profile.
+- **UC5:** I want to be able to see a list of available Products. I shouldn't be able to see non-activated Products.
+- **UC6:** I want to search for Products by name.
+- **UC7:** I want to filter Products, by category, price range or color.
+- **UC8:** I want to sort Products by price, in ascending or descending order.
+- **UC9:** I want to see the details of a Product. I shouldn't be able to edit any information about the Product.
+- **UC10:** I want to add Product to the Shopping Cart.
+  - **UC10.1:** I want to be able to add available discount coupons/codes to the shopping cart. I should not be able to apply non-existent discount codes.
+  - **UC10.2:** I want to checkout the Shopping Cart.
+- **UC11:** I want to see my previous Orders. I shouldn't be able to see anyone else's previous Orders.
 
 **As a Manager:**
-- **UC10:** I want to add a new Product, giving a name, description, price, category and product variants.
-- **UC11:** I want to edit the details of a Product.
-- **UC12:** I want to generate a Sales Report for a given date interval.
+- **UC12:** I want to add a new Product, giving a name, description, price, category and product variants.
+- **UC13:** I want to edit the details of a Product.
+- **UC14:** I want to generate a Sales Report for a given date interval.
 
 **As an Admin:**
-- **UC13:** I want to remove client or manager accounts from the system.
+- **UC15:** I want to remove client or manager accounts from the system.
