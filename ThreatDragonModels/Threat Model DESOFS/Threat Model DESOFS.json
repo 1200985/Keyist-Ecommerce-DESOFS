@@ -390,8 +390,8 @@
           },
           {
             "position": {
-              "x": 322.5,
-              "y": 430
+              "x": 430,
+              "y": 490
             },
             "size": {
               "width": 150,
@@ -651,6 +651,32 @@
             },
             "labels": [
               "changed user"
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "Internet",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "a1edf829-ec53-445c-b9b1-c62c77dcc42b",
+            "source": {
+              "x": 490,
+              "y": 100
+            },
+            "target": {
+              "x": 90,
+              "y": 620
+            },
+            "labels": [
+              "Internet"
             ]
           },
           {
