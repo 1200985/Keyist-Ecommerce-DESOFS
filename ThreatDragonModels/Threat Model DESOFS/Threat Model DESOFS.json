@@ -2925,15 +2925,15 @@
               "threats": []
             },
             "id": "2c60904d-0304-4ecb-8044-13d6d57a9fe7",
+            "labels": [
+              "request\n"
+            ],
             "source": {
               "cell": "8083a9c6-6c30-443b-869c-f41e2a620b55"
             },
             "target": {
               "cell": "8aa4be07-c26e-448a-9b48-c316fd965714"
             },
-            "labels": [
-              "request\n"
-            ],
             "vertices": [
               {
                 "x": 740,
@@ -2973,15 +2973,15 @@
               "threats": []
             },
             "id": "6705e065-c948-4c91-94f0-ee4f5086bf8b",
+            "labels": [
+              "response"
+            ],
             "source": {
               "cell": "8aa4be07-c26e-448a-9b48-c316fd965714"
             },
             "target": {
               "cell": "8083a9c6-6c30-443b-869c-f41e2a620b55"
             },
-            "labels": [
-              "response"
-            ],
             "vertices": [
               {
                 "x": 740,
@@ -3021,6 +3021,9 @@
               "threats": []
             },
             "id": "51b84b9f-fa17-4bdb-bcbb-26027a26121f",
+            "labels": [
+              "made the payment"
+            ],
             "source": {
               "cell": "b9af94fa-553f-4768-aaf5-4e55ee56280d"
             },
@@ -3032,9 +3035,6 @@
                 "x": 340,
                 "y": -60
               }
-            ],
-            "labels": [
-              "made the payment"
             ]
           },
           {
@@ -3114,15 +3114,15 @@
               "threats": []
             },
             "id": "cb2b1b86-f6cf-4cdd-aec8-7684635c8446",
+            "labels": [
+              "request\n"
+            ],
             "source": {
               "cell": "8aa4be07-c26e-448a-9b48-c316fd965714"
             },
             "target": {
               "cell": "5a4ca509-c423-436f-af98-87af5ad7eaad"
-            },
-            "labels": [
-              "request\n"
-            ]
+            }
           },
           {
             "shape": "flow",
@@ -3156,6 +3156,9 @@
               "threats": []
             },
             "id": "fb0ad13e-da45-403d-ba00-dd598be0d2eb",
+            "labels": [
+              "response data"
+            ],
             "source": {
               "cell": "5a4ca509-c423-436f-af98-87af5ad7eaad"
             },
@@ -3167,9 +3170,6 @@
                 "x": 1020,
                 "y": 150
               }
-            ],
-            "labels": [
-              "response data"
             ]
           },
           {
@@ -3381,15 +3381,15 @@
               ]
             },
             "id": "3b3b2761-0bea-41f5-a723-ccc67c9bc206",
+            "labels": [
+              "request the payment"
+            ],
             "source": {
               "cell": "14e87bf9-65ee-47ff-8163-7e1200f9fac2"
             },
             "target": {
               "cell": "b9af94fa-553f-4768-aaf5-4e55ee56280d"
             },
-            "labels": [
-              "request the payment"
-            ],
             "vertices": [
               {
                 "x": 440,
@@ -3399,6 +3399,32 @@
                 "x": 370,
                 "y": 130
               }
+            ]
+          },
+          {
+            "shape": "trust-boundary-curve",
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Boundary",
+              "name": "internet",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            },
+            "id": "b6bd0d14-581a-4cbd-85a4-e8d2db87be1b",
+            "source": {
+              "x": 210,
+              "y": -20
+            },
+            "target": {
+              "x": 552,
+              "y": 470
+            },
+            "labels": [
+              "internet"
             ]
           },
           {
@@ -3422,6 +3448,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 11,
             "id": "14e87bf9-65ee-47ff-8163-7e1200f9fac2",
             "data": {
               "type": "tm.Process",
@@ -3435,8 +3462,7 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 11
+            }
           },
           {
             "position": {
@@ -3459,8 +3485,8 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "7ba5caf5-8a0a-4bb1-9c57-5a7c04467f43",
             "zIndex": 12,
+            "id": "7ba5caf5-8a0a-4bb1-9c57-5a7c04467f43",
             "data": {
               "type": "tm.Process",
               "name": "Payment Api",
