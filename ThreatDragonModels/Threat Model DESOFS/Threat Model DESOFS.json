@@ -45,8 +45,8 @@
             },
             "visible": true,
             "shape": "actor",
-            "id": "28019543-4743-4165-8eea-ed1f71f700e9",
             "zIndex": 1,
+            "id": "28019543-4743-4165-8eea-ed1f71f700e9",
             "data": {
               "type": "tm.Actor",
               "name": "Client",
@@ -79,8 +79,8 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c",
             "zIndex": 2,
+            "id": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c",
             "data": {
               "type": "tm.Process",
               "name": "Resource Server",
@@ -116,6 +116,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 4,
             "id": "8af3bd50-d280-4f1c-b4cf-0ce295730f42",
             "data": {
               "type": "tm.Process",
@@ -129,8 +130,7 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 4
+            }
           },
           {
             "position": {
@@ -153,6 +153,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 5,
             "id": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3",
             "data": {
               "type": "tm.Process",
@@ -166,8 +167,7 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 5
+            }
           },
           {
             "position": {
@@ -193,8 +193,8 @@
             },
             "visible": true,
             "shape": "store",
-            "id": "9bdd3d7c-faab-4d06-83fc-8cbe7391cd13",
             "zIndex": 6,
+            "id": "9bdd3d7c-faab-4d06-83fc-8cbe7391cd13",
             "data": {
               "type": "tm.Store",
               "name": "mysql_db",
@@ -247,6 +247,40 @@
             },
             "target": {
               "cell": "8af3bd50-d280-4f1c-b4cf-0ce295730f42"
+            }
+          },
+          {
+            "position": {
+              "x": 490,
+              "y": 100
+            },
+            "size": {
+              "width": 360,
+              "height": 280
+            },
+            "attrs": {
+              "text": {
+                "text": "LouTeixeira"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "3899073c-a776-4aa1-bbbc-2bc719107cd3",
+            "zIndex": 11,
+            "data": {
+              "type": "tm.Actor",
+              "name": "LouTeixeira",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
             }
           }
         ],
