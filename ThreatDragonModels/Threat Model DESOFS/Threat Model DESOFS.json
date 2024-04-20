@@ -280,8 +280,8 @@
               "height": 360
             },
             "shape": "trust-boundary-box",
-            "id": "c8508445-ce34-402c-bf88-ca0bc11bf2c6",
             "zIndex": -1,
+            "id": "c8508445-ce34-402c-bf88-ca0bc11bf2c6",
             "data": {
               "type": "tm.BoundaryBox",
               "name": "Limite de Confiança",
@@ -314,8 +314,8 @@
             },
             "visible": true,
             "shape": "store",
-            "id": "79d123be-30bb-445b-9e64-74bac5fa2de2",
             "zIndex": 0,
+            "id": "79d123be-30bb-445b-9e64-74bac5fa2de2",
             "data": {
               "type": "tm.Store",
               "name": "mysql_db",
@@ -333,8 +333,8 @@
           },
           {
             "position": {
-              "x": 1010,
-              "y": 73.00000000000003
+              "x": 980,
+              "y": 150
             },
             "size": {
               "width": 80,
@@ -352,8 +352,8 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "d8d05fb1-cbbe-44de-ae69-844de354dac8",
             "zIndex": 1,
+            "id": "d8d05fb1-cbbe-44de-ae69-844de354dac8",
             "data": {
               "type": "tm.Process",
               "name": "Client server",
@@ -389,6 +389,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 2,
             "id": "b21fba4f-f81f-485e-9ecc-2e66901eec48",
             "data": {
               "type": "tm.Process",
@@ -402,8 +403,7 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 2
+            }
           },
           {
             "position": {
@@ -426,6 +426,7 @@
             },
             "visible": true,
             "shape": "process",
+            "zIndex": 3,
             "id": "94f756e7-6da3-40db-8b40-6adc9ac1cc7c",
             "data": {
               "type": "tm.Process",
@@ -439,8 +440,7 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 3
+            }
           },
           {
             "position": {
@@ -463,8 +463,8 @@
             },
             "visible": true,
             "shape": "actor",
-            "id": "a205d0b9-c77f-419b-a29a-8a6688d178af",
             "zIndex": 4,
+            "id": "a205d0b9-c77f-419b-a29a-8a6688d178af",
             "data": {
               "type": "tm.Actor",
               "name": "Client\n",
@@ -475,6 +475,52 @@
               "providesAuthentication": false,
               "threats": []
             }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "11caa41a-bacf-417e-b7ff-a741aca33a37",
+            "source": {
+              "x": 665,
+              "y": 123
+            },
+            "target": {
+              "cell": "d8d05fb1-cbbe-44de-ae69-844de354dac8"
+            },
+            "vertices": [
+              {
+                "x": 760,
+                "y": 320
+              }
+            ]
           }
         ],
         "description": "As a Client, I want to sign in"
