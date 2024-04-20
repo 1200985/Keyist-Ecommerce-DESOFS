@@ -89,7 +89,7 @@
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
               "handlesCardPayment": false,
-              "handlesGoodsOrServices": false,
+              "handlesGoodsOrServices": true,
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
@@ -338,15 +338,15 @@
               "threats": []
             },
             "id": "234ac1fe-a577-477c-aa13-b10587b7c9da",
+            "labels": [
+              "Request"
+            ],
             "source": {
               "cell": "8af3bd50-d280-4f1c-b4cf-0ce295730f42"
             },
             "target": {
               "cell": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c"
             },
-            "labels": [
-              "Request"
-            ],
             "vertices": [
               {
                 "x": 590,
@@ -386,15 +386,15 @@
               "threats": []
             },
             "id": "76fa339d-c41d-409b-9985-c819f8365747",
+            "labels": [
+              "stores new user"
+            ],
             "source": {
               "cell": "8af3bd50-d280-4f1c-b4cf-0ce295730f42"
             },
             "target": {
               "cell": "9bdd3d7c-faab-4d06-83fc-8cbe7391cd13"
             },
-            "labels": [
-              "stores new user"
-            ],
             "vertices": [
               {
                 "x": 590,
@@ -434,15 +434,15 @@
               "threats": []
             },
             "id": "62d91bc3-9c62-46ff-bd2b-770f915dca99",
+            "labels": [
+              "request"
+            ],
             "source": {
               "cell": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c"
             },
             "target": {
               "cell": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3"
-            },
-            "labels": [
-              "request"
-            ]
+            }
           },
           {
             "shape": "flow",
@@ -476,15 +476,15 @@
               "threats": []
             },
             "id": "9048d873-1a9e-4c9d-b961-39d1a37a45e0",
+            "labels": [
+              "response"
+            ],
             "source": {
               "cell": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c"
             },
             "target": {
               "cell": "8af3bd50-d280-4f1c-b4cf-0ce295730f42"
-            },
-            "labels": [
-              "response"
-            ]
+            }
           },
           {
             "shape": "flow",
@@ -518,6 +518,9 @@
               "threats": []
             },
             "id": "fc874503-c1ee-454a-91e0-8c8abcad0e67",
+            "labels": [
+              "response"
+            ],
             "source": {
               "cell": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3"
             },
@@ -529,9 +532,6 @@
                 "x": 930,
                 "y": 290
               }
-            ],
-            "labels": [
-              "response"
             ]
           }
         ],
