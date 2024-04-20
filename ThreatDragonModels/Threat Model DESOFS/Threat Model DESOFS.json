@@ -3289,6 +3289,19 @@
                   "new": false,
                   "number": 30,
                   "score": ""
+                },
+                {
+                  "id": "8d48a9d3-f208-432b-aad0-98af0f692bbc",
+                  "title": "XSS (OWASP ID: A7:2017-Cross-Site Scripting (XSS))",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Attackers inject malicious scripts into checkout pages or payment forms, potentially stealing user information or executing unauthorized actions.",
+                  "mitigation": "Implement input validation and output encoding, use Content Security Policy (CSP), sanitize user-generated content.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 31,
+                  "score": ""
                 }
               ]
             },
@@ -3393,6 +3406,6 @@
     ],
     "diagramTop": 8,
     "reviewer": "FFS",
-    "threatTop": 30
+    "threatTop": 31
   }
 }
