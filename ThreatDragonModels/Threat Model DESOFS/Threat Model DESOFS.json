@@ -23,51 +23,11 @@
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.2.0",
-        "cells": [],
-        "description": "I want to register a new account, using an email and password."
-      },
-      {
-        "id": 3,
-        "title": "Change Password",
-        "diagramType": "STRIDE",
-        "placeholder": "New STRIDE diagram description",
-        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
-        "version": "2.2.0",
-        "cells": [],
-        "description": "As a Client, I want to change the password of my account"
-      },
-      {
-        "id": 4,
-        "title": "Sign In",
-        "diagramType": "STRIDE",
-        "placeholder": "New STRIDE diagram description",
-        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
-        "version": "2.2.0",
         "cells": [
           {
             "position": {
-              "x": 740,
-              "y": 50
-            },
-            "size": {
-              "width": 590,
-              "height": 320
-            },
-            "shape": "trust-boundary-box",
-            "id": "67394f82-1785-4eee-b9f5-89eae7ba35f6",
-            "zIndex": -1,
-            "data": {
-              "type": "tm.BoundaryBox",
-              "name": "Limite de Confiança",
-              "description": "",
-              "isTrustBoundary": true,
-              "hasOpenThreats": false
-            }
-          },
-          {
-            "position": {
-              "x": 260,
-              "y": 190
+              "x": 180,
+              "y": 150
             },
             "size": {
               "width": 112.5,
@@ -85,7 +45,7 @@
             },
             "visible": true,
             "shape": "actor",
-            "id": "ce0e5c9b-cac2-4d26-9872-72f4029e9072",
+            "id": "28019543-4743-4165-8eea-ed1f71f700e9",
             "zIndex": 1,
             "data": {
               "type": "tm.Actor",
@@ -100,49 +60,12 @@
           },
           {
             "position": {
-              "x": 776,
-              "y": 150
+              "x": 880,
+              "y": 280
             },
             "size": {
-              "width": 110,
-              "height": 100
-            },
-            "attrs": {
-              "text": {
-                "text": "Client Server"
-              },
-              "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
-                "strokeDasharray": null
-              }
-            },
-            "visible": true,
-            "shape": "process",
-            "id": "8819d3c7-a614-49bd-992c-7dc3b183df0f",
-            "zIndex": 2,
-            "data": {
-              "type": "tm.Process",
-              "name": "Client Server",
-              "description": "\n",
-              "outOfScope": false,
-              "reasonOutOfScope": "",
-              "hasOpenThreats": false,
-              "handlesCardPayment": false,
-              "handlesGoodsOrServices": false,
-              "isWebApplication": false,
-              "privilegeLevel": "",
-              "threats": []
-            }
-          },
-          {
-            "position": {
-              "x": 958,
-              "y": 150
-            },
-            "size": {
-              "width": 110,
-              "height": 100
+              "width": 120,
+              "height": 110
             },
             "attrs": {
               "text": {
@@ -156,11 +79,12 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "3d63a64f-8997-4e90-9b57-8d839d60546c",
+            "id": "8ae7f1e7-421d-44bc-a003-dc10cf7cea7c",
+            "zIndex": 2,
             "data": {
               "type": "tm.Process",
               "name": "Resource Server",
-              "description": "\n",
+              "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
@@ -169,21 +93,20 @@
               "isWebApplication": false,
               "privilegeLevel": "",
               "threats": []
-            },
-            "zIndex": 3
+            }
           },
           {
             "position": {
-              "x": 1150,
-              "y": 150
+              "x": 670,
+              "y": 510
             },
             "size": {
-              "width": 110,
-              "height": 100
+              "width": 120,
+              "height": 110
             },
             "attrs": {
               "text": {
-                "text": "Authorization Server"
+                "text": "Client Server"
               },
               "body": {
                 "stroke": "#333333",
@@ -193,11 +116,11 @@
             },
             "visible": true,
             "shape": "process",
-            "id": "34776923-de9a-4cd1-9b05-50c61487d049",
+            "id": "8af3bd50-d280-4f1c-b4cf-0ce295730f42",
             "data": {
               "type": "tm.Process",
-              "name": "Authorization Server",
-              "description": "\n",
+              "name": "Client Server",
+              "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
               "hasOpenThreats": false,
@@ -211,8 +134,45 @@
           },
           {
             "position": {
-              "x": 886,
-              "y": 289
+              "x": 1060,
+              "y": 500
+            },
+            "size": {
+              "width": 160,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Authorization Server"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "6145fea4-93d8-4d2e-84ab-8a51b371bcb3",
+            "data": {
+              "type": "tm.Process",
+              "name": "Authorization Server",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            },
+            "zIndex": 5
+          },
+          {
+            "position": {
+              "x": 880,
+              "y": 470
             },
             "size": {
               "width": 120,
@@ -233,8 +193,8 @@
             },
             "visible": true,
             "shape": "store",
-            "id": "fe54f040-a475-4340-a479-68c05e8b5353",
-            "zIndex": 5,
+            "id": "9bdd3d7c-faab-4d06-83fc-8cbe7391cd13",
+            "zIndex": 6,
             "data": {
               "type": "tm.Store",
               "name": "mysql_db",
@@ -249,12 +209,61 @@
               "storesInventory": false,
               "threats": []
             }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "width": 200,
+            "height": 100,
+            "zIndex": 10,
+            "connector": "smooth",
+            "data": {
+              "type": "tm.Flow",
+              "name": "Data Flow",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            },
+            "id": "25f77570-4552-42f2-87af-c42b6402840a",
+            "source": {
+              "cell": "28019543-4743-4165-8eea-ed1f71f700e9"
+            },
+            "target": {
+              "cell": "8af3bd50-d280-4f1c-b4cf-0ce295730f42"
+            }
           }
         ],
-        "description": "As a Client, I want to sign in my account"
+        "description": "I want to register a new account, using an email and password."
+      },
+      {
+        "id": 3,
+        "title": "Change Password",
+        "diagramType": "STRIDE",
+        "placeholder": "New STRIDE diagram description",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.2.0",
+        "cells": [],
+        "description": "As a Client, I want to change the password of my account"
       }
     ],
-    "diagramTop": 5,
+    "diagramTop": 4,
     "reviewer": "FFS",
     "threatTop": 0
   }
