@@ -3485,7 +3485,147 @@
         "placeholder": "New STRIDE diagram description",
         "thumbnail": "./public/content/images/thumbnail.stride.jpg",
         "version": "2.2.0",
-        "cells": []
+        "cells": [
+          {
+            "position": {
+              "x": 690,
+              "y": 220
+            },
+            "size": {
+              "width": 180,
+              "height": 200
+            },
+            "attrs": {
+              "text": {
+                "text": "Client Server"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "0c2f753e-3674-4912-a436-e66000c78409",
+            "zIndex": 1,
+            "data": {
+              "type": "tm.Process",
+              "name": "Client Server",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 180,
+              "y": 180
+            },
+            "size": {
+              "width": 180,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Client"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "17e8a31d-7187-4de8-8b82-252f14dc71e4",
+            "zIndex": 2,
+            "data": {
+              "type": "tm.Actor",
+              "name": "Client",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 550,
+              "y": -110
+            },
+            "size": {
+              "width": 180,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Manager"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "70953212-6893-4459-9632-e2b2af15b4da",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Manager",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": []
+            },
+            "zIndex": 3
+          },
+          {
+            "position": {
+              "x": 1070,
+              "y": -70
+            },
+            "size": {
+              "width": 180,
+              "height": 110
+            },
+            "attrs": {
+              "text": {
+                "text": "Admin"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "430f2586-4637-4f52-b872-370f4a88f6ac",
+            "data": {
+              "type": "tm.Actor",
+              "name": "Admin",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": true,
+              "threats": []
+            },
+            "zIndex": 4
+          }
+        ]
       }
     ],
     "diagramTop": 9,
