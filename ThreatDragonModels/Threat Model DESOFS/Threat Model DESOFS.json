@@ -2525,6 +2525,32 @@
                   "new": false,
                   "number": 25,
                   "score": ""
+                },
+                {
+                  "id": "a0372bd0-7303-4a9f-b8f4-83cb465df301",
+                  "title": "Denial of Inventory (OWASP ID: A10:2017-Insufficient Logging & Monitoring)",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Attackers flood the system with requests to add products to the shopping cart, causing inventory depletion or service degradation.",
+                  "mitigation": " Implement rate limiting, monitor inventory levels, use CDN (Content Delivery Network) or WAF (Web Application Firewall).",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 26,
+                  "score": ""
+                },
+                {
+                  "id": "dc67d290-4548-435b-a3ac-35b0303b072d",
+                  "title": "Broken Access Control (OWASP ID: A5:2017-Broken Access Control)",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "type": "Tampering",
+                  "description": "Lack of proper access controls might allow attackers to add products to the shopping cart without proper authorization.",
+                  "mitigation": " Implement access controls and authorization checks, validate user permissions, use session management best practices.",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 27,
+                  "score": ""
                 }
               ]
             },
@@ -2597,6 +2623,6 @@
     ],
     "diagramTop": 7,
     "reviewer": "FFS",
-    "threatTop": 25
+    "threatTop": 27
   }
 }
