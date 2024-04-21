@@ -33,7 +33,6 @@
 |------------------|---------------------|----------------------------------------------------------------------------------------|-----------------------------|-------------|--------------------|---------------------------------------------------|-------------------|
 | ABUSE_CASE_UC4_1 | FEATURE_UC4         | View or edit another user's profile by manipulating URLs or session tokens               | A5:2017-Broken Access Control | HIGH     | Technical          | Implement proper session management                | To Address        |
 | ABUSE_CASE_UC4_2 | FEATURE_UC4         | XSS attack by injecting malicious scripts into profile fields                            | A7:2017-Cross-Site Scripting (XSS) | HIGH    | Technical          | Implement input validation and output encoding      | To Address        |
-ABUSE_CASE_UC4_3                         | A7:2017-Cross-Site Scripting (XSS) | MEDIUM | Technical          | Validate and sanitize form input                     | To Address        |
 
 ## Abuse Cases for UC5 (List of available Products)
 
