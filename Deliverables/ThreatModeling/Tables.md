@@ -35,7 +35,8 @@
 
 ## Exit points
 
-| ID  | Name                  | Description                                                                                  | Trust Levels |
-| --- | --------------------- | -------------------------------------------------------------------------------------------- | ------------ |
-| 1   | Order History         | The order history page provides users with a record of their past orders                     | 2            |
-| 2   | User account settings | Users utilize the account settings interface to manage their account details and preferences | 2, 3, 4      |
+| ID  | Name                  | Description                                                                                                                                        | Trust Levels |
+| --- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
+| 1   | Order History         | The order history page provides users with a record of their past orders                                                                           | 2            |
+| 2   | User account settings | Users utilize the account settings interface to manage their account details and preferences                                                       | 2, 3, 4      |
+| 3   | User login            | Login page might be vulnerable to attacks like cross-site scripting (XSS) where attackers could exploit it to steal session cookies or credentials | 1, 2, 3, 4   |
