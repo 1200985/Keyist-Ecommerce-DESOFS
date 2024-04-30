@@ -1,6 +1,8 @@
+# Tables
+
 ## External Dependencies
 
-### Non-applicable. The system is not deployed to any external entity.
+### Non-applicable. The system is not deployed to any external entity
 
 | ID  | Description |
 | --- | ----------- |
