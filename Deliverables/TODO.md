@@ -1,4 +1,5 @@
-  # 1st part:
+# 1st part
+
 - ~~Domain Model~~
 - ~~Define Functional Requirements~~
 - ~~Security Requirements (how user authentication will work, secure software development policies, etc.)~~
