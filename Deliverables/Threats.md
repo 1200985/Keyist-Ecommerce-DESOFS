@@ -1,7 +1,7 @@
 ## Threats to be implemented
 
 Inadequate Account Lockout (OWASP-ATC-003)
-Denial of Inventory (OWASP ID: A10:2017-Insuffi cient Logging & Monitoring)
+Denial of Inventory (OWASP ID: A10:2017-Insufficient Logging & Monitoring)
 
 
 ## Other Threats
