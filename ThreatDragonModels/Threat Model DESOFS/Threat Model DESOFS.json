@@ -916,15 +916,15 @@
               "threats": []
             },
             "id": "f68a9751-98df-442d-939a-e908345c477d",
+            "labels": [
+              "request"
+            ],
             "source": {
               "cell": "46000c85-c881-4ded-a053-00f38e481ce8"
             },
             "target": {
               "cell": "88b9cc6e-2772-4f96-bf70-d7f1de50679c"
-            },
-            "labels": [
-              "request"
-            ]
+            }
           },
           {
             "shape": "flow",
