@@ -1,0 +1,54 @@
+name: $(BuildDefinitionName)_$(BuildId)
+pool:
+  vmImage: 'ubuntu-latest'
+
+### Manual trigger.
+trigger:
+  branches:
+    exclude:
+    - '*'  
+
+steps:
+
+### Other tasks.
+
+### Setup Node JS.
+- task: NodeTool@0
+  inputs:
+    versionSpec: '10.x'
+  displayName: 'Install Node.js'
+
+### Setup npm project.
+- script: |
+    npm install --package-lock-only --loglevel=error
+    npm install -g @angular/cli --loglevel=error
+    npm ci --loglevel=error
+    npm audit fix 
+  displayName: 'NPM Install & Audit Fix'
+
+### Run Angular build.
+- script: ng build --prod
+  displayName: 'Angular Build'
+
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(build.sourcesdirectory)'
+    Contents: 'dist/**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+  displayName: 'Copy Dist DIR'
+
+### Docker login, build & push.
+- script: |
+    docker login $(container-registry) -u $(acr-user) -p $(acr-secret)
+    docker build -f $(system.defaultWorkingDirectory)/docker/Dockerfile -t $(container-registry)/d2-app:alpha $(system.defaultWorkingDirectory)/ 
+    docker push $(container-registry)/demo-app:alpha
+  displayName: 'Docker Build & Push'
+
+### Finally publish the build artifact.
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  displayName: 'Publishing Build Artifacts'      
