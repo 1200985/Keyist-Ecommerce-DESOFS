@@ -18,9 +18,7 @@ jobs:
     - name: Run the docker compose up
       run: docker compose up --build -d
     - name: "Run Backend tests"
-      run: |
-        cd resource_server
-        mvn test
+      run: docker compose exec resource_server mvn test
     - name: "Run the linter"
       run: |
         cd ..
