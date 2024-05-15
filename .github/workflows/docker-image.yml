@@ -26,4 +26,23 @@ jobs:
         cd ..
         cd client
         npm run lint
-
+    - name: Docker Publish
+      # You may pin to the exact commit or the version.
+      # uses: manusa/actions-publish-docker@db938e45d2a3487e0eab9646e83550f554c17af3
+      uses: manusa/actions-publish-docker@v1.1.2
+      with:
+        # Name of the Docker image
+        name: keyist-resource-server
+        # Tag for the Docker image
+        tag: latest # optional
+        # Script body to compute tag name for the Docker image, has context as the main function argument
+        # Username for Docker registry
+        username: 
+        # Password for Docker registry
+        password: 
+        # Registry URL
+        registry: # optional
+        # Don't skip pull requests
+        include pull requests: # optional
+        # Path to Dockerfile
+        dockerfile path: # optional
