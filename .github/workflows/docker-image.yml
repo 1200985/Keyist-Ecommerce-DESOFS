@@ -21,3 +21,8 @@ jobs:
       run: |
         cd client
         npm run lint
+    - name: "Run Backend tests"
+      run: |
+        cd ..
+        cd resource_server
+        mvn test
