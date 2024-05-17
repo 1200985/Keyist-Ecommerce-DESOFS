@@ -14,47 +14,87 @@ export const FETCH_COLORS = 'FETCH_COLORS';
 export const FETCH_COLORS_SUCCESS = 'FETCH_COLORS_SUCCESS';
 export const BROWSE_ERROR = 'BROWSE_ERROR';
 
-
 export class FetchProducts implements Action {
   readonly type = FETCH_PRODUCTS;
 
-  constructor(public payload: { page: number, sort: string, category: string, color: string, minPrice: string, maxPrice: string }) {
-  }
+  constructor(
+    public payload: {
+      page: number;
+      sort: string;
+      category: string;
+      color: string;
+      minPrice: string;
+      maxPrice: string;
+    }
+  ) {}
 }
 
 export class FetchProductsSuccess implements Action {
   readonly type = FETCH_PRODUCTS_SUCCESS;
 
-  constructor(public payload: { res: Array<ProductVariantResponse>, effect: string, selectedPage: number, selectedSort: string, selectedCategory: string, selectedColor: string, minPrice: string, maxPrice: string }) {
-  }
+  constructor(
+    public payload: {
+      res: Array<ProductVariantResponse>;
+      effect: string;
+      selectedPage: number;
+      selectedSort: string;
+      selectedCategory: string;
+      selectedColor: string;
+      minPrice: string;
+      maxPrice: string;
+    }
+  ) {}
 }
 
 export class FetchProductsAppend implements Action {
   readonly type = FETCH_PRODUCTS_APPEND;
 
-  constructor(public payload: { page: number, sort: string, category: string, color: string, minPrice: string, maxPrice: string }) {
-  }
+  constructor(
+    public payload: {
+      page: number;
+      sort: string;
+      category: string;
+      color: string;
+      minPrice: string;
+      maxPrice: string;
+    }
+  ) {}
 }
 
 export class FetchProductAppendSuccess implements Action {
   readonly type = FETCH_PRODUCTS_APPEND_SUCCESS;
 
-  constructor(public payload: { res: Array<ProductVariantResponse>, effect: string, selectedPage: number, selectedSort: string, selectedCategory: string, selectedColor: string, minPrice: string, maxPrice: string }) {
-  }
+  constructor(
+    public payload: {
+      res: Array<ProductVariantResponse>;
+      effect: string;
+      selectedPage: number;
+      selectedSort: string;
+      selectedCategory: string;
+      selectedColor: string;
+      minPrice: string;
+      maxPrice: string;
+    }
+  ) {}
 }
 
 export class FetchProductsCount implements Action {
   readonly type = FETCH_PRODUCTS_COUNT;
 
-  constructor(public payload: { category: string, color: string, minPrice: string, maxPrice: string }) {
-  }
+  constructor(
+    public payload: {
+      category: string;
+      color: string;
+      minPrice: string;
+      maxPrice: string;
+    }
+  ) {}
 }
 
 export class FetchProductsCountSuccess implements Action {
   readonly type = FETCH_PRODUCTS_COUNT_SUCCESS;
 
-  constructor(public payload: { res: number, effect: string }) {
-  }
+  constructor(public payload: { res: number; effect: string }) {}
 }
 
 export class FetchCategory implements Action {
@@ -64,10 +104,8 @@ export class FetchCategory implements Action {
 export class FetchCategorySuccess implements Action {
   readonly type = FETCH_CATEGORY_SUCCESS;
 
-  constructor(public payload: { res: Array<Category>, effect: string }) {
-  }
+  constructor(public payload: { res: Array<Category>; effect: string }) {}
 }
-
 
 export class FetchColors implements Action {
   readonly type = FETCH_COLORS;
@@ -76,21 +114,24 @@ export class FetchColors implements Action {
 export class FetchColorsSuccess implements Action {
   readonly type = FETCH_COLORS_SUCCESS;
 
-  constructor(public payload: { res: Array<Colors>, effect: string }) {
-  }
+  constructor(public payload: { res: Array<Colors>; effect: string }) {}
 }
-
 
 export class BrowseError implements Action {
   readonly type = BROWSE_ERROR;
 
-  constructor(public payload: HttpError) {
-  }
+  constructor(public payload: HttpError) {}
 }
 
-
-export type BrowseActions = FetchProducts | FetchProductsSuccess |
-  FetchProductsAppend | FetchProductAppendSuccess |
-  FetchProductsCount | FetchProductsCountSuccess |
-  FetchCategory | FetchCategorySuccess |
-  FetchColors | FetchColorsSuccess | BrowseError;
+export type BrowseActions =
+  | FetchProducts
+  | FetchProductsSuccess
+  | FetchProductsAppend
+  | FetchProductAppendSuccess
+  | FetchProductsCount
+  | FetchProductsCountSuccess
+  | FetchCategory
+  | FetchCategorySuccess
+  | FetchColors
+  | FetchColorsSuccess
+  | BrowseError;

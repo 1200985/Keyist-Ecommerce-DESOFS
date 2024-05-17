@@ -13,40 +13,59 @@ import { catchError, filter, take } from 'rxjs/operators';
 @Component({
   selector: 'app-password-forgot-verification',
   templateUrl: './password-forgot-verification.component.html',
-  styleUrls: ['./password-forgot-verification.component.scss']
+  styleUrls: ['./password-forgot-verification.component.scss'],
 })
 export class PasswordForgotVerificationComponent implements OnInit, OnDestroy {
-
   isVerified: boolean;
   authSubscription: Subscription;
 
   forgotPasswordResetForm: FormGroup;
   passwordForgotToken: string;
 
-  constructor(private store: Store<fromApp.AppState>, private route: ActivatedRoute, private router: Router, private accountService: AccountService) {
-  }
+  constructor(
+    private store: Store<fromApp.AppState>,
+    private route: ActivatedRoute,
+    private router: Router,
+    private accountService: AccountService
+  ) {}
 
   ngOnInit() {
-    this.authSubscription = this.store.select('auth')
-      .pipe(filter(data => data.authenticated))
-      .subscribe(data => {
+    this.authSubscription = this.store
+      .select('auth')
+      .pipe(filter((data) => data.authenticated))
+      .subscribe((data) => {
         this.store.dispatch(new AuthActions.SignOut());
       });
 
     this.forgotPasswordResetForm = new FormGroup({
-      newPasswordGroup: new FormGroup({
-        newPassword: new FormControl(null, [Validators.required, BlankValidators.checkIfBlankValidator, Validators.minLength(6)]),
-        newPasswordConfirm: new FormControl(null, [Validators.required, BlankValidators.checkIfBlankValidator, Validators.minLength(6)])
-      }, PasswordValidators.passwordMatchCheckValidator),
+      newPasswordGroup: new FormGroup(
+        {
+          newPassword: new FormControl(null, [
+            Validators.required,
+            BlankValidators.checkIfBlankValidator,
+            Validators.minLength(6),
+          ]),
+          newPasswordConfirm: new FormControl(null, [
+            Validators.required,
+            BlankValidators.checkIfBlankValidator,
+            Validators.minLength(6),
+          ]),
+        },
+        PasswordValidators.passwordMatchCheckValidator
+      ),
     });
 
-
     this.passwordForgotToken = this.route.snapshot.queryParams.token;
-    this.accountService.forgotPasswordConfirm(this.passwordForgotToken)
-      .pipe(take(1), catchError(error => {
-        this.isVerified = false;
-        return throwError(error);
-      })).subscribe((data) => {
+    this.accountService
+      .forgotPasswordConfirm(this.passwordForgotToken)
+      .pipe(
+        take(1),
+        catchError((error) => {
+          this.isVerified = false;
+          return throwError(error);
+        })
+      )
+      .subscribe((data) => {
         this.isVerified = true;
       });
   }
@@ -58,16 +77,20 @@ export class PasswordForgotVerificationComponent implements OnInit, OnDestroy {
   }
 
   onForgotPasswordResetFormSubmit() {
-    this.accountService.forgotPasswordReset(
-      this.passwordForgotToken,
-      this.forgotPasswordResetForm.value.newPasswordGroup.newPassword,
-      this.forgotPasswordResetForm.value.newPasswordGroup.newPasswordConfirm
-    ).pipe(take(1),
-      catchError(error => {
-        alert('An error occurred. Please try again.');
-        return throwError(error);
-      }))
-      .subscribe(res => {
+    this.accountService
+      .forgotPasswordReset(
+        this.passwordForgotToken,
+        this.forgotPasswordResetForm.value.newPasswordGroup.newPassword,
+        this.forgotPasswordResetForm.value.newPasswordGroup.newPasswordConfirm
+      )
+      .pipe(
+        take(1),
+        catchError((error) => {
+          alert('An error occurred. Please try again.');
+          return throwError(error);
+        })
+      )
+      .subscribe((res) => {
         alert('Success! \nYou have changed your password. Please login.');
         this.router.navigate(['/login']);
       });

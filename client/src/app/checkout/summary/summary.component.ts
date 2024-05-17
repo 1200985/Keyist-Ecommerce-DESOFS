@@ -13,24 +13,30 @@ import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
-  styleUrls: ['./summary.component.scss']
+  styleUrls: ['./summary.component.scss'],
 })
 export class SummaryComponent implements OnInit, OnDestroy {
-
   cartState: Observable<CartState>;
   orderState: Observable<OrderState>;
   termsAccepted = false;
 
   routerSubscription: Subscription;
 
-  constructor(private store: Store<fromApp.AppState>, private modalService: NgbModal, private router: Router) {
-  }
+  constructor(
+    private store: Store<fromApp.AppState>,
+    private modalService: NgbModal,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.cartState = this.store.select('cart');
     this.orderState = this.store.select('order');
 
-    this.routerSubscription = this.router.events.pipe(filter(event => event instanceof NavigationStart)).subscribe(event => { this.termsAccepted = false; });
+    this.routerSubscription = this.router.events
+      .pipe(filter((event) => event instanceof NavigationStart))
+      .subscribe((event) => {
+        this.termsAccepted = false;
+      });
   }
 
   ngOnDestroy() {
@@ -43,7 +49,7 @@ export class SummaryComponent implements OnInit, OnDestroy {
     this.modalService.open(BankAcceptComponent, {
       backdrop: 'static',
       keyboard: false,
-      centered: true
+      centered: true,
     });
   }
 
@@ -51,7 +57,7 @@ export class SummaryComponent implements OnInit, OnDestroy {
     this.modalService.open(TermsComponent, {
       backdrop: 'static',
       keyboard: false,
-      centered: true
+      centered: true,
     });
   }
 }
