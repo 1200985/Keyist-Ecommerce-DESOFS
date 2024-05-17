@@ -19,6 +19,9 @@ jobs:
         with:
           node-version: "10"
 
+      - name: TruffleHog OSS
+        uses: trufflesecurity/trufflehog@v3.76.3
+
       - name: Run Tests on Resource Server
         run: |
           cd ./resource_server
