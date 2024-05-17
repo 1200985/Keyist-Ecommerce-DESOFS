@@ -25,7 +25,9 @@ jobs:
           mvn test
 
       - name: Build Resource Server Package
-        run: mvn package
+        run: |
+          cd ./resource_server
+          mvn package
 
       # - name: Run the docker compose up
       #   run: docker compose up --build -d
