@@ -44,6 +44,9 @@ jobs:
           cd ./client
           npm i
 
+      - name: Install Chrome for npm run test (Karma)
+        uses: browser-actions/setup-chrome@v1
+
       - name: Run Tests on Client Application
         run: |
           cd ./client
