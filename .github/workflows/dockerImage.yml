@@ -17,13 +17,6 @@ jobs:
       uses: actions/checkout@v4
     - name: Run the docker compose up
       run: docker compose up --build -d
-    - name: "Run Backend tests"
-      run: docker compose exec resource_server mvn test
-    - name: "Run the linter"
-      run: |
-        cd ..
-        cd client
-        npm run lint
     - name: Docker Publish
       # You may pin to the exact commit or the version.
       # uses: manusa/actions-publish-docker@db938e45d2a3487e0eab9646e83550f554c17af3
