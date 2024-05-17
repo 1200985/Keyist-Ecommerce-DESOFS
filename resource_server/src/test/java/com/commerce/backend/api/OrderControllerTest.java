@@ -160,35 +160,35 @@ class OrderControllerTest {
         then(result.getResponse().getContentAsString()).contains("Invalid pageSize");
     }
 
-    // @Test
-    // void it_should_post_order() throws Exception {
+    @Test
+    void it_should_post_order() throws Exception {
 
-    // // given
-    // PostOrderRequest postOrderRequest = new PostOrderRequest();
-    // postOrderRequest.setShipName(faker.address().firstName());
-    // postOrderRequest.setShipAddress(faker.address().streetAddress());
-    // postOrderRequest.setBillingAddress(faker.address().streetAddress());
-    // postOrderRequest.setCity(faker.address().city());
-    // postOrderRequest.setState(faker.address().state());
-    // postOrderRequest.setZip(faker.number().digits(6));
-    // postOrderRequest.setCountry(faker.address().country());
-    // postOrderRequest.setPhone(faker.number().digits(12));
+        // given
+        PostOrderRequest postOrderRequest = new PostOrderRequest();
+        postOrderRequest.setShipName(faker.address().firstName());
+        postOrderRequest.setShipAddress(faker.address().streetAddress());
+        postOrderRequest.setBillingAddress(faker.address().streetAddress());
+        postOrderRequest.setCity(faker.address().city());
+        postOrderRequest.setState(faker.address().state());
+        postOrderRequest.setZip(faker.number().digits(6));
+        postOrderRequest.setCountry(faker.address().country());
+        postOrderRequest.setPhone(faker.number().digits(12));
 
-    // OrderResponse orderResponse = new OrderResponse();
+        OrderResponse orderResponse = new OrderResponse();
 
-    // given(orderService.postOrder(postOrderRequest)).willReturn(orderResponse);
+        given(orderService.postOrder(postOrderRequest)).willReturn(orderResponse);
 
-    // // when
-    // MvcResult result = mockMvc.perform(post("/api/order")
-    // .content(objectMapper.writeValueAsString(postOrderRequest))
-    // .contentType(MediaType.APPLICATION_JSON))
-    // .andExpect(status().is2xxSuccessful())
-    // .andReturn();
+        // when
+        MvcResult result = mockMvc.perform(post("/api/order")
+                .content(objectMapper.writeValueAsString(postOrderRequest))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful())
+                .andReturn();
 
-    // // then
-    // verify(orderService, times(1)).postOrder(postOrderRequest);
-    // then(result.getResponse().getContentAsString()).isEqualTo(objectMapper.writeValueAsString(orderResponse));
-    // }
+        // then
+        verify(orderService, times(1)).postOrder(postOrderRequest);
+        then(result.getResponse().getContentAsString()).isEqualTo(objectMapper.writeValueAsString(orderResponse));
+    }
 
     @Test
     void it_should_not_post_order_if_invalid_request_body() throws Exception {
