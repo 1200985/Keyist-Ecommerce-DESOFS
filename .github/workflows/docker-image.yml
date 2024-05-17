@@ -70,10 +70,26 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push
+      - name: Build and push resource_server
         uses: docker/build-push-action@v5
         with:
           context: ./resource_server
           file: ./resource_server/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-resource-server:latest
+
+      - name: Build and push authorization_server
+        uses: docker/build-push-action@v5
+        with:
+          context: ./authorization_server
+          file: ./authorization_server/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-authorization-server:latest
+
+      - name: Build and push client application
+        uses: docker/build-push-action@v5
+        with:
+          context: ./client
+          file: ./client/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/angular-client-application:latest

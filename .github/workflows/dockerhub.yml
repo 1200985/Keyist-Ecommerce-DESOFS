@@ -29,3 +29,19 @@ jobs:
           file: ./resource_server/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-resource-server:latest
+
+      - name: Build and push authorization_server
+        uses: docker/build-push-action@v5
+        with:
+          context: ./authorization_server
+          file: ./authorization_server/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-authorization-server:latest
+
+      - name: Build and push client application
+        uses: docker/build-push-action@v5
+        with:
+          context: ./client
+          file: ./client/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/angular-client-application:latest
