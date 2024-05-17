@@ -29,14 +29,27 @@ jobs:
           cd ./resource_server
           mvn package
 
-      # - name: Run the docker compose up
-      #   run: docker compose up --build -d
+      - name: Run Tests on Authorization Server
+        run: |
+          cd ./authorization_server
+          mvn test
 
-      # - name: "Run Backend tests"
-      #   run: docker compose exec resource_server mvn test
+      - name: Build Authorization Server Package
+        run: |
+          cd ./authorization_server
+          mvn package
+
+      - name: Run Tests on Client Application
+        run: |
+          cd ./client
+          npm run test
 
       - name: "Run the linter"
         run: |
-          cd ..
-          cd client
+          cd ./client
           npm run lint
+
+      - name: Build Client Application Package
+        run: |
+          cd ./resource_server
+          npm run build
