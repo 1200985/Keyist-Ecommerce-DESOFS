@@ -25,7 +25,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./resource_server
           file: ./resource_server/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-resource-server:latest
