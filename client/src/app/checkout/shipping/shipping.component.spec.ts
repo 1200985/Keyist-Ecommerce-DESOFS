@@ -4,23 +4,17 @@ import { ShippingComponent } from './shipping.component';
 import { AccountService } from 'src/app/services/account.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ShippingComponent', () => {
   let component: ShippingComponent;
   let fixture: ComponentFixture<ShippingComponent>;
-  let accountServiceMock: jasmine.SpyObj<AccountService> = jasmine.createSpyObj(
-    'AccountServiceSpy',
-    ['getUser']
-  );
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ShippingComponent],
-      providers: [
-        { provide: AccountService, useValue: accountServiceMock },
-        provideMockStore(),
-      ],
-      imports: [RouterTestingModule],
+      providers: [provideMockStore(), AccountService],
+      imports: [RouterTestingModule, HttpClientTestingModule],
     }).compileComponents();
   }));
 

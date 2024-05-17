@@ -4,23 +4,17 @@ import { ProductDetailComponent } from './product-detail.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductService } from '../services/product.service';
 import { provideMockStore } from '@ngrx/store/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ItemDetailComponent', () => {
   let component: ProductDetailComponent;
   let fixture: ComponentFixture<ProductDetailComponent>;
-  let productServiceMock: jasmine.SpyObj<ProductService> = jasmine.createSpyObj(
-    'ProductServiceSpy',
-    ['forgotPasswordConfirm']
-  );
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ProductDetailComponent],
-      providers: [
-        provideMockStore(),
-        { provide: ProductService, useValue: productServiceMock },
-      ],
-      imports: [RouterTestingModule],
+      providers: [provideMockStore(), ProductService],
+      imports: [RouterTestingModule, HttpClientTestingModule],
     }).compileComponents();
   }));
 

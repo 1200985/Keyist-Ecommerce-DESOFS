@@ -1,16 +1,13 @@
 import { inject, TestBed } from '@angular/core/testing';
 
 import { CartService } from './cart.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CartService', () => {
-  let cartServiceMock: jasmine.SpyObj<CartService> = jasmine.createSpyObj(
-    'CartServiceSpy',
-    ['forgotPasswordConfirm']
-  );
-
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: CartService, useValue: cartServiceMock }],
+      providers: [CartService],
+      imports: [HttpClientTestingModule],
     });
   });
 

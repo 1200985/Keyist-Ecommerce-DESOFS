@@ -2,16 +2,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ForgotPasswordComponent } from './forgot-password.component';
 import { AccountService } from 'src/app/services/account.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ForgotPasswordComponent', () => {
   let component: ForgotPasswordComponent;
   let fixture: ComponentFixture<ForgotPasswordComponent>;
-  let accountServiceMock: jasmine.SpyObj<AccountService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ForgotPasswordComponent],
-      providers: [{ provide: AccountService, useValue: accountServiceMock }],
+      providers: [AccountService],
+      imports: [HttpClientTestingModule],
     }).compileComponents();
   }));
 

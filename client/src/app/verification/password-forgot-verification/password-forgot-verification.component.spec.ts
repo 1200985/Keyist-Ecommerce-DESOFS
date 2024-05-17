@@ -4,23 +4,17 @@ import { PasswordForgotVerificationComponent } from './password-forgot-verificat
 import { provideMockStore } from '@ngrx/store/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AccountService } from 'src/app/services/account.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PasswordForgotVerificationComponent', () => {
   let component: PasswordForgotVerificationComponent;
   let fixture: ComponentFixture<PasswordForgotVerificationComponent>;
-  let accountServiceMock: jasmine.SpyObj<AccountService> = jasmine.createSpyObj(
-    'AccountServiceSpy',
-    ['forgotPasswordConfirm']
-  );
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [PasswordForgotVerificationComponent],
-      providers: [
-        provideMockStore(),
-        { provide: AccountService, useValue: accountServiceMock },
-      ],
-      imports: [RouterTestingModule],
+      providers: [provideMockStore(), AccountService],
+      imports: [RouterTestingModule, HttpClientTestingModule],
     }).compileComponents();
   }));
 

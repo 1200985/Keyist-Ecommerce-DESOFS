@@ -1,15 +1,13 @@
 import { inject, TestBed } from '@angular/core/testing';
 
 import { TokenService } from './token.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AuthService', () => {
-  let tokenServiceMock: jasmine.SpyObj<TokenService> = jasmine.createSpyObj(
-    'TokenServiceSpy',
-    ['forgotPasswordConfirm']
-  );
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: TokenService, useValue: tokenServiceMock }],
+      providers: [TokenService],
+      imports: [HttpClientTestingModule],
     });
   });
 

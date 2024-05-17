@@ -1,15 +1,13 @@
 import { inject, TestBed } from '@angular/core/testing';
 
 import { ProductService } from './product.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ProductService', () => {
-  let productServiceMock: jasmine.SpyObj<ProductService> = jasmine.createSpyObj(
-    'AccountServiceSpy',
-    ['getUser']
-  );
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: ProductService, useValue: productServiceMock }],
+      providers: [ProductService],
+      imports: [HttpClientTestingModule],
     });
   });
 

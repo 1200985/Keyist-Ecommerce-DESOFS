@@ -1,15 +1,13 @@
 import { inject, TestBed } from '@angular/core/testing';
 
 import { AccountService } from './account.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AccountService', () => {
-  let accountServiceMock: jasmine.SpyObj<AccountService> = jasmine.createSpyObj(
-    'AccountServiceSpy',
-    ['forgotPasswordConfirm']
-  );
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: AccountService, useValue: accountServiceMock }],
+      providers: [AccountService],
+      imports: [HttpClientTestingModule],
     });
   });
 

@@ -4,23 +4,17 @@ import { ResetDetailsComponent } from './reset-details.component';
 import { AccountService } from 'src/app/services/account.service';
 import { provideMockStore } from '@ngrx/store/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ResetDetailsComponent', () => {
   let component: ResetDetailsComponent;
   let fixture: ComponentFixture<ResetDetailsComponent>;
-  let accountServiceMock: jasmine.SpyObj<AccountService> = jasmine.createSpyObj(
-    'AccountServiceSpy',
-    ['getUser']
-  );
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ResetDetailsComponent],
-      providers: [
-        provideMockStore(),
-        { provide: AccountService, useValue: accountServiceMock },
-      ],
-      imports: [RouterTestingModule],
+      providers: [provideMockStore(), AccountService],
+      imports: [RouterTestingModule, HttpClientTestingModule],
     }).compileComponents();
   }));
 

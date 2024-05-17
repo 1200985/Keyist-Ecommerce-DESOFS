@@ -4,23 +4,17 @@ import { EmailVerificationComponent } from './email-verification.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AccountService } from 'src/app/services/account.service';
 import { provideMockStore } from '@ngrx/store/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('EmailVerificationComponent', () => {
   let component: EmailVerificationComponent;
   let fixture: ComponentFixture<EmailVerificationComponent>;
-  let accountServiceMock: jasmine.SpyObj<AccountService> = jasmine.createSpyObj(
-    'AccountServiceSpy',
-    ['verifyEmail']
-  );
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [EmailVerificationComponent],
-      providers: [
-        provideMockStore(),
-        { provide: AccountService, useValue: accountServiceMock },
-      ],
-      imports: [RouterTestingModule],
+      providers: [provideMockStore(), AccountService],
+      imports: [RouterTestingModule, HttpClientTestingModule],
     }).compileComponents();
   }));
 
