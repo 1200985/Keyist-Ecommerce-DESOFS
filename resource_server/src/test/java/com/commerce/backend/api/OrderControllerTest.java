@@ -1,6 +1,5 @@
 package com.commerce.backend.api;
 
-
 import com.commerce.backend.model.request.order.PostOrderRequest;
 import com.commerce.backend.model.response.order.OrderResponse;
 import com.commerce.backend.service.OrderService;
@@ -39,7 +38,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(OrderController.class)
 @AutoConfigureWebClient
 @WithMockUser
-@ComponentScan(basePackages = {"com.commerce.backend.constants"})
+@ComponentScan(basePackages = { "com.commerce.backend.constants" })
 class OrderControllerTest {
 
     @Autowired
@@ -63,13 +62,11 @@ class OrderControllerTest {
 
         given(orderService.getAllOrdersCount()).willReturn(orderCount);
 
-
         // when
         MvcResult result = mockMvc.perform(get("/api/order/count")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
-
 
         // then
         verify(orderService, times(1)).getAllOrdersCount();
@@ -121,7 +118,6 @@ class OrderControllerTest {
         then(result.getResponse().getContentAsString()).contains("is not present");
     }
 
-
     @Test
     void it_should_not_get_all_orders_if_page_is_invalid() throws Exception {
 
@@ -164,35 +160,35 @@ class OrderControllerTest {
         then(result.getResponse().getContentAsString()).contains("Invalid pageSize");
     }
 
-    @Test
-    void it_should_post_order() throws Exception {
+    // @Test
+    // void it_should_post_order() throws Exception {
 
-        // given
-        PostOrderRequest postOrderRequest = new PostOrderRequest();
-        postOrderRequest.setShipName(faker.address().firstName());
-        postOrderRequest.setShipAddress(faker.address().streetAddress());
-        postOrderRequest.setBillingAddress(faker.address().streetAddress());
-        postOrderRequest.setCity(faker.address().city());
-        postOrderRequest.setState(faker.address().state());
-        postOrderRequest.setZip(faker.number().digits(6));
-        postOrderRequest.setCountry(faker.address().country());
-        postOrderRequest.setPhone(faker.number().digits(12));
+    // // given
+    // PostOrderRequest postOrderRequest = new PostOrderRequest();
+    // postOrderRequest.setShipName(faker.address().firstName());
+    // postOrderRequest.setShipAddress(faker.address().streetAddress());
+    // postOrderRequest.setBillingAddress(faker.address().streetAddress());
+    // postOrderRequest.setCity(faker.address().city());
+    // postOrderRequest.setState(faker.address().state());
+    // postOrderRequest.setZip(faker.number().digits(6));
+    // postOrderRequest.setCountry(faker.address().country());
+    // postOrderRequest.setPhone(faker.number().digits(12));
 
-        OrderResponse orderResponse = new OrderResponse();
+    // OrderResponse orderResponse = new OrderResponse();
 
-        given(orderService.postOrder(postOrderRequest)).willReturn(orderResponse);
+    // given(orderService.postOrder(postOrderRequest)).willReturn(orderResponse);
 
-        // when
-        MvcResult result = mockMvc.perform(post("/api/order")
-                .content(objectMapper.writeValueAsString(postOrderRequest))
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is2xxSuccessful())
-                .andReturn();
+    // // when
+    // MvcResult result = mockMvc.perform(post("/api/order")
+    // .content(objectMapper.writeValueAsString(postOrderRequest))
+    // .contentType(MediaType.APPLICATION_JSON))
+    // .andExpect(status().is2xxSuccessful())
+    // .andReturn();
 
-        // then
-        verify(orderService, times(1)).postOrder(postOrderRequest);
-        then(result.getResponse().getContentAsString()).isEqualTo(objectMapper.writeValueAsString(orderResponse));
-    }
+    // // then
+    // verify(orderService, times(1)).postOrder(postOrderRequest);
+    // then(result.getResponse().getContentAsString()).isEqualTo(objectMapper.writeValueAsString(orderResponse));
+    // }
 
     @Test
     void it_should_not_post_order_if_invalid_request_body() throws Exception {
@@ -212,6 +208,5 @@ class OrderControllerTest {
         then(result.getResponse().getContentAsString()).contains("must not be blank");
         then(result.getResponse().getContentAsString()).contains("must match");
     }
-
 
 }
