@@ -27,7 +27,7 @@ jobs:
       - name: Build Resource Server Package
         run: |
           cd ./resource_server
-          mvn package
+          mvn package -DskipTests
 
       - name: Run Tests on Authorization Server
         run: |
@@ -37,7 +37,7 @@ jobs:
       - name: Build Authorization Server Package
         run: |
           cd ./authorization_server
-          mvn package
+          mvn package -DskipTests
 
       - name: Run npm install on Client Application
         run: |
