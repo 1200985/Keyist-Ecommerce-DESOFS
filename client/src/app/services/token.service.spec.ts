@@ -3,9 +3,13 @@ import { inject, TestBed } from '@angular/core/testing';
 import { TokenService } from './token.service';
 
 describe('AuthService', () => {
+  let tokenServiceMock: jasmine.SpyObj<TokenService> = jasmine.createSpyObj(
+    'TokenServiceSpy',
+    ['forgotPasswordConfirm']
+  );
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TokenService]
+      providers: [{ provide: TokenService, useValue: tokenServiceMock }],
     });
   });
 

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GPageNotFoundComponent } from './g-page-not-found.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('GPageNotFoundComponent', () => {
   let component: GPageNotFoundComponent;
@@ -8,9 +9,9 @@ describe('GPageNotFoundComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [GPageNotFoundComponent]
-    })
-      .compileComponents();
+      declarations: [GPageNotFoundComponent],
+      imports: [RouterTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

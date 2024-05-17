@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SigninComponent } from './signin.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('SigninComponent', () => {
   let component: SigninComponent;
@@ -8,9 +9,9 @@ describe('SigninComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [SigninComponent]
-    })
-      .compileComponents();
+      declarations: [SigninComponent],
+      providers: [provideMockStore()],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

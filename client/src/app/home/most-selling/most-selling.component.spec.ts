@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MostSellingComponent } from './most-selling.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('MostSellingComponent', () => {
   let component: MostSellingComponent;
@@ -8,9 +9,9 @@ describe('MostSellingComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MostSellingComponent]
-    })
-      .compileComponents();
+      declarations: [MostSellingComponent],
+      providers: [provideMockStore()],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

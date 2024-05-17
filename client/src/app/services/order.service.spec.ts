@@ -3,9 +3,13 @@ import { inject, TestBed } from '@angular/core/testing';
 import { OrderService } from './order.service';
 
 describe('OrderService', () => {
+  let orderServiceMock: jasmine.SpyObj<OrderService> = jasmine.createSpyObj(
+    'OrderServiceSpy',
+    ['forgotPasswordConfirm']
+  );
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [OrderService]
+      providers: [{ provide: OrderService, useValue: orderServiceMock }],
     });
   });
 

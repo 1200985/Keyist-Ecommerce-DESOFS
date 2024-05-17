@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewlyAddedComponent } from './newly-added.component';
+import { Store } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('NewlyAddedComponent', () => {
   let component: NewlyAddedComponent;
@@ -8,9 +10,9 @@ describe('NewlyAddedComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NewlyAddedComponent]
-    })
-      .compileComponents();
+      declarations: [NewlyAddedComponent],
+      providers: [provideMockStore()],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

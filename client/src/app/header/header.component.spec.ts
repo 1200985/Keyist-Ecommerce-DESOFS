@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
+import { Store } from '@ngrx/store';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -8,9 +11,10 @@ describe('HeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
-    })
-      .compileComponents();
+      declarations: [HeaderComponent],
+      providers: [provideMockStore()],
+      imports: [RouterTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
