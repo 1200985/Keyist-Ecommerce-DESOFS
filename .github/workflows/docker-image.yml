@@ -39,6 +39,11 @@ jobs:
           cd ./authorization_server
           mvn package
 
+      - name: Run npm install on Client Application
+        run: |
+          cd ./client
+          npm i
+
       - name: Run Tests on Client Application
         run: |
           cd ./client
