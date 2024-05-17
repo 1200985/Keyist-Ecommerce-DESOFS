@@ -18,8 +18,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.BDDAssertions.then;
@@ -49,7 +51,6 @@ class CartServiceImplTest {
     private User user;
 
     private Faker faker;
-
 
     @BeforeEach
     public void setUp() {
@@ -251,7 +252,6 @@ class CartServiceImplTest {
 
     }
 
-
     @Test
     void it_should_throw_exception_when_increment_and_no_stock() {
 
@@ -323,7 +323,6 @@ class CartServiceImplTest {
                 .hasMessage("Empty cart");
 
     }
-
 
     @Test
     void it_should_decrement_cart_item() {
@@ -439,7 +438,6 @@ class CartServiceImplTest {
 
     }
 
-
     @Test
     void it_should_throw_exception_when_decrement_and_no_cart_item() {
 
@@ -492,10 +490,8 @@ class CartServiceImplTest {
         given(userService.getUser()).willReturn(user);
         given(cartResponseConverter.apply(cart)).willReturn(cartResponseExpected);
 
-
         // when
         CartResponse cartResponseResult = cartService.fetchCart();
-
 
         // then
         then(cartResponseResult).isEqualTo(cartResponseExpected);
@@ -515,7 +511,6 @@ class CartServiceImplTest {
         then(cartResponseResult).isEqualTo(null);
 
     }
-
 
     @Test
     void it_should_remove_from_cart() {
@@ -546,7 +541,6 @@ class CartServiceImplTest {
 
         cart.setCartItemList(cartItemList);
 
-
         CartResponse cartResponseExpected = new CartResponse();
 
         given(userService.getUser()).willReturn(user);
@@ -560,7 +554,6 @@ class CartServiceImplTest {
         then(cartResponseResult).isEqualTo(cartResponseExpected);
 
     }
-
 
     @Test
     void it_should_remove_from_cart_and_empty_cart() {
@@ -634,7 +627,6 @@ class CartServiceImplTest {
                 .hasMessage("Cart or CartItem not found");
 
     }
-
 
     @Test
     void it_should_empty_cart() {
@@ -711,15 +703,17 @@ class CartServiceImplTest {
 
         cart.setCartItemList(cartItemList);
 
-
         // when
         Cart cartResult = cartService.calculatePrice(cart);
 
         // then
-        Float totalPriceExpected = Float.parseFloat(twoDForm.format((productVariant.getPrice() + productVariant.getCargoPrice()) * cartItem.getAmount()));
+        Float totalPriceExpected = Float.parseFloat(
+                twoDForm.format((productVariant.getPrice() + productVariant.getCargoPrice()) * cartItem.getAmount()));
         then(cartResult.getTotalPrice()).isEqualTo(totalPriceExpected);
-        then(cartResult.getTotalCartPrice()).isEqualTo(Float.parseFloat(twoDForm.format(productVariant.getPrice() * cartItem.getAmount())));
-        then(cartResult.getTotalCargoPrice()).isEqualTo(Float.parseFloat(twoDForm.format(productVariant.getCargoPrice() * cartItem.getAmount())));
+        then(cartResult.getTotalCartPrice())
+                .isEqualTo(Float.parseFloat(twoDForm.format(productVariant.getPrice() * cartItem.getAmount())));
+        then(cartResult.getTotalCargoPrice())
+                .isEqualTo(Float.parseFloat(twoDForm.format(productVariant.getCargoPrice() * cartItem.getAmount())));
 
     }
 
@@ -727,7 +721,8 @@ class CartServiceImplTest {
     void it_should_calculate_price_with_discount() {
 
         // given
-        DecimalFormat twoDForm = new DecimalFormat("#.##");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+        DecimalFormat twoDForm = new DecimalFormat("#.##", symbols);
 
         Float totalCartPrice = (float) faker.number().randomNumber();
         Float totalCargoPrice = (float) faker.number().randomNumber();
@@ -754,16 +749,19 @@ class CartServiceImplTest {
 
         cart.setCartItemList(cartItemList);
 
-
         // when
         Cart cartResult = cartService.calculatePrice(cart);
 
         // then
-        Float totalPriceExpected = Float.parseFloat(twoDForm.format((productVariant.getPrice() + productVariant.getCargoPrice()) * cartItem.getAmount()));
-        Float totalPriceDiscountExpected = Float.parseFloat(twoDForm.format(totalPriceExpected - totalPriceExpected * discount.getDiscountPercent() / 100));
+        Float totalPriceExpected = Float.parseFloat(
+                twoDForm.format((productVariant.getPrice() + productVariant.getCargoPrice()) * cartItem.getAmount()));
+        Float totalPriceDiscountExpected = Float.parseFloat(
+                twoDForm.format(totalPriceExpected - totalPriceExpected * discount.getDiscountPercent() / 100));
         then(cartResult.getTotalPrice()).isEqualTo(totalPriceDiscountExpected);
-        then(cartResult.getTotalCartPrice()).isEqualTo(Float.parseFloat(twoDForm.format(productVariant.getPrice() * cartItem.getAmount())));
-        then(cartResult.getTotalCargoPrice()).isEqualTo(Float.parseFloat(twoDForm.format(productVariant.getCargoPrice() * cartItem.getAmount())));
+        then(cartResult.getTotalCartPrice())
+                .isEqualTo(Float.parseFloat(twoDForm.format(productVariant.getPrice() * cartItem.getAmount())));
+        then(cartResult.getTotalCargoPrice())
+                .isEqualTo(Float.parseFloat(twoDForm.format(productVariant.getCargoPrice() * cartItem.getAmount())));
 
     }
 
@@ -779,7 +777,7 @@ class CartServiceImplTest {
         // when
         cartService.saveCart(cart);
 
-        //then
+        // then
         verify(cartRepository).save(cartArgumentCaptor.capture());
         then(cart).isEqualTo(cartArgumentCaptor.getValue());
 

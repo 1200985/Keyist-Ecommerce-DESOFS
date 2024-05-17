@@ -15,8 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -28,12 +30,11 @@ public class CartServiceImpl implements CartService {
     private final UserService userService;
     private final CartResponseConverter cartResponseConverter;
 
-
     @Autowired
     public CartServiceImpl(CartRepository cartRepository,
-                           ProductService productService,
-                           UserService userService,
-                           CartResponseConverter cartResponseConverter) {
+            ProductService productService,
+            UserService userService,
+            CartResponseConverter cartResponseConverter) {
         this.cartRepository = cartRepository;
         this.productService = productService;
         this.userService = userService;
@@ -123,7 +124,6 @@ public class CartServiceImpl implements CartService {
                 .findFirst()
                 .orElseThrow(() -> new ResourceNotFoundException("CartItem not found"));
 
-
         if (cartItem.getAmount() <= amount) {
             List<CartItem> cartItemList = cart.getCartItemList();
             cartItemList.remove(cartItem);
@@ -208,7 +208,8 @@ public class CartServiceImpl implements CartService {
                 dbCart.getTotalCargoPrice().equals(confirmCartRequest.getTotalCargoPrice()) &&
                 dbCart.getTotalCartPrice().equals(confirmCartRequest.getTotalCartPrice())) {
             if (Objects.nonNull(dbCart.getDiscount()) && Objects.nonNull(confirmCartRequest.getDiscount())) {
-                return dbCart.getDiscount().getDiscountPercent().equals(confirmCartRequest.getDiscount().getDiscountPercent());
+                return dbCart.getDiscount().getDiscountPercent()
+                        .equals(confirmCartRequest.getDiscount().getDiscountPercent());
             }
             return Objects.isNull(dbCart.getDiscount()) && Objects.isNull(confirmCartRequest.getDiscount());
         }
@@ -227,7 +228,6 @@ public class CartServiceImpl implements CartService {
         return userService.getUser().getCart();
     }
 
-
     @Override
     public void saveCart(Cart cart) {
         if (Objects.isNull(cart)) {
@@ -243,15 +243,19 @@ public class CartServiceImpl implements CartService {
         cart.setTotalPrice(0F);
 
         cart.getCartItemList().forEach(cartItem -> {
-            cart.setTotalCartPrice(cart.getTotalCartPrice() + (cartItem.getProductVariant().getPrice()) * cartItem.getAmount());
-            cart.setTotalCargoPrice(cart.getTotalCargoPrice() + (cartItem.getProductVariant().getCargoPrice()) * cartItem.getAmount());
+            cart.setTotalCartPrice(
+                    cart.getTotalCartPrice() + (cartItem.getProductVariant().getPrice()) * cartItem.getAmount());
+            cart.setTotalCargoPrice(
+                    cart.getTotalCargoPrice() + (cartItem.getProductVariant().getCargoPrice()) * cartItem.getAmount());
             cart.setTotalPrice(
                     cart.getTotalPrice() +
-                            (cartItem.getProductVariant().getPrice() + cartItem.getProductVariant().getCargoPrice()) * cartItem.getAmount());
+                            (cartItem.getProductVariant().getPrice() + cartItem.getProductVariant().getCargoPrice())
+                                    * cartItem.getAmount());
         });
 
         if (Objects.nonNull(cart.getDiscount())) {
-            cart.setTotalPrice(cart.getTotalPrice() - ((cart.getTotalPrice() * cart.getDiscount().getDiscountPercent()) / 100));
+            cart.setTotalPrice(
+                    cart.getTotalPrice() - ((cart.getTotalPrice() * cart.getDiscount().getDiscountPercent()) / 100));
         }
 
         cart.setTotalPrice(roundTwoDecimals(cart.getTotalPrice()));
@@ -260,7 +264,8 @@ public class CartServiceImpl implements CartService {
     }
 
     private float roundTwoDecimals(float d) {
-        DecimalFormat twoDForm = new DecimalFormat("#.##");
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
+        DecimalFormat twoDForm = new DecimalFormat("#.##", symbols);
         return Float.parseFloat(twoDForm.format(d));
     }
 
