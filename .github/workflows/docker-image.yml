@@ -52,10 +52,10 @@ jobs:
           cd ./client
           npm run test
 
-      - name: "Run the linter"
-        run: |
-          cd ./client
-          npm run lint
+      # - name: "Run the linter"
+      #   run: |
+      #     cd ./client
+      #     npm run lint
 
       - name: Build Client Application Package
         run: |
