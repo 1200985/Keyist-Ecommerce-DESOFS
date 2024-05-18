@@ -11,15 +11,15 @@ import javax.validation.constraints.Size;
 public class PasswordResetRequest {
 
     @NotBlank
-    @Size(min = 6, max = 52)
+    @Size(min = 12, max = 64)
     private String oldPassword;
 
     @NotBlank
-    @Size(min = 6, max = 52)
+    @Size(min = 12, max = 64)
     private String newPassword;
 
     @NotBlank
-    @Size(min = 6, max = 52)
+    @Size(min = 12, max = 64)
     private String newPasswordConfirm;
 
 }

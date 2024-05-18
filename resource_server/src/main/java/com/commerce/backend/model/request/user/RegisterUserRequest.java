@@ -17,10 +17,10 @@ public class RegisterUserRequest {
     private String email;
 
     @NotBlank
-    @Size(min = 6, max = 52)
+    @Size(min = 12, max = 64)
     private String password;
 
     @NotBlank
-    @Size(min = 6, max = 52)
+    @Size(min = 12, max = 64)
     private String passwordRepeat;
 }
