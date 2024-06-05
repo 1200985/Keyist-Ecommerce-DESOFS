@@ -45,4 +45,4 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
           cd ./resource_server
-          mvn -B -Dsonar.coverage.jacoco.xmlReportPaths=./target/test-results/coverage/jacoco/jacoco.xml org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage -Dsonar.projectKey=resource_server -Dsonar.projectName='resource_server'
+          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage -Dsonar.projectKey=resource_server -Dsonar.projectName='resource_server'
