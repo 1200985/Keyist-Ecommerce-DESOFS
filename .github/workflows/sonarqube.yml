@@ -19,7 +19,9 @@ jobs:
           java-version: 11
 
       - name: Build project
-        run: mvn -B verify -DskipTests
+        run: |
+          cd ./resource_server
+          mvn -B verify -DskipTests
 
       - name: Set up JDK 17
         uses: actions/setup-java@v1
