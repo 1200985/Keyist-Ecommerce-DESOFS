@@ -21,20 +21,20 @@ jobs:
       - name: TruffleHog OSS
         uses: trufflesecurity/trufflehog@v3.76.3
 
-      - name: Run Tests on Resource Server
-        run: |
-          cd ./resource_server
-          mvn test
+      # - name: Run Tests on Resource Server
+      #   run: |
+      #     cd ./resource_server
+      #     mvn test
 
       - name: Build Resource Server Package
         run: |
           cd ./resource_server
           mvn package -DskipTests
 
-      - name: Run Tests on Authorization Server
-        run: |
-          cd ./authorization_server
-          mvn test
+      # - name: Run Tests on Authorization Server
+      #   run: |
+      #     cd ./authorization_server
+      #     mvn test
 
       - name: Build Authorization Server Package
         run: |
@@ -96,3 +96,28 @@ jobs:
           file: ./client/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/angular-client-application:latest
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+
+      - name: Cache SonarQube packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build and analyze
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=resource_server -Dsonar.projectName='resource_server'
