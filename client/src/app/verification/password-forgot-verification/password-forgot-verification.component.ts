@@ -43,12 +43,12 @@ export class PasswordForgotVerificationComponent implements OnInit, OnDestroy {
           newPassword: new FormControl(null, [
             Validators.required,
             BlankValidators.checkIfBlankValidator,
-            Validators.minLength(6),
+            Validators.minLength(8),
           ]),
           newPasswordConfirm: new FormControl(null, [
             Validators.required,
             BlankValidators.checkIfBlankValidator,
-            Validators.minLength(6),
+            Validators.minLength(8),
           ]),
         },
         PasswordValidators.passwordMatchCheckValidator
