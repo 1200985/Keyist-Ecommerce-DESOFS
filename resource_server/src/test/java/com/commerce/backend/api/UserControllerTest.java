@@ -1,6 +1,5 @@
 package com.commerce.backend.api;
 
-
 import com.commerce.backend.model.request.user.PasswordResetRequest;
 import com.commerce.backend.model.request.user.UpdateUserAddressRequest;
 import com.commerce.backend.model.request.user.UpdateUserRequest;
@@ -31,13 +30,12 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
 @WebMvcTest(UserController.class)
 @AutoConfigureWebClient
 @WithMockUser
-@ComponentScan(basePackages = {"com.commerce.backend.constants"})
+@ComponentScan(basePackages = { "com.commerce.backend.constants" })
 class UserControllerTest {
 
     @Autowired
@@ -59,7 +57,6 @@ class UserControllerTest {
         // given
         UserResponse userResponse = new UserResponse();
 
-
         given(userService.fetchUser()).willReturn(userResponse);
 
         // when
@@ -67,7 +64,6 @@ class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
-
 
         // then
         verify(userService, times(1)).fetchUser();
@@ -89,7 +85,6 @@ class UserControllerTest {
 
         UserResponse userResponse = new UserResponse();
 
-
         given(userService.updateUser(updateUserRequest)).willReturn(userResponse);
 
         // when
@@ -98,7 +93,6 @@ class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
-
 
         // then
         verify(userService, times(1)).updateUser(updateUserRequest);
@@ -125,7 +119,6 @@ class UserControllerTest {
                 .andExpect(status().is4xxClientError())
                 .andReturn();
 
-
         // then
         verify(userService, times(0)).updateUser(updateUserRequest);
         then(result.getResponse().getContentAsString()).contains("size must be between 3 and 26");
@@ -150,7 +143,6 @@ class UserControllerTest {
 
         UserResponse userResponse = new UserResponse();
 
-
         given(userService.updateUserAddress(updateUserAddressRequest)).willReturn(userResponse);
 
         // when
@@ -159,7 +151,6 @@ class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
-
 
         // then
         verify(userService, times(1)).updateUserAddress(updateUserAddressRequest);
@@ -190,7 +181,6 @@ class UserControllerTest {
                 .andExpect(status().is4xxClientError())
                 .andReturn();
 
-
         // then
         verify(userService, times(0)).updateUserAddress(updateUserAddressRequest);
         then(result.getResponse().getContentAsString()).contains("size must be between 3 and 100");
@@ -200,8 +190,8 @@ class UserControllerTest {
     void it_should_reset_user_password() throws Exception {
 
         // given
-        String oldPassword = faker.number().digits(6);
-        String newPassword = faker.number().digits(6);
+        String oldPassword = faker.number().digits(12);
+        String newPassword = faker.number().digits(12);
         String newPasswordConfirm = newPassword + "";
 
         PasswordResetRequest passwordResetRequest = new PasswordResetRequest();
@@ -215,7 +205,6 @@ class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
-
 
         // then
         verify(userService, times(1)).resetPassword(passwordResetRequest);
@@ -241,7 +230,6 @@ class UserControllerTest {
                 .andExpect(status().is4xxClientError())
                 .andReturn();
 
-
         // then
         verify(userService, times(0)).resetPassword(passwordResetRequest);
         then(result.getResponse().getContentAsString()).contains("must not be blank");
@@ -261,11 +249,9 @@ class UserControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
 
-
         // then
         verify(userService, times(1)).getVerificationStatus();
         then(result.getResponse().getContentAsString()).isEqualTo(status.toString());
     }
-
 
 }
