@@ -60,6 +60,9 @@ jobs:
           cd ./authorization_server
           mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage -Dsonar.projectKey=authorization_server -Dsonar.projectName='authorization_server'
 
+      - name: Change directory to angular project
+        run: cd ./client
+
       - name: Analyze angular client
         uses: sonarsource/sonarqube-scan-action@master
         env:
