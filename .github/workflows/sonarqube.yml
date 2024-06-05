@@ -59,3 +59,9 @@ jobs:
         run: |
           cd ./authorization_server
           mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage -Dsonar.projectKey=authorization_server -Dsonar.projectName='authorization_server'
+
+      - name: Analyze angular client
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_ANGULAR_CLIENT_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
