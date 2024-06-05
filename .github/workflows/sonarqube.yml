@@ -53,4 +53,4 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
           cd ./authorization_server
-          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage -Dsonar.projectKey=resource_server -Dsonar.projectName='resource_server'
+          mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage -Dsonar.projectKey=authorization_server -Dsonar.projectName='authorization_server'
