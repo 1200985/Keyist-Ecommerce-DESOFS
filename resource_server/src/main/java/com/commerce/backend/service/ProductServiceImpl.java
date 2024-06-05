@@ -15,6 +15,8 @@ import com.commerce.backend.model.response.product.ProductVariantResponse;
 import com.commerce.backend.model.specs.ProductVariantSpecs;
 import com.commerce.backend.service.cache.ProductCacheService;
 import com.commerce.backend.service.cache.ProductVariantCacheService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -27,6 +29,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     private final ProductCacheService productCacheService;
     private final ProductRepository productRepository;
@@ -55,19 +59,22 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDetailsResponse findByUrl(String url) {
+        logger.info("Fetching product by URL: {}", url);
         Product product = productCacheService.findByUrl(url);
         if (Objects.isNull(product)) {
-            throw new ResourceNotFoundException(String.format("Product not found with the url %s", url));
+            logger.error("Product not found with the URL: {}", url);
+            throw new ResourceNotFoundException(String.format("Product not found with the URL %s", url));
         }
         return productDetailsResponseConverter.apply(product);
     }
 
-
     @Override
     public ProductVariant findProductVariantById(Long id) {
+        logger.info("Fetching product variant by ID: {}", id);
         ProductVariant productVariant = productVariantCacheService.findById(id);
         if (Objects.isNull(productVariant)) {
-            throw new ResourceNotFoundException(String.format("Could not find any product variant with the id %d", id));
+            logger.error("Product variant not found with the ID: {}", id);
+            throw new ResourceNotFoundException(String.format("Could not find any product variant with the ID %d", id));
         }
         return productVariant;
     }
@@ -78,12 +85,16 @@ public class ProductServiceImpl implements ProductService {
         if (Objects.nonNull(sort) && !sort.isBlank()) {
             Sort sortRequest = getSort(sort);
             if (Objects.isNull(sortRequest)) {
+                logger.error("Invalid sort parameter: {}", sort);
                 throw new InvalidArgumentException("Invalid sort parameter");
             }
             pageRequest = PageRequest.of(page, size, sortRequest);
         } else {
             pageRequest = PageRequest.of(page, size);
         }
+
+        logger.info("Fetching all product variants with filters - page: {}, size: {}, sort: {}, category: {}, minPrice: {}, maxPrice: {}, color: {}",
+                page, size, sort, category, minPrice, maxPrice, color);
 
         Specification<ProductVariant> combinations =
                 Objects.requireNonNull(Specification.where(ProductVariantSpecs.withColor(color)))
@@ -99,6 +110,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Long getAllCount(String category, Float minPrice, Float maxPrice, String color) {
+        logger.info("Fetching count of all product variants with filters - category: {}, minPrice: {}, maxPrice: {}, color: {}",
+                category, minPrice, maxPrice, color);
+
         Specification<ProductVariant> combinations =
                 Objects.requireNonNull(Specification.where(ProductVariantSpecs.withColor(color)))
                         .and(ProductVariantSpecs.withCategory(category))
@@ -110,8 +124,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> getRelatedProducts(String url) {
+        logger.info("Fetching related products for URL: {}", url);
         Product product = productCacheService.findByUrl(url);
         if (Objects.isNull(product)) {
+            logger.error("Related products not found for URL: {}", url);
             throw new ResourceNotFoundException("Related products not found");
         }
         List<Product> products = productCacheService.getRelatedProducts(product.getProductCategory(), product.getId());
@@ -123,8 +139,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> getNewlyAddedProducts() {
+        logger.info("Fetching newly added products");
         List<Product> products = productCacheService.findTop8ByOrderByDateCreatedDesc();
         if (products.isEmpty()) {
+            logger.error("Newly added products not found");
             throw new ResourceNotFoundException("Newly added products not found");
         }
         return products
@@ -135,8 +153,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductVariantResponse> getMostSelling() {
+        logger.info("Fetching most selling products");
         List<ProductVariant> productVariants = productVariantCacheService.findTop8ByOrderBySellCountDesc();
         if (productVariants.isEmpty()) {
+            logger.error("Most selling products not found");
             throw new ResourceNotFoundException("Most selling products not found");
         }
 
@@ -148,8 +168,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> getInterested() {
+        logger.info("Fetching interested products");
         List<Product> products = productCacheService.findTop8ByOrderByDateCreatedDesc();
         if (products.isEmpty()) {
+            logger.error("Interested products not found");
             throw new ResourceNotFoundException("Interested products not found");
         }
         return products
@@ -160,7 +182,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductResponse> searchProductDisplay(String keyword, Integer page, Integer size) {
+        logger.info("Searching products with keyword: {}, page: {}, size: {}", keyword, page, size);
         if (Objects.isNull(page) || Objects.isNull(size)) {
+            logger.error("Page and size are required");
             throw new InvalidArgumentException("Page and size are required");
         }
         PageRequest pageRequest = PageRequest.of(page, size);
@@ -170,7 +194,6 @@ public class ProductServiceImpl implements ProductService {
                 .map(productResponseConverter)
                 .collect(Collectors.toList());
     }
-
 
     private Sort getSort(String sort) {
         switch (sort) {
@@ -182,5 +205,4 @@ public class ProductServiceImpl implements ProductService {
                 return null;
         }
     }
-
 }
