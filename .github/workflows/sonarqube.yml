@@ -15,9 +15,14 @@ jobs:
         with:
           java-version: 11
 
-      - name: Build project
+      - name: Build resource server project
         run: |
           cd ./resource_server
+          mvn -B verify
+
+      - name: Build authorization server project
+        run: |
+          cd ./authorization_server
           mvn -B verify
 
       - name: Set up JDK 17
