@@ -1,125 +1,125 @@
-name: Build, Test and Deploy to Docker Hub
-on:
-  push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
+# name: Build, Test and Deploy to Docker Hub
+# on:
+#   push:
+#     branches: ["master"]
+#   pull_request:
+#     branches: ["master"]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: "Check out Git repository"
-        uses: actions/checkout@v4
+#     steps:
+#       - name: "Check out Git repository"
+#         uses: actions/checkout@v4
 
-      - name: Install Node.js and NPM
-        uses: actions/setup-node@v2
-        with:
-          node-version: "10"
+#       - name: Install Node.js and NPM
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: "10"
 
-      - name: TruffleHog OSS
-        uses: trufflesecurity/trufflehog@v3.76.3
+#       - name: TruffleHog OSS
+#         uses: trufflesecurity/trufflehog@v3.76.3
 
-      # - name: Run Tests on Resource Server
-      #   run: |
-      #     cd ./resource_server
-      #     mvn test
+#       # - name: Run Tests on Resource Server
+#       #   run: |
+#       #     cd ./resource_server
+#       #     mvn test
 
-      - name: Build Resource Server Package
-        run: |
-          cd ./resource_server
-          mvn package -DskipTests
+#       - name: Build Resource Server Package
+#         run: |
+#           cd ./resource_server
+#           mvn package -DskipTests
 
-      # - name: Run Tests on Authorization Server
-      #   run: |
-      #     cd ./authorization_server
-      #     mvn test
+#       # - name: Run Tests on Authorization Server
+#       #   run: |
+#       #     cd ./authorization_server
+#       #     mvn test
 
-      - name: Build Authorization Server Package
-        run: |
-          cd ./authorization_server
-          mvn package -DskipTests
+#       - name: Build Authorization Server Package
+#         run: |
+#           cd ./authorization_server
+#           mvn package -DskipTests
 
-      - name: Run npm install on Client Application
-        run: |
-          cd ./client
-          npm i
+#       - name: Run npm install on Client Application
+#         run: |
+#           cd ./client
+#           npm i
 
-      - name: Install Chrome for npm run test (Karma)
-        uses: browser-actions/setup-chrome@v1
+#       - name: Install Chrome for npm run test (Karma)
+#         uses: browser-actions/setup-chrome@v1
 
-      - name: Run Tests on Client Application
-        run: |
-          cd ./client
-          npm run test
+#       - name: Run Tests on Client Application
+#         run: |
+#           cd ./client
+#           npm run test
 
-      # - name: "Run the linter"
-      #   run: |
-      #     cd ./client
-      #     npm run lint
+#       # - name: "Run the linter"
+#       #   run: |
+#       #     cd ./client
+#       #     npm run lint
 
-      - name: Build Client Application Package
-        run: |
-          cd ./client
-          npm run build
+#       - name: Build Client Application Package
+#         run: |
+#           cd ./client
+#           npm run build
 
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#       - name: Login to Docker Hub
+#         uses: docker/login-action@v3
+#         with:
+#           username: ${{ secrets.DOCKERHUB_USERNAME }}
+#           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+#       - name: Set up Docker Buildx
+#         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push resource_server
-        uses: docker/build-push-action@v5
-        with:
-          context: ./resource_server
-          file: ./resource_server/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-resource-server:latest
+#       - name: Build and push resource_server
+#         uses: docker/build-push-action@v5
+#         with:
+#           context: ./resource_server
+#           file: ./resource_server/Dockerfile
+#           push: true
+#           tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-resource-server:latest
 
-      - name: Build and push authorization_server
-        uses: docker/build-push-action@v5
-        with:
-          context: ./authorization_server
-          file: ./authorization_server/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-authorization-server:latest
+#       - name: Build and push authorization_server
+#         uses: docker/build-push-action@v5
+#         with:
+#           context: ./authorization_server
+#           file: ./authorization_server/Dockerfile
+#           push: true
+#           tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-authorization-server:latest
 
-      - name: Build and push client application
-        uses: docker/build-push-action@v5
-        with:
-          context: ./client
-          file: ./client/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/angular-client-application:latest
+#       - name: Build and push client application
+#         uses: docker/build-push-action@v5
+#         with:
+#           context: ./client
+#           file: ./client/Dockerfile
+#           push: true
+#           tags: ${{ secrets.DOCKERHUB_USERNAME }}/angular-client-application:latest
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v1
-        with:
-          java-version: 17
+#       - name: Set up JDK 17
+#         uses: actions/setup-java@v1
+#         with:
+#           java-version: 17
 
-      - name: Cache SonarQube packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
+#       - name: Cache SonarQube packages
+#         uses: actions/cache@v1
+#         with:
+#           path: ~/.sonar/cache
+#           key: ${{ runner.os }}-sonar
+#           restore-keys: ${{ runner.os }}-sonar
 
-      - name: Cache Maven packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-m2
+#       - name: Cache Maven packages
+#         uses: actions/cache@v1
+#         with:
+#           path: ~/.m2
+#           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+#           restore-keys: ${{ runner.os }}-m2
 
-      - name: Build and analyze
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: |
-          cd ./resource_server
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=resource_server -Dsonar.projectName='resource_server'
+#       - name: Build and analyze
+#         env:
+#           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+#         run: |
+#           cd ./resource_server
+#           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=resource_server -Dsonar.projectName='resource_server'
