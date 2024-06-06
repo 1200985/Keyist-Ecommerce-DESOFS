@@ -33,6 +33,7 @@ public class CartServiceImpl implements CartService {
     private final ProductService productService;
     private final UserService userService;
     private final CartResponseConverter cartResponseConverter;
+    
 
     @Autowired
     public CartServiceImpl(CartRepository cartRepository,
@@ -224,6 +225,15 @@ public class CartServiceImpl implements CartService {
     public boolean confirmCart(ConfirmCartRequest confirmCartRequest) {
         logger.info("Confirming cart for current user");
         Cart dbCart = userService.getUser().getCart();
+
+            // Introduce a delay of 2 seconds (2000 milliseconds)
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            logger.error("Sleep interrupted", e);
+            Thread.currentThread().interrupt();
+        }
+
         if (Objects.isNull(dbCart)) {
             logger.warn("Cart not found for confirmation");
             return false;
