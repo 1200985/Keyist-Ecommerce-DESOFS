@@ -32,14 +32,14 @@ jobs:
         env:
           JAVA_HOME: /opt/jdk
         with:
-          project: 'test'
-          path: '.'
-          format: 'HTML'
-          out: 'reports' # this is the default, no need to specify unless you wish to override it
+          project: "test"
+          path: "."
+          format: "HTML"
+          out: "reports" # this is the default, no need to specify unless you wish to override it
           args: >
             --failOnCVSS 7
             --enableRetired
-            
+
       - name: Run Tests on Resource Server
         run: |
           cd ./resource_server
