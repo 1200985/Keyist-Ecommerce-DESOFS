@@ -15,7 +15,7 @@ public class PasswordMeterValidator implements ConstraintValidator<PasswordIsStr
     }
 
     private boolean isStrong(String password) {
-        return password.length() >= 8 && hasMixedCase(password) && hasDigits(password) && hasSpecialCharacters(password);
+        return password.length() >= 12 && hasMixedCase(password) && hasDigits(password) && hasSpecialCharacters(password);
     }
 
     private boolean hasMixedCase(String password) {

@@ -18,11 +18,11 @@ public class RegisterUserRequest {
     private String email;
 
     @NotBlank
-    @Size(min = 8, max = 64)
+    @Size(min = 12, max = 128)
     @PasswordIsStrong
     private String password;
 
     @NotBlank
-    @Size(min = 8, max = 64)
+    @Size(min = 12, max = 128)
     private String passwordRepeat;
 }

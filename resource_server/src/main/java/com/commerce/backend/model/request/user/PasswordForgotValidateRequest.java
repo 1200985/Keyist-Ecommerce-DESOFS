@@ -15,11 +15,11 @@ public class PasswordForgotValidateRequest {
     private String token;
 
     @NotBlank
-    @Size(min = 8, max = 64)
+    @Size(min = 12, max = 128)
     @PasswordIsStrong
     private String newPassword;
 
     @NotBlank
-    @Size(min = 8, max = 64)
+    @Size(min = 12, max = 128)
     private String newPasswordConfirm;
 }

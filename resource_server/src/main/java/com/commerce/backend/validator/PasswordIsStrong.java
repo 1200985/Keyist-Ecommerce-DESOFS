@@ -14,7 +14,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = PasswordMeterValidator.class)
 @Documented
 public @interface PasswordIsStrong {
-    String message() default "Password must be at least 8 characters long, with mixed case letters, at least one digit and at least one symbol.";
+    String message() default "Password must be at least 12 characters long, with mixed case letters, at least one digit and at least one symbol.";
 
     Class<?>[] groups() default {};
 
