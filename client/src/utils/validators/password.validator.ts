@@ -15,7 +15,7 @@ export function passwordStrengthCheckValidator(control: FormControl): { [s: stri
 }
 
 function isStrong(password: string) {
-  return password.length >= 8 && hasMixedCase(password) && hasDigits(password) && hasSpecialCharacters(password)
+  return password.length >= 12 && hasMixedCase(password) && hasDigits(password) && hasSpecialCharacters(password)
 }
 
 function hasMixedCase(password: string) {

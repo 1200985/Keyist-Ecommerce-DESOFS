@@ -21,6 +21,7 @@ export class PasswordForgotVerificationComponent implements OnInit, OnDestroy {
 
   forgotPasswordResetForm: FormGroup;
   passwordForgotToken: string;
+  showPassword = false;
 
   constructor(
     private store: Store<fromApp.AppState>,
@@ -43,12 +44,15 @@ export class PasswordForgotVerificationComponent implements OnInit, OnDestroy {
           newPassword: new FormControl(null, [
             Validators.required,
             BlankValidators.checkIfBlankValidator,
-            Validators.minLength(8),
+            Validators.minLength(12),
+            Validators.maxLength(128),
+            PasswordValidators.passwordStrengthCheckValidator
           ]),
           newPasswordConfirm: new FormControl(null, [
             Validators.required,
             BlankValidators.checkIfBlankValidator,
-            Validators.minLength(8),
+            Validators.minLength(12),
+            Validators.maxLength(128),
           ]),
         },
         PasswordValidators.passwordMatchCheckValidator
@@ -74,6 +78,12 @@ export class PasswordForgotVerificationComponent implements OnInit, OnDestroy {
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
     }
+  }
+
+  togglePasswordVisibility(show: boolean): void {
+    const passwordInput = document.getElementById('newPassword') as HTMLInputElement;
+    passwordInput.type = show ? 'text' : 'password';
+    this.showPassword = show;
   }
 
   onForgotPasswordResetFormSubmit() {

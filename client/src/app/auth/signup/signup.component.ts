@@ -30,14 +30,14 @@ export class SignupComponent implements OnInit {
       passwordGroup: new FormGroup({
         newPassword: new FormControl(null, [
           Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(52),
+          Validators.minLength(12),
+          Validators.maxLength(128),
           PasswordValidators.passwordStrengthCheckValidator
         ]),
         newPasswordConfirm: new FormControl(null, [
           Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(52)
+          Validators.minLength(12),
+          Validators.maxLength(128)
         ]),
       }, PasswordValidators.passwordMatchCheckValidator.bind(this))
     });
@@ -60,5 +60,4 @@ export class SignupComponent implements OnInit {
         passwordRepeat: this.signUpForm.value.passwordGroup.newPasswordConfirm
       }));
   }
-
 }

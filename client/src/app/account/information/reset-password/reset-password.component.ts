@@ -23,22 +23,23 @@ export class ResetPasswordComponent implements OnInit {
       oldPassword: new FormControl(null, [
         Validators.required,
         BlankValidators.checkIfBlankValidator,
-        Validators.minLength(8),
-        Validators.maxLength(52),
+        Validators.minLength(12),
+        Validators.maxLength(128),
       ]),
       newPasswordGroup: new FormGroup(
         {
           newPassword: new FormControl(null, [
             Validators.required,
             BlankValidators.checkIfBlankValidator,
-            Validators.minLength(8),
-            Validators.maxLength(52),
+            Validators.minLength(12),
+            Validators.maxLength(128),
             PasswordValidators.passwordStrengthCheckValidator
           ]),
           newPasswordConfirm: new FormControl(null, [
             Validators.required,
             BlankValidators.checkIfBlankValidator,
-            Validators.minLength(8),
+            Validators.minLength(12),
+            Validators.maxLength(128),
           ]),
         },
         PasswordValidators.passwordMatchCheckValidator

@@ -65,7 +65,9 @@
               <span *ngIf="signUpForm.get('passwordGroup.newPassword').errors['required']" class="alert-danger">This
                 field is required!</span>
               <span *ngIf="signUpForm.get('passwordGroup.newPassword').errors['minlength']" class="alert-danger">The
-                password should at least be 8 digits!</span>
+                password should at least be 12 digits!</span>
+              <span *ngIf="signUpForm.get('passwordGroup.newPassword').errors['maxlength']" class="alert-danger">The
+                password should not exceed 128 digits!</span>
               <span *ngIf="signUpForm.get('passwordGroup.newPassword').errors['notStrong']" class="alert-danger">The
                 password is not strong enough!</span>
             </span>
