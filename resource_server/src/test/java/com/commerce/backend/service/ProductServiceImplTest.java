@@ -71,7 +71,6 @@ class ProductServiceImplTest {
 
     private Faker faker;
 
-
     @BeforeEach
     public void setUp() {
         faker = new Faker();
@@ -110,7 +109,7 @@ class ProductServiceImplTest {
         // when, then
         assertThatThrownBy(() -> productService.findByUrl(url))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage(String.format("Product not found with the url %s", url));
+                .hasMessage(String.format("Product not found with the URL %s", url));
     }
 
     @Test
@@ -139,11 +138,10 @@ class ProductServiceImplTest {
 
         given(productVariantCacheService.findById(id)).willReturn(null);
 
-
         // when, then
         assertThatThrownBy(() -> productService.findProductVariantById(id))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage(String.format("Could not find any product variant with the id %d", id));
+                .hasMessage(String.format("Could not find any product variant with the ID %d", id));
     }
 
     @Test
@@ -166,15 +164,19 @@ class ProductServiceImplTest {
 
         ProductVariantResponse productVariantResponseExpected = new ProductVariantResponse();
 
-        given(productVariantRepository.findAll(any(Specification.class), any(PageRequest.class))).willReturn(productVariantPage);
-        given(productVariantResponseConverter.apply(any(ProductVariant.class))).willReturn(productVariantResponseExpected);
+        given(productVariantRepository.findAll(any(Specification.class), any(PageRequest.class)))
+                .willReturn(productVariantPage);
+        given(productVariantResponseConverter.apply(any(ProductVariant.class)))
+                .willReturn(productVariantResponseExpected);
 
         // when
-        List<ProductVariantResponse> productVariantResponseList = productService.getAll(page, size, sort, category, minPrice, maxPrice, color);
+        List<ProductVariantResponse> productVariantResponseList = productService.getAll(page, size, sort, category,
+                minPrice, maxPrice, color);
 
         // then
         then(productVariantResponseList.size()).isEqualTo(productVariantList.size());
-        productVariantResponseList.forEach(productVariantResponse -> then(productVariantResponse).isEqualTo(productVariantResponseExpected));
+        productVariantResponseList.forEach(
+                productVariantResponse -> then(productVariantResponse).isEqualTo(productVariantResponseExpected));
     }
 
     @Test
@@ -197,15 +199,19 @@ class ProductServiceImplTest {
 
         ProductVariantResponse productVariantResponseExpected = new ProductVariantResponse();
 
-        given(productVariantRepository.findAll(any(Specification.class), any(PageRequest.class))).willReturn(productVariantPage);
-        given(productVariantResponseConverter.apply(any(ProductVariant.class))).willReturn(productVariantResponseExpected);
+        given(productVariantRepository.findAll(any(Specification.class), any(PageRequest.class)))
+                .willReturn(productVariantPage);
+        given(productVariantResponseConverter.apply(any(ProductVariant.class)))
+                .willReturn(productVariantResponseExpected);
 
         // when
-        List<ProductVariantResponse> productVariantResponseList = productService.getAll(page, size, sort, category, minPrice, maxPrice, color);
+        List<ProductVariantResponse> productVariantResponseList = productService.getAll(page, size, sort, category,
+                minPrice, maxPrice, color);
 
         // then
         then(productVariantResponseList.size()).isEqualTo(productVariantList.size());
-        productVariantResponseList.forEach(productVariantResponse -> then(productVariantResponse).isEqualTo(productVariantResponseExpected));
+        productVariantResponseList.forEach(
+                productVariantResponse -> then(productVariantResponse).isEqualTo(productVariantResponseExpected));
     }
 
     @Test
@@ -219,7 +225,6 @@ class ProductServiceImplTest {
         Float minPrice = (float) faker.number().randomNumber();
         Float maxPrice = minPrice + (float) faker.number().randomNumber();
         String color = faker.color().name();
-
 
         // when, then
         assertThatThrownBy(() -> productService.getAll(page, size, sort, category, minPrice, maxPrice, color))
@@ -248,7 +253,6 @@ class ProductServiceImplTest {
 
     }
 
-
     @Test
     void it_should_get_all_related_products() {
 
@@ -261,13 +265,13 @@ class ProductServiceImplTest {
         productCategory.setName(faker.lorem().word());
         product.setProductCategory(productCategory);
 
-
         List<Product> productList = Stream.generate(Product::new)
                 .limit(faker.number().randomDigitNotZero())
                 .collect(Collectors.toList());
 
         given(productCacheService.findByUrl(url)).willReturn(product);
-        given(productCacheService.getRelatedProducts(product.getProductCategory(), product.getId())).willReturn(productList);
+        given(productCacheService.getRelatedProducts(product.getProductCategory(), product.getId()))
+                .willReturn(productList);
 
         // when
         List<ProductResponse> productResponseList = productService.getRelatedProducts(url);
@@ -323,10 +327,8 @@ class ProductServiceImplTest {
 
     }
 
-
     @Test
     void it_should_get_all_most_selling_products() {
-
 
         // given
         List<ProductVariant> productVariantList = Stream.generate(ProductVariant::new)
@@ -399,7 +401,8 @@ class ProductServiceImplTest {
                 .limit(faker.number().randomDigitNotZero())
                 .collect(Collectors.toList());
 
-        given(productRepository.findAllByNameContainingIgnoreCase(keyword, PageRequest.of(page, size))).willReturn(productList);
+        given(productRepository.findAllByNameContainingIgnoreCase(keyword, PageRequest.of(page, size)))
+                .willReturn(productList);
         given(productResponseConverter.apply(any(Product.class))).willReturn(new ProductResponse());
 
         // when
@@ -413,19 +416,20 @@ class ProductServiceImplTest {
     @Test
     void it_should_throw_exception_when_searched_products_with_null_page_and_null_size() {
 
-        //given
+        // given
         String keyword = faker.lorem().word();
 
         // when, then
-        assertThatThrownBy(() -> productService.searchProductDisplay(keyword, null, faker.number().randomDigitNotZero()))
+        assertThatThrownBy(
+                () -> productService.searchProductDisplay(keyword, null, faker.number().randomDigitNotZero()))
                 .isInstanceOf(InvalidArgumentException.class)
                 .hasMessage("Page and size are required");
 
-        assertThatThrownBy(() -> productService.searchProductDisplay(keyword, faker.number().randomDigitNotZero(), null))
+        assertThatThrownBy(
+                () -> productService.searchProductDisplay(keyword, faker.number().randomDigitNotZero(), null))
                 .isInstanceOf(InvalidArgumentException.class)
                 .hasMessage("Page and size are required");
 
     }
-
 
 }

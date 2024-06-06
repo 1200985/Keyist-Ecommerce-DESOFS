@@ -1,4 +1,4 @@
-name: Build and Test Applications
+name: Security check, build and test applications
 on:
   push:
     branches: ["master"]
@@ -25,6 +25,20 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: Depcheck
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        env:
+          JAVA_HOME: /opt/jdk
+        with:
+          project: "test"
+          path: "."
+          format: "HTML"
+          out: "reports" # this is the default, no need to specify unless you wish to override it
+          args: >
+            --failOnCVSS 7
+            --enableRetired
 
       - name: Run Tests on Resource Server
         run: |

@@ -10,6 +10,7 @@
     "start": "ng serve",
     "build": "ng build --prod --aot --output-hashing=none",
     "test": "ng test",
+    "test:nowatch": "ng test --watch=false --code-coverage",
     "lint": "ng lint client --fix",
     "e2e": "ng e2e"
   },

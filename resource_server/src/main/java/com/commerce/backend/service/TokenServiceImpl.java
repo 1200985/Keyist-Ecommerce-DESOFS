@@ -10,6 +10,8 @@ import com.commerce.backend.model.entity.VerificationToken;
 import com.commerce.backend.model.event.OnPasswordForgotRequestEvent;
 import com.commerce.backend.model.event.OnRegistrationCompleteEvent;
 import com.commerce.backend.model.request.user.PasswordForgotValidateRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +25,8 @@ import java.util.UUID;
 
 @Service
 public class TokenServiceImpl implements TokenService {
+
+    private static final Logger logger = LoggerFactory.getLogger(TokenServiceImpl.class);
 
     private static final int EXPIRY_DATE = 60 * 24;
 
@@ -47,6 +51,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void createEmailConfirmToken(User user) {
+        logger.info("Creating email confirmation token for user: {}", user.getEmail());
         String token = UUID.randomUUID().toString();
         VerificationToken verificationToken = new VerificationToken();
         verificationToken.setToken(token);
@@ -58,8 +63,10 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void createPasswordResetToken(String email) {
+        logger.info("Creating password reset token for email: {}", email);
         User user = userService.findByEmail(email);
         if (Objects.isNull(user)) {
+            logger.error("User not found for email: {}", email);
             return;
         }
 
@@ -80,6 +87,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void validateEmail(String token) {
+        logger.info("Validating email with token: {}", token);
         VerificationToken verificationToken = verificationTokenRepository.findByToken(token)
                 .orElseThrow(() -> new ResourceNotFoundException("Null verification token"));
 
@@ -87,6 +95,7 @@ public class TokenServiceImpl implements TokenService {
         User user = verificationToken.getUser();
 
         if (Objects.isNull(user)) {
+            logger.error("User not found for token: {}", token);
             throw new ResourceNotFoundException("User not found");
         }
 
@@ -99,6 +108,7 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void validateForgotPasswordConfirm(String token) {
+        logger.info("Validating forgot password confirm with token: {}", token);
         PasswordForgotToken passwordForgotToken = passwordForgotTokenRepository.findByToken(token)
                 .orElseThrow(() -> new ResourceNotFoundException("Token not found"));
 
@@ -107,18 +117,21 @@ public class TokenServiceImpl implements TokenService {
 
     @Override
     public void validateForgotPassword(PasswordForgotValidateRequest passwordForgotValidateRequest) {
+        logger.info("Validating forgot password with token: {}", passwordForgotValidateRequest.getToken());
         PasswordForgotToken passwordForgotToken = passwordForgotTokenRepository.findByToken(passwordForgotValidateRequest.getToken())
                 .orElseThrow(() -> new ResourceNotFoundException("Token not found"));
 
         User user = passwordForgotToken.getUser();
 
         if (Objects.isNull(user)) {
+            logger.error("User not found for token: {}", passwordForgotValidateRequest.getToken());
             throw new ResourceNotFoundException("User not found");
         }
 
         checkTokenExpire(passwordForgotToken.getExpiryDate());
 
         if (passwordEncoder.matches(passwordForgotValidateRequest.getNewPassword(), user.getPassword())) {
+            logger.warn("New password matches the current password for user: {}", user.getEmail());
             return;
         }
 
@@ -136,8 +149,8 @@ public class TokenServiceImpl implements TokenService {
 
     private void checkTokenExpire(Date date) {
         if ((date.getTime() - Calendar.getInstance().getTime().getTime()) <= 0) {
+            logger.error("Token is expired");
             throw new InvalidArgumentException("Token is expired");
         }
-
     }
 }
