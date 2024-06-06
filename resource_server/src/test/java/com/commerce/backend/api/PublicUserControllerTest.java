@@ -28,12 +28,11 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
 @WebMvcTest(PublicUserController.class)
 @AutoConfigureWebClient
-@ComponentScan(basePackages = {"com.commerce.backend.constants"})
+@ComponentScan(basePackages = { "com.commerce.backend.constants" })
 class PublicUserControllerTest {
 
     @Autowired
@@ -56,7 +55,7 @@ class PublicUserControllerTest {
 
         // given
         String email = String.format("%s@%s.com", faker.lorem().characters(1, 10), faker.lorem().characters(1, 10));
-        String password = faker.lorem().characters(6, 52);
+        String password = faker.lorem().characters(12, 64);
         String passwordRepeat = password + "";
 
         RegisterUserRequest registerUserRequest = new RegisterUserRequest();
@@ -66,7 +65,6 @@ class PublicUserControllerTest {
 
         User user = new User();
 
-
         given(userService.register(registerUserRequest)).willReturn(user);
 
         // when
@@ -75,7 +73,6 @@ class PublicUserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
-
 
         // then
         verify(userService, times(1)).register(registerUserRequest);
@@ -97,7 +94,6 @@ class PublicUserControllerTest {
 
         User user = new User();
 
-
         given(userService.register(registerUserRequest)).willReturn(user);
 
         // when
@@ -106,7 +102,6 @@ class PublicUserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is4xxClientError())
                 .andReturn();
-
 
         // then
         verify(userService, times(0)).register(registerUserRequest);
@@ -129,7 +124,6 @@ class PublicUserControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
 
-
         // then
         verify(tokenService, times(1)).validateEmail(token);
     }
@@ -148,7 +142,6 @@ class PublicUserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is4xxClientError())
                 .andReturn();
-
 
         // then
         verify(tokenService, times(0)).validateEmail(token);
@@ -170,7 +163,6 @@ class PublicUserControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
 
-
         // then
         verify(tokenService, times(1)).createPasswordResetToken(email);
     }
@@ -189,7 +181,6 @@ class PublicUserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is4xxClientError())
                 .andReturn();
-
 
         // then
         verify(tokenService, times(0)).createPasswordResetToken(email);
@@ -216,7 +207,6 @@ class PublicUserControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
 
-
         // then
         verify(tokenService, times(1)).validateForgotPassword(passwordForgotValidateRequest);
     }
@@ -241,7 +231,6 @@ class PublicUserControllerTest {
                 .andExpect(status().is4xxClientError())
                 .andReturn();
 
-
         // then
         verify(tokenService, times(0)).validateForgotPassword(passwordForgotValidateRequest);
         then(result.getResponse().getContentAsString()).contains("must not be blank");
@@ -263,7 +252,6 @@ class PublicUserControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andReturn();
 
-
         // then
         verify(tokenService, times(1)).validateForgotPasswordConfirm(token);
     }
@@ -277,7 +265,6 @@ class PublicUserControllerTest {
         PasswordForgotConfirmRequest passwordForgotConfirmRequest = new PasswordForgotConfirmRequest();
         passwordForgotConfirmRequest.setToken(token);
 
-
         // when
         MvcResult result = mockMvc.perform(post("/api/public/account/password/forgot/confirm")
                 .content(objectMapper.writeValueAsString(passwordForgotConfirmRequest))
@@ -285,11 +272,9 @@ class PublicUserControllerTest {
                 .andExpect(status().is4xxClientError())
                 .andReturn();
 
-
         // then
         verify(tokenService, times(0)).validateForgotPasswordConfirm(token);
         then(result.getResponse().getContentAsString()).contains("must not be blank");
     }
-
 
 }
