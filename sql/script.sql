@@ -175,8 +175,6 @@ create table user
     phone             varchar(20)                          null,
     country           varchar(20)                          null,
     address           varchar(100)                         null,
-    role              ENUM('ADMIN', 'MANAGER', 'CLIENT')   not null,
-    constraint email  unique (email)
 );
 
 drop table if exists cart;
