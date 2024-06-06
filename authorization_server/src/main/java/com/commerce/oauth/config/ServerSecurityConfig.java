@@ -26,6 +26,9 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder userPasswordEncoder;
 
+    @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -43,7 +46,8 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/oauth/token").permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler())
-                .and().csrf().disable();
+                .and().csrf().disable()
+                .formLogin().successHandler(customAuthenticationSuccessHandler);
     }
 
 }

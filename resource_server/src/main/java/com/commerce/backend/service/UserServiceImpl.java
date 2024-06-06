@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
-            PasswordEncoder passwordEncoder,
-            UserResponseConverter userResponseConverter) {
+                           PasswordEncoder passwordEncoder,
+                           UserResponseConverter userResponseConverter) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userResponseConverter = userResponseConverter;
@@ -144,5 +144,4 @@ public class UserServiceImpl implements UserService {
         User user = getUser();
         return user.getEmailVerified() == 1;
     }
-
 }
