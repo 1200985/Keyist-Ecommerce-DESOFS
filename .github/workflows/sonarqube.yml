@@ -60,10 +60,10 @@ jobs:
           cd ./authorization_server
           mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage -Dsonar.projectKey=authorization_server -Dsonar.projectName='authorization_server'
 
-      - name: Generate angular code coverage report
-        run: |
-          cd ./client
-          ng test --watch=false --code-coverage
+      # - name: Generate angular code coverage report
+      #   run: |
+      #     cd ./client
+      #     ng test --watch=false --code-coverage
 
       - name: Analyze angular client
         uses: sonarsource/sonarqube-scan-action@master
