@@ -227,7 +227,7 @@ public class CartServiceImpl implements CartService {
     public boolean confirmCart(ConfirmCartRequest confirmCartRequest) {
         logger.info("Confirming cart for current user");
         Cart dbCart = userService.getUser().getCart();
-        String userName = userService.getUser().getUsername();
+        String userName = userService.getUser().getFirstName();
         if (!userActionService.canConfirmCart(userName)) {
             logger.warn("User {} has exceeded the cart confirmation limit", userName);
             return false;
