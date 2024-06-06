@@ -14,6 +14,7 @@ import { catchError, take } from 'rxjs/operators';
 export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
   innerLoading = false;
+  showPassword = false;
 
   constructor(private accountService: AccountService) {}
 
@@ -32,6 +33,7 @@ export class ResetPasswordComponent implements OnInit {
             BlankValidators.checkIfBlankValidator,
             Validators.minLength(8),
             Validators.maxLength(52),
+            PasswordValidators.passwordStrengthCheckValidator
           ]),
           newPasswordConfirm: new FormControl(null, [
             Validators.required,
@@ -42,6 +44,12 @@ export class ResetPasswordComponent implements OnInit {
         PasswordValidators.passwordMatchCheckValidator
       ),
     });
+  }
+
+  togglePasswordVisibility(show: boolean): void {
+    const passwordInput = document.getElementById('newPassword') as HTMLInputElement;
+    passwordInput.type = show ? 'text' : 'password';
+    this.showPassword = show;
   }
 
   onSubmitResetPassword() {
