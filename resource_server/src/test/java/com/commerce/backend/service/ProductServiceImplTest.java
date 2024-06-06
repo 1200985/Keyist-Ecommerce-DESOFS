@@ -141,7 +141,7 @@ class ProductServiceImplTest {
         // when, then
         assertThatThrownBy(() -> productService.findProductVariantById(id))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessage(String.format("Could not find any product variant with the id %d", id));
+                .hasMessage(String.format("Could not find any product variant with the ID %d", id));
     }
 
     @Test
