@@ -1,4 +1,4 @@
-name: Build and Test Applications
+name: Security check, build and test applications
 on:
   push:
     branches: ["master"]
