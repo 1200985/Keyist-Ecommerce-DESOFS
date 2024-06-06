@@ -34,6 +34,8 @@ public class CartServiceImpl implements CartService {
     private final UserService userService;
     private final CartResponseConverter cartResponseConverter;
     
+    @Autowired
+    private UserActionService userActionService;
 
     @Autowired
     public CartServiceImpl(CartRepository cartRepository,
@@ -225,6 +227,11 @@ public class CartServiceImpl implements CartService {
     public boolean confirmCart(ConfirmCartRequest confirmCartRequest) {
         logger.info("Confirming cart for current user");
         Cart dbCart = userService.getUser().getCart();
+        String userName = userService.getUser().getUsername();
+        if (!userActionService.canConfirmCart(userName)) {
+            logger.warn("User {} has exceeded the cart confirmation limit", userName);
+            return false;
+        }
 
             // Introduce a delay of 2 seconds (2000 milliseconds)
         try {
@@ -261,10 +268,12 @@ public class CartServiceImpl implements CartService {
                 boolean discountMatches = dbCart.getDiscount().getDiscountPercent()
                         .equals(confirmCartRequest.getDiscount().getDiscountPercent());
                 logger.info("Cart confirmation result: {}", discountMatches);
+                userActionService.recordCartConfirmation(userName);  
                 return discountMatches;
             }
             boolean noDiscountMismatch = Objects.isNull(dbCart.getDiscount()) && Objects.isNull(confirmCartRequest.getDiscount());
             logger.info("Cart confirmation result: {}", noDiscountMismatch);
+            userActionService.recordCartConfirmation(userName); 
             return noDiscountMismatch;
         }
         logger.warn("Total price mismatch during cart confirmation");
