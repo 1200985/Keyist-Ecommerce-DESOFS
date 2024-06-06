@@ -1,8 +1,11 @@
 logging:
   level:
+    root: INFO
+    com.commerce.oauth: DEBUG  # Adicione esta linha para definir o nível de logging para o seu pacote específico
     org:
       hibernate:
         SQL: INFO
+
 server:
   error:
     whitelabel:

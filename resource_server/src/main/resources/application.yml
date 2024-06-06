@@ -16,9 +16,9 @@ spring:
       maximum-pool-size: 5
       minimum-idle: 2
       pool-name: data-source
-    url: jdbc:mysql://localhost:3306/keyist?useSSL=false&useUnicode=yes&characterEncoding=UTF-8
-    password: password
-    username: username
+    url: jdbc:mysql://localhost:3306/keyist?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
+    password: keyistpassword
+    username: keyistuser
   jackson:
     date-format: MMMM dd yyyy / HH:mm
   jpa:
@@ -51,8 +51,8 @@ security:
   auth:
     username: user_name
     url: http://localhost:8081/oauth/check_token
-    client_id: client_id
-    client_password: client_password
+    client_id: test
+    client_password: test
     connection_timeout: 60
     read_timeout: 60
     whitelist: >
@@ -77,4 +77,3 @@ swagger:
     name: Ant Kaynak
     url: https://www.keyist.tech
     email: antkaynak1@gmail.com
-
