@@ -1,6 +1,5 @@
 package com.commerce.backend.api;
 
-
 import com.commerce.backend.model.entity.User;
 import com.commerce.backend.model.request.user.*;
 import com.commerce.backend.service.TokenService;
@@ -26,33 +25,36 @@ public class PublicUserController extends PublicApiController {
         this.tokenService = tokenService;
     }
 
-    @PostMapping(value = "/account/registration")
+    @PostMapping(value = "/account/registration", consumes = { "application/json" })
     public ResponseEntity<HttpStatus> registerUser(@RequestBody @Valid RegisterUserRequest registerUserRequest) {
         User user = userService.register(registerUserRequest);
         tokenService.createEmailConfirmToken(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value = "/account/registration/validate")
+    @PostMapping(value = "/account/registration/validate", consumes = { "application/json" })
     public ResponseEntity<HttpStatus> validateEmail(@RequestBody @Valid ValidateEmailRequest validateEmailRequest) {
         tokenService.validateEmail(validateEmailRequest.getToken());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value = "/account/password/forgot")
-    public ResponseEntity<HttpStatus> forgotPasswordRequest(@RequestBody @Valid PasswordForgotRequest passwordForgotRequest) {
+    @PostMapping(value = "/account/password/forgot", consumes = { "application/json" })
+    public ResponseEntity<HttpStatus> forgotPasswordRequest(
+            @RequestBody @Valid PasswordForgotRequest passwordForgotRequest) {
         tokenService.createPasswordResetToken(passwordForgotRequest.getEmail());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value = "/account/password/forgot/validate")
-    public ResponseEntity<HttpStatus> validateForgotPassword(@RequestBody @Valid PasswordForgotValidateRequest passwordForgotValidateRequest) {
+    @PostMapping(value = "/account/password/forgot/validate", consumes = { "application/json" })
+    public ResponseEntity<HttpStatus> validateForgotPassword(
+            @RequestBody @Valid PasswordForgotValidateRequest passwordForgotValidateRequest) {
         tokenService.validateForgotPassword(passwordForgotValidateRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value = "/account/password/forgot/confirm")
-    public ResponseEntity<HttpStatus> confirmForgotPassword(@RequestBody @Valid PasswordForgotConfirmRequest passwordForgotConfirmRequest) {
+    @PostMapping(value = "/account/password/forgot/confirm", consumes = { "application/json" })
+    public ResponseEntity<HttpStatus> confirmForgotPassword(
+            @RequestBody @Valid PasswordForgotConfirmRequest passwordForgotConfirmRequest) {
         tokenService.validateForgotPasswordConfirm(passwordForgotConfirmRequest.getToken());
         return new ResponseEntity<>(HttpStatus.OK);
     }
