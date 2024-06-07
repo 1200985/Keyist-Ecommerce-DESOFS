@@ -75,7 +75,9 @@ class UserControllerTest {
 
         // given
         String firstName = faker.address().firstName();
+        System.out.println("firstName: " + firstName);
         String lastName = faker.address().lastName();
+        System.out.println("lastName: " + lastName);
         String phone = faker.number().digits(12);
 
         UpdateUserRequest updateUserRequest = new UpdateUserRequest();
