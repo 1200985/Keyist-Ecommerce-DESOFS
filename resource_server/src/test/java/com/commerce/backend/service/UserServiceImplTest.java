@@ -10,6 +10,7 @@ import com.commerce.backend.model.request.user.RegisterUserRequest;
 import com.commerce.backend.model.request.user.UpdateUserAddressRequest;
 import com.commerce.backend.model.request.user.UpdateUserRequest;
 import com.commerce.backend.model.response.user.UserResponse;
+import com.commerce.backend.security.PasswordBreachService;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -51,6 +52,9 @@ class UserServiceImplTest {
 
     @Mock
     private UserResponseConverter userResponseConverter;
+
+    @Mock
+    private PasswordBreachService passwordBreachService;
 
     private Faker faker;
 
@@ -108,7 +112,14 @@ class UserServiceImplTest {
 
         // given
         String email = faker.lorem().word();
-        String password = faker.lorem().word();
+        // Generate strong password components
+        String upperCase = faker.regexify("[A-Z]{1}");
+        String lowerCase = faker.regexify("[a-z]{1}");
+        String digit = faker.regexify("\\d{1}");
+        String specialChar = faker.regexify("[@#$%^&+=!?]{1}");
+        String remainingChars = faker.lorem().characters(8, 124);
+        String password = upperCase + lowerCase + digit + specialChar + remainingChars;
+
         RegisterUserRequest registerUserRequest = new RegisterUserRequest();
         registerUserRequest.setEmail(email);
         registerUserRequest.setPassword(password);
@@ -116,6 +127,7 @@ class UserServiceImplTest {
         ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
         User userExpected = new User();
 
+        given(passwordBreachService.isPasswordBreached(password)).willReturn(false);
         given(userRepository.existsByEmail(email)).willReturn(false);
         given(passwordEncoder.encode(password)).willReturn(password);
         given(userRepository.save(any(User.class))).willReturn(userExpected);
@@ -473,7 +485,13 @@ class UserServiceImplTest {
         // given
         String oldPassword = faker.howIMetYourMother().character();
         String newPassword = faker.random().hex();
-        String activePassword = faker.random().hex();
+        // Generate strong password components
+        String upperCase = faker.regexify("[A-Z]{1}");
+        String lowerCase = faker.regexify("[a-z]{1}");
+        String digit = faker.regexify("\\d{1}");
+        String specialChar = faker.regexify("[@#$%^&+=!?]{1}");
+        String remainingChars = faker.lorem().characters(8, 124);
+        String activePassword = upperCase + lowerCase + digit + specialChar + remainingChars;
 
         PasswordResetRequest passwordResetRequest = new PasswordResetRequest();
         passwordResetRequest.setOldPassword(oldPassword);
@@ -484,6 +502,7 @@ class UserServiceImplTest {
 
         ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
 
+        given(passwordBreachService.isPasswordBreached(newPassword)).willReturn(false);
         given(userRepository.findByEmail(userName)).willReturn(Optional.of(user));
         given(passwordEncoder.matches(oldPassword, activePassword)).willReturn(true);
         given(passwordEncoder.matches(newPassword, activePassword)).willReturn(false);

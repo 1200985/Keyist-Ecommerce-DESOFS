@@ -13,12 +13,12 @@ import java.security.NoSuchAlgorithmException;
 @Service
 public class PasswordBreachService {
 
-    private static final String HIBP_API_URL = "https://api.pwnedpasswords.com/range/";
+    private final String HIBP_API_URL = "https://api.pwnedpasswords.com/range/";
 
     public PasswordBreachService() {
     }
 
-    public static boolean isPasswordBreached(String password) {
+    public boolean isPasswordBreached(String password) {
         // To protect the value of the source password being searched for, only a partial SHA1 hash is sent to the API
         try {
             String hashedPassword = sha1Hash(password);
@@ -48,7 +48,7 @@ public class PasswordBreachService {
     }
 
     // Builds SHA1 hash
-    private static String sha1Hash(String plainText) throws NoSuchAlgorithmException {
+    private String sha1Hash(String plainText) throws NoSuchAlgorithmException {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
         byte[] result = messageDigest.digest(plainText.getBytes(StandardCharsets.UTF_8));
 

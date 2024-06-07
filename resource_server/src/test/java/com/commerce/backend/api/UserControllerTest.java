@@ -191,13 +191,18 @@ class UserControllerTest {
 
         // given
         String oldPassword = faker.number().digits(12);
-        String newPassword = faker.number().digits(12);
-        String newPasswordConfirm = newPassword + "";
+        // Generate strong password components
+        String upperCase = faker.regexify("[A-Z]{1}");
+        String lowerCase = faker.regexify("[a-z]{1}");
+        String digit = faker.regexify("\\d{1}");
+        String specialChar = faker.regexify("[@#$%^&+=!?]{1}");
+        String remainingChars = faker.lorem().characters(8, 124);
+        String newPassword = upperCase + lowerCase + digit + specialChar + remainingChars;
 
         PasswordResetRequest passwordResetRequest = new PasswordResetRequest();
         passwordResetRequest.setOldPassword(oldPassword);
         passwordResetRequest.setNewPassword(newPassword);
-        passwordResetRequest.setNewPasswordConfirm(newPasswordConfirm);
+        passwordResetRequest.setNewPasswordConfirm(newPassword);
 
         // when
         mockMvc.perform(post("/api/account/password/reset")

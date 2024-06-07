@@ -11,6 +11,7 @@ import com.commerce.backend.model.entity.VerificationToken;
 import com.commerce.backend.model.event.OnPasswordForgotRequestEvent;
 import com.commerce.backend.model.event.OnRegistrationCompleteEvent;
 import com.commerce.backend.model.request.user.PasswordForgotValidateRequest;
+import com.commerce.backend.security.PasswordBreachService;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,6 +57,9 @@ class TokenServiceImplTest {
 
     @Mock
     private PasswordForgotTokenRepository passwordForgotTokenRepository;
+
+    @Mock
+    private PasswordBreachService passwordBreachService;
 
     private User user;
 
@@ -276,10 +280,18 @@ class TokenServiceImplTest {
         // given
         String token = faker.random().hex();
 
+        // Generate strong password components
+        String upperCase = faker.regexify("[A-Z]{1}");
+        String lowerCase = faker.regexify("[a-z]{1}");
+        String digit = faker.regexify("\\d{1}");
+        String specialChar = faker.regexify("[@#$%^&+=!?]{1}");
+        String remainingChars = faker.lorem().characters(8, 124);
+        String password = upperCase + lowerCase + digit + specialChar + remainingChars;
+
         PasswordForgotValidateRequest passwordForgotValidateRequest = new PasswordForgotValidateRequest();
         passwordForgotValidateRequest.setToken(token);
-        passwordForgotValidateRequest.setNewPassword(faker.lorem().word());
-        passwordForgotValidateRequest.setNewPasswordConfirm(faker.lorem().word());
+        passwordForgotValidateRequest.setNewPassword(password);
+        passwordForgotValidateRequest.setNewPasswordConfirm(password);
 
         PasswordForgotToken passwordForgotToken = new PasswordForgotToken();
         passwordForgotToken.setUser(user);
@@ -288,6 +300,7 @@ class TokenServiceImplTest {
         ArgumentCaptor<PasswordForgotToken> passwordForgotTokenArgumentCaptor = ArgumentCaptor.forClass(PasswordForgotToken.class);
         ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
 
+        given(passwordBreachService.isPasswordBreached(password)).willReturn(false);
         given(passwordForgotTokenRepository.findByToken(passwordForgotValidateRequest.getToken())).willReturn(Optional.of(passwordForgotToken));
         given(passwordEncoder.matches(passwordForgotValidateRequest.getNewPassword(), user.getPassword())).willReturn(false);
         given(passwordEncoder.encode(any())).willReturn(passwordForgotValidateRequest.getNewPassword());

@@ -27,13 +27,16 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserResponseConverter userResponseConverter;
 
+    private final PasswordBreachService passwordBreachService;
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            PasswordEncoder passwordEncoder,
-                           UserResponseConverter userResponseConverter) {
+                           UserResponseConverter userResponseConverter, PasswordBreachService passwordBreachService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userResponseConverter = userResponseConverter;
+        this.passwordBreachService = passwordBreachService;
     }
 
     @Override
@@ -44,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         user.setEmail(registerUserRequest.getEmail());
-        if (PasswordBreachService.isPasswordBreached(registerUserRequest.getPassword())) {
+        if (passwordBreachService.isPasswordBreached(registerUserRequest.getPassword())) {
             throw new IllegalArgumentException("The password you introduced seems to belong to a database of breached password, please choose a different one.");
         }
         user.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
@@ -139,7 +142,7 @@ public class UserServiceImpl implements UserService {
             return;
         }
 
-        if (PasswordBreachService.isPasswordBreached(passwordResetRequest.getNewPassword())) {
+        if (passwordBreachService.isPasswordBreached(passwordResetRequest.getNewPassword())) {
             throw new IllegalArgumentException("The password you introduced seems to belong to a database of breached password, please choose a different one.");
         }
         user.setPassword(passwordEncoder.encode(passwordResetRequest.getNewPassword()));

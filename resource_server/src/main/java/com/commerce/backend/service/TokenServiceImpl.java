@@ -37,17 +37,20 @@ public class TokenServiceImpl implements TokenService {
     private final VerificationTokenRepository verificationTokenRepository;
     private final PasswordForgotTokenRepository passwordForgotTokenRepository;
 
+    private final PasswordBreachService passwordBreachService;
+
     @Autowired
     public TokenServiceImpl(UserService userService,
                             PasswordEncoder passwordEncoder,
                             ApplicationEventPublisher eventPublisher,
                             VerificationTokenRepository verificationTokenRepository,
-                            PasswordForgotTokenRepository passwordForgotTokenRepository) {
+                            PasswordForgotTokenRepository passwordForgotTokenRepository, PasswordBreachService passwordBreachService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
         this.eventPublisher = eventPublisher;
         this.verificationTokenRepository = verificationTokenRepository;
         this.passwordForgotTokenRepository = passwordForgotTokenRepository;
+        this.passwordBreachService = passwordBreachService;
     }
 
     @Override
@@ -136,7 +139,7 @@ public class TokenServiceImpl implements TokenService {
             return;
         }
 
-        if (PasswordBreachService.isPasswordBreached(passwordForgotValidateRequest.getNewPassword())) {
+        if (passwordBreachService.isPasswordBreached(passwordForgotValidateRequest.getNewPassword())) {
             throw new IllegalArgumentException("The password you introduced seems to belong to a database of breached password, please choose a different one.");
         }
         user.setPassword(passwordEncoder.encode(passwordForgotValidateRequest.getNewPassword()));
