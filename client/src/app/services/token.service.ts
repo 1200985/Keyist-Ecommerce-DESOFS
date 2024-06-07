@@ -3,15 +3,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { config } from '../../config/local';
 import * as Cookies from 'js-cookie';
 
-
 @Injectable()
 export class TokenService {
 
   url = `${config.authUrl}/oauth/token`;
 
-  constructor(private httpClient: HttpClient) {
-  }
-
+  constructor(private httpClient: HttpClient) { }
 
   obtainAccessToken(email: string, password: string) {
     let body: HttpParams = new HttpParams();
@@ -21,16 +18,12 @@ export class TokenService {
     body = body.append('grant_type', 'password');
     body = body.append('client_id', config.clientId);
 
-
     return this.httpClient.post(this.url, body, {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-        Authorization: 'Basic '
-          + btoa(`${config.clientId}:${config.clientSecret}`)
+        Authorization: 'Basic ' + btoa(`${config.clientId}:${config.clientSecret}`)
       }
     });
-
-
   }
 
   obtainAccessTokenWithRefreshToken(refreshToken: string) {
@@ -40,17 +33,15 @@ export class TokenService {
     return this.httpClient.post(this.url, body, {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-        Authorization: 'Basic '
-          + btoa(`${config.clientId}:${config.clientSecret}`)
+        Authorization: 'Basic ' + btoa(`${config.clientId}:${config.clientSecret}`)
       }
     });
-
   }
 
   saveToken(token): void {
-    Cookies.set('usr', JSON.stringify(token), { expires: 365 });
+    const isSecure = location.protocol === 'https:';
+    Cookies.set('usr', JSON.stringify(token), { expires: 365, secure: isSecure });
   }
-
 
   removeToken() {
     Cookies.remove('usr');
