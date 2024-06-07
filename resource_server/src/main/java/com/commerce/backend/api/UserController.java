@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-
 @RestController
 public class UserController extends ApiController {
 
@@ -29,19 +28,20 @@ public class UserController extends ApiController {
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/account")
+    @PutMapping(value = "/account", consumes = { "application/json" })
     public ResponseEntity<UserResponse> updateUser(@RequestBody @Valid UpdateUserRequest updateUserRequest) {
         UserResponse userResponse = userService.updateUser(updateUserRequest);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/account/address")
-    public ResponseEntity<UserResponse> updateUserAddress(@RequestBody @Valid UpdateUserAddressRequest updateUserAddressRequest) {
+    @PutMapping(value = "/account/address", consumes = { "application/json" })
+    public ResponseEntity<UserResponse> updateUserAddress(
+            @RequestBody @Valid UpdateUserAddressRequest updateUserAddressRequest) {
         UserResponse userResponse = userService.updateUserAddress(updateUserAddressRequest);
         return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/account/password/reset")
+    @PostMapping(value = "/account/password/reset", consumes = { "application/json" })
     public ResponseEntity<HttpStatus> passwordReset(@RequestBody @Valid PasswordResetRequest passwordResetRequest) {
         userService.resetPassword(passwordResetRequest);
         return new ResponseEntity<>(HttpStatus.OK);

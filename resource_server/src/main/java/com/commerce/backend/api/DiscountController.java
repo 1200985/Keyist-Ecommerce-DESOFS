@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-
 @RestController
 public class DiscountController extends ApiController {
 
@@ -22,7 +21,7 @@ public class DiscountController extends ApiController {
         this.discountService = discountService;
     }
 
-    @PostMapping(value = "/cart/discount")
+    @PostMapping(value = "/cart/discount", consumes = { "application/json" })
     public ResponseEntity<HttpStatus> applyDiscount(@RequestBody @Valid ApplyDiscountRequest applyDiscountRequest) {
         discountService.applyDiscount(applyDiscountRequest.getCode());
         return new ResponseEntity<>(HttpStatus.OK);

@@ -1,6 +1,5 @@
 package com.commerce.backend.api;
 
-
 import com.commerce.backend.model.request.cart.*;
 import com.commerce.backend.model.response.cart.CartResponse;
 import com.commerce.backend.service.CartService;
@@ -21,21 +20,26 @@ public class CartController extends ApiController {
         this.cartService = cartService;
     }
 
-    @PostMapping(value = "/cart")
+    @PostMapping(value = "/cart", consumes = { "application/json" })
     public ResponseEntity<CartResponse> addToCart(@RequestBody @Valid AddToCartRequest addToCartRequest) {
-        CartResponse cartResponse = cartService.addToCart(addToCartRequest.getProductVariantId(), addToCartRequest.getAmount());
+        CartResponse cartResponse = cartService.addToCart(addToCartRequest.getProductVariantId(),
+                addToCartRequest.getAmount());
         return new ResponseEntity<>(cartResponse, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/cart/increment")
-    public ResponseEntity<CartResponse> increaseCartItem(@RequestBody @Valid IncrementCartItemRequest incrementCartItemRequest) {
-        CartResponse cartResponse = cartService.incrementCartItem(incrementCartItemRequest.getCartItemId(), incrementCartItemRequest.getAmount());
+    @PostMapping(value = "/cart/increment", consumes = { "application/json" })
+    public ResponseEntity<CartResponse> increaseCartItem(
+            @RequestBody @Valid IncrementCartItemRequest incrementCartItemRequest) {
+        CartResponse cartResponse = cartService.incrementCartItem(incrementCartItemRequest.getCartItemId(),
+                incrementCartItemRequest.getAmount());
         return new ResponseEntity<>(cartResponse, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/cart/decrement")
-    public ResponseEntity<CartResponse> decreaseCartItem(@RequestBody @Valid DecrementCartItemRequest decrementCartItemRequest) {
-        CartResponse cartResponse = cartService.decrementCartItem(decrementCartItemRequest.getCartItemId(), decrementCartItemRequest.getAmount());
+    @PostMapping(value = "/cart/decrement", consumes = { "application/json" })
+    public ResponseEntity<CartResponse> decreaseCartItem(
+            @RequestBody @Valid DecrementCartItemRequest decrementCartItemRequest) {
+        CartResponse cartResponse = cartService.decrementCartItem(decrementCartItemRequest.getCartItemId(),
+                decrementCartItemRequest.getAmount());
         return new ResponseEntity<>(cartResponse, HttpStatus.OK);
     }
 
@@ -45,8 +49,9 @@ public class CartController extends ApiController {
         return new ResponseEntity<>(cartResponse, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/cart/remove")
-    public ResponseEntity<CartResponse> removeFromCart(@RequestBody @Valid RemoveFromCartRequest removeFromCartRequest) {
+    @PostMapping(value = "/cart/remove", consumes = { "application/json" })
+    public ResponseEntity<CartResponse> removeFromCart(
+            @RequestBody @Valid RemoveFromCartRequest removeFromCartRequest) {
         CartResponse cartResponse = cartService.removeFromCart(removeFromCartRequest.getCartItemId());
         return new ResponseEntity<>(cartResponse, HttpStatus.OK);
     }
@@ -57,7 +62,7 @@ public class CartController extends ApiController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping(value = "/cart/confirm")
+    @PostMapping(value = "/cart/confirm", consumes = { "application/json" })
     public ResponseEntity<Boolean> confirmCart(@RequestBody @Valid ConfirmCartRequest confirmCartRequest) {
         Boolean confirmCart = cartService.confirmCart(confirmCartRequest);
         return new ResponseEntity<>(confirmCart, HttpStatus.OK);
