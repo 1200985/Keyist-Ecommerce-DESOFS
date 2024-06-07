@@ -1,9 +1,7 @@
-name: Build, Test and Deploy to Docker Hub
+name: Develop and rest of branches
 on:
-  workflow_dispatch:
   push:
-    tags:
-      - "v*"
+    branches: ["develop", "feature/*"]
 
 jobs:
   build:
@@ -25,6 +23,20 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+
+      - name: Depcheck
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        env:
+          JAVA_HOME: /opt/jdk
+        with:
+          project: "test"
+          path: "."
+          format: "HTML"
+          out: "reports" # this is the default, no need to specify unless you wish to override it
+          args: >
+            --failOnCVSS 7
+            --enableRetired
 
       - name: Run Tests on Resource Server
         run: |
@@ -68,36 +80,3 @@ jobs:
         run: |
           cd ./client
           npm run build
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build and push resource_server
-        uses: docker/build-push-action@v5
-        with:
-          context: ./resource_server
-          file: ./resource_server/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-resource-server:latest
-
-      - name: Build and push authorization_server
-        uses: docker/build-push-action@v5
-        with:
-          context: ./authorization_server
-          file: ./authorization_server/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot-authorization-server:latest
-
-      - name: Build and push client application
-        uses: docker/build-push-action@v5
-        with:
-          context: ./client
-          file: ./client/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/angular-client-application:latest
