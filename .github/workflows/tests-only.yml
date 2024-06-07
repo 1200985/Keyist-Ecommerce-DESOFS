@@ -1,7 +1,6 @@
 name: Run tests only
 on:
-  push:
-    branches: ["feature/*"]
+  workflow_dispatch:
 
 jobs:
   build:
