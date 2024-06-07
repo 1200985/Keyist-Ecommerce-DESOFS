@@ -100,9 +100,6 @@ class ProductControllerTest {
                 Integer page = (int) faker.number().randomDigitNotZero() * -1;
                 Integer size = (int) faker.number().randomDigit();
 
-                System.out.println("page: " + page);
-                System.out.println("size: " + size);
-
                 // when
                 LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
                 requestParams.add("page", page.toString());
@@ -123,9 +120,6 @@ class ProductControllerTest {
                 // given
                 Integer page = (int) faker.number().randomDigit();
                 Integer size = (int) faker.number().randomDigitNotZero() * -1;
-
-                System.out.println("page: " + page);
-                System.out.println("size: " + size);
 
                 // when
                 LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
