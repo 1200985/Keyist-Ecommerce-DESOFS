@@ -40,7 +40,12 @@ export class TokenService {
 
   saveToken(token): void {
     const isSecure = location.protocol === 'https:';
-    Cookies.set('usr', JSON.stringify(token), { expires: 365, secure: isSecure });
+    Cookies.set('usr', JSON.stringify(token), { 
+      expires: 365, 
+      secure: isSecure, 
+      sameSite: 'Strict'  
+    });
+    
   }
 
   removeToken() {
