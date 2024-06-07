@@ -1,9 +1,7 @@
-name: Security check, build and test applications
+name: Develop and rest of branches
 on:
   push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
+    branches: ["develop", "feature/*"]
 
 jobs:
   build:
