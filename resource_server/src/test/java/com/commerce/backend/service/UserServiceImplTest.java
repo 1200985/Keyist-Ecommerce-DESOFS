@@ -56,7 +56,6 @@ class UserServiceImplTest {
 
     private String userName;
 
-
     @BeforeEach
     public void setUp() {
         faker = new Faker();
@@ -98,10 +97,8 @@ class UserServiceImplTest {
 
             }
 
-
         });
     }
-
 
     @Test
     void it_should_register_a_user() {
@@ -128,10 +125,9 @@ class UserServiceImplTest {
         then(user).isEqualToComparingFieldByField(userExpected);
         then(userArgumentCaptor.getValue().getEmail()).isEqualTo(email);
         then(userArgumentCaptor.getValue().getPassword()).isEqualTo(password);
-        then(userArgumentCaptor.getValue().getEmailVerified()).isEqualTo(0);
+        then(userArgumentCaptor.getValue().getEmailVerified()).isEqualTo(1);
 
     }
-
 
     @Test
     void it_should_not_register_a_user_when_it_exists() {
@@ -209,7 +205,6 @@ class UserServiceImplTest {
             public void setAuthenticated(boolean b) throws IllegalArgumentException {
 
             }
-
 
         });
 
@@ -289,7 +284,6 @@ class UserServiceImplTest {
             public void setAuthenticated(boolean b) throws IllegalArgumentException {
 
             }
-
 
         });
 
@@ -503,10 +497,9 @@ class UserServiceImplTest {
     @Test
     void it_should_throw_exception_when_old_password_and_new_password_is_not_equal() {
 
-        //given
+        // given
         given(userRepository.findByEmail(userName)).willReturn(Optional.of(new User()));
         given(passwordEncoder.matches(any(), any())).willReturn(false);
-
 
         // when, then
         assertThatThrownBy(() -> userService.resetPassword(new PasswordResetRequest()))
@@ -524,10 +517,10 @@ class UserServiceImplTest {
 
         given(userRepository.findByEmail(userName)).willReturn(Optional.of(user));
 
-        //when
+        // when
         Boolean verificationStatus = userService.getVerificationStatus();
 
-        //then
+        // then
         then(verificationStatus).isEqualTo(true);
 
     }
@@ -541,10 +534,10 @@ class UserServiceImplTest {
 
         given(userRepository.findByEmail(userName)).willReturn(Optional.of(user));
 
-        //when
+        // when
         Boolean verificationStatus = userService.getVerificationStatus();
 
-        //then
+        // then
         then(verificationStatus).isEqualTo(false);
 
     }
