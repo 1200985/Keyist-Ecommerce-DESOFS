@@ -45,7 +45,6 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setEmail(registerUserRequest.getEmail());
         if (PasswordBreachService.isPasswordBreached(registerUserRequest.getPassword())) {
-            System.out.println("entrou");
             throw new IllegalArgumentException("The password you introduced seems to belong to a database of breached password, please choose a different one.");
         }
         user.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
@@ -140,6 +139,9 @@ public class UserServiceImpl implements UserService {
             return;
         }
 
+        if (PasswordBreachService.isPasswordBreached(passwordResetRequest.getNewPassword())) {
+            throw new IllegalArgumentException("The password you introduced seems to belong to a database of breached password, please choose a different one.");
+        }
         user.setPassword(passwordEncoder.encode(passwordResetRequest.getNewPassword()));
         userRepository.save(user);
     }

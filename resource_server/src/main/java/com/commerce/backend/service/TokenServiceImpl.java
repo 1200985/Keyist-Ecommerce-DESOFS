@@ -10,6 +10,7 @@ import com.commerce.backend.model.entity.VerificationToken;
 import com.commerce.backend.model.event.OnPasswordForgotRequestEvent;
 import com.commerce.backend.model.event.OnRegistrationCompleteEvent;
 import com.commerce.backend.model.request.user.PasswordForgotValidateRequest;
+import com.commerce.backend.security.PasswordBreachService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,6 +136,9 @@ public class TokenServiceImpl implements TokenService {
             return;
         }
 
+        if (PasswordBreachService.isPasswordBreached(passwordForgotValidateRequest.getNewPassword())) {
+            throw new IllegalArgumentException("The password you introduced seems to belong to a database of breached password, please choose a different one.");
+        }
         user.setPassword(passwordEncoder.encode(passwordForgotValidateRequest.getNewPassword()));
         userService.saveUser(user);
         passwordForgotTokenRepository.delete(passwordForgotToken);
