@@ -228,54 +228,72 @@ public class CartServiceImpl implements CartService {
         logger.info("Confirming cart for current user");
         Cart dbCart = userService.getUser().getCart();
         String userName = userService.getUser().getFirstName();
+        
+        // Check if the user has exceeded the cart confirmation limit
         if (!userActionService.canConfirmCart(userName)) {
             logger.warn("User {} has exceeded the cart confirmation limit", userName);
             return false;
         }
-
-            // Introduce a delay of 2 seconds (2000 milliseconds)
+    
+        // Introduce a delay of 2 seconds (2000 milliseconds)
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             logger.error("Sleep interrupted", e);
             Thread.currentThread().interrupt();
+            return false;
         }
-
+    
+        // Check if the cart is null
         if (Objects.isNull(dbCart)) {
             logger.warn("Cart not found for confirmation");
             return false;
         }
+    
         List<CartItem> dbCartItemsList = dbCart.getCartItemList();
         List<CartItemDTO> cartItemsList = confirmCartRequest.getCartItems();
+    
+        // Check if the number of items in the cart matches
         if (dbCartItemsList.size() != cartItemsList.size()) {
             logger.warn("Cart item count mismatch during confirmation");
             return false;
         }
-
+    
+        // Check each item in the cart
         for (int i = 0; i < dbCartItemsList.size(); i++) {
-            if (!dbCartItemsList.get(i).getId().equals(cartItemsList.get(i).getId()) &&
-                    !dbCartItemsList.get(i).getAmount().equals(cartItemsList.get(i).getAmount()) &&
+            if (!dbCartItemsList.get(i).getId().equals(cartItemsList.get(i).getId()) ||
+                    !dbCartItemsList.get(i).getAmount().equals(cartItemsList.get(i).getAmount()) ||
                     !dbCartItemsList.get(i).getProductVariant().getId().equals(cartItemsList.get(i).getId())) {
                 logger.warn("Cart item details mismatch during confirmation");
                 return false;
             }
         }
-
+    
+        // Check if the total prices match
         if (dbCart.getTotalPrice().equals(confirmCartRequest.getTotalPrice()) &&
                 dbCart.getTotalCargoPrice().equals(confirmCartRequest.getTotalCargoPrice()) &&
                 dbCart.getTotalCartPrice().equals(confirmCartRequest.getTotalCartPrice())) {
+            
+            // Check if the discount details match
             if (Objects.nonNull(dbCart.getDiscount()) && Objects.nonNull(confirmCartRequest.getDiscount())) {
                 boolean discountMatches = dbCart.getDiscount().getDiscountPercent()
                         .equals(confirmCartRequest.getDiscount().getDiscountPercent());
                 logger.info("Cart confirmation result: {}", discountMatches);
-                userActionService.recordCartConfirmation(userName);  
+                if (discountMatches) {
+                    userActionService.recordCartConfirmation(userName);
+                }
                 return discountMatches;
             }
+            
+            // Check if there is no discount mismatch
             boolean noDiscountMismatch = Objects.isNull(dbCart.getDiscount()) && Objects.isNull(confirmCartRequest.getDiscount());
             logger.info("Cart confirmation result: {}", noDiscountMismatch);
-            userActionService.recordCartConfirmation(userName); 
+            if (noDiscountMismatch) {
+                userActionService.recordCartConfirmation(userName);
+            }
             return noDiscountMismatch;
         }
+        
         logger.warn("Total price mismatch during cart confirmation");
         return false;
     }
