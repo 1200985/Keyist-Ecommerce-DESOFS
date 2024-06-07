@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("The password you introduced seems to belong to a database of breached password, please choose a different one.");
         }
         user.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
-        user.setEmailVerified(1);
+        user.setEmailVerified(0);
 
         return userRepository.save(user);
     }
