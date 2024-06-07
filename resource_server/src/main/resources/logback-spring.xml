@@ -21,13 +21,13 @@
     <!-- Logger for specific package -->
     <logger name="com.commerce.oauth" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE" />
-        <appender-ref ref="FILE" />
+        <!-- <appender-ref ref="FILE" /> -->
     </logger>
 
     <!-- Root logger -->
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
-        <appender-ref ref="FILE" />
+        <!-- <appender-ref ref="FILE" /> -->
     </root>
     
 </configuration>
