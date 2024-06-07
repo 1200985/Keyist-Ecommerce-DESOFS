@@ -7,29 +7,13 @@
         </encoder>
     </appender>
 
-    <!-- Appender para arquivo -->
-    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>C:/Users/olive/dedofs/desofs2024_M1B_8/authorization_server/logs/application.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <!-- Arquivo de log será rotacionado a cada dia -->
-            <fileNamePattern>C:/Users/olive/dedofs/desofs2024_M1B_8/authorization_server/logs/application.log/application.%d{yyyy-MM-dd}.log</fileNamePattern>
-            <!-- Guardar até 30 dias de logs antigos -->
-            <maxHistory>30</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
-        </encoder>
-    </appender>
-
     <!-- Logger para o pacote específico -->
     <logger name="com.commerce.oauth" level="DEBUG" additivity="false">
         <appender-ref ref="console" />
-        <appender-ref ref="file" />
     </logger>
 
     <!-- Logger root -->
     <root level="INFO">
         <appender-ref ref="console" />
-        <appender-ref ref="file" />
     </root>
 </configuration>
