@@ -137,8 +137,7 @@ class UserServiceImplTest {
         then(user).isEqualToComparingFieldByField(userExpected);
         then(userArgumentCaptor.getValue().getEmail()).isEqualTo(email);
         then(userArgumentCaptor.getValue().getPassword()).isEqualTo(password);
-        then(userArgumentCaptor.getValue().getEmailVerified()).isEqualTo(1);
-
+        then(userArgumentCaptor.getValue().getEmailVerified()).isEqualTo(0);
     }
 
     @Test
