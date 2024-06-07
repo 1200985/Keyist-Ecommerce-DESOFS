@@ -21,7 +21,7 @@ public class UserActionService {
         actions.entrySet().removeIf(entry -> entry.getKey().isBefore(oneHourAgo));
 
         int count = actions.values().stream().mapToInt(Integer::intValue).sum();
-
+        System.out.println(count + "COUNTTTT");
         return count < MAX_CART_CONFIRMATIONS_PER_HOUR;
     }
 
