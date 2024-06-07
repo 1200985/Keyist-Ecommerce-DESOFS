@@ -7,7 +7,7 @@
         </encoder>
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>C:/Users/olive/dedofs/desofs2024_M1B_8/resource_server/logs/application.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>C:/Users/olive/dedofs/desofs2024_M1B_8/resource_server/logs/application.%d{yyyy-MM-dd}.log</fileNamePattern>
@@ -16,7 +16,7 @@
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
         </encoder>
-    </appender>
+    </appender> -->
 
     <!-- Logger for specific package -->
     <logger name="com.commerce.oauth" level="DEBUG" additivity="false">
