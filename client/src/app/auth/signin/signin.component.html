@@ -39,13 +39,31 @@
 
         <div class="form-group">
           <label for="password">PASSWORD</label>
-          <input type="password" id="password" class="form-control" name="password" formControlName="password"
-            [maxlength]="240">
+          <div class="password-container">
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              name="password"
+              formControlName="password"
+              [maxlength]="240"
+            />
+            <div class="input-group-append">
+              <button
+              class="btn-toggle-password"
+              type="button"
+              (mousedown)="togglePasswordVisibility(true)" 
+              (mouseup)="togglePasswordVisibility(false)"
+              (mouseleave)="togglePasswordVisibility(false)">
+                <i class="fa" [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+              </button>
+            </div>
+          </div>
           <span *ngIf="signInForm.get('password').invalid && signInForm.get('password').touched">
             <span *ngIf="signInForm.get('password').errors.required" class="alert-danger">This field is
               required!</span>
             <span *ngIf="signInForm.get('password').errors.minlength" class="alert-danger">Minimum password length is
-              6!</span>
+              12!</span>
           </span>
         </div>
 

@@ -1,5 +1,6 @@
 package com.commerce.backend.model.request.user;
 
+import com.commerce.backend.validator.PasswordIsStrong;
 import com.commerce.backend.validator.PasswordMatches;
 import lombok.Data;
 
@@ -14,9 +15,11 @@ public class PasswordForgotValidateRequest {
     private String token;
 
     @NotBlank
-    @Size(min = 6, max = 52)
+    @Size(min = 12, max = 128)
+    @PasswordIsStrong
     private String newPassword;
 
     @NotBlank
+    @Size(min = 12, max = 128)
     private String newPasswordConfirm;
 }

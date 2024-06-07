@@ -2,6 +2,7 @@ package com.commerce.backend.api;
 
 import com.commerce.backend.model.entity.User;
 import com.commerce.backend.model.request.user.*;
+import com.commerce.backend.security.PasswordBreachService;
 import com.commerce.backend.service.TokenService;
 import com.commerce.backend.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,6 +42,8 @@ class PublicUserControllerTest {
     private UserService userService;
     @MockBean
     private TokenService tokenService;
+    @MockBean
+    private PasswordBreachService passwordBreachService;
     @Autowired
     private MockMvc mockMvc;
     private Faker faker;
@@ -55,16 +58,23 @@ class PublicUserControllerTest {
 
         // given
         String email = String.format("%s@%s.com", faker.lorem().characters(1, 10), faker.lorem().characters(1, 10));
-        String password = faker.lorem().characters(12, 64);
-        String passwordRepeat = password + "";
+
+        // Generate strong password components
+        String upperCase = faker.regexify("[A-Z]{1}");
+        String lowerCase = faker.regexify("[a-z]{1}");
+        String digit = faker.regexify("\\d{1}");
+        String specialChar = faker.regexify("[@#$%^&+=!?]{1}");
+        String remainingChars = faker.lorem().characters(8, 124);
+        String password = upperCase + lowerCase + digit + specialChar + remainingChars;
 
         RegisterUserRequest registerUserRequest = new RegisterUserRequest();
         registerUserRequest.setEmail(email);
         registerUserRequest.setPassword(password);
-        registerUserRequest.setPasswordRepeat(passwordRepeat);
+        registerUserRequest.setPasswordRepeat(password);
 
         User user = new User();
 
+        given(passwordBreachService.isPasswordBreached(password)).willReturn(false);
         given(userService.register(registerUserRequest)).willReturn(user);
 
         // when
@@ -84,16 +94,22 @@ class PublicUserControllerTest {
 
         // given
         String email = String.valueOf(faker.number().randomDigitNotZero());
-        String password = faker.lorem().characters(6, 52);
-        String passwordRepeat = password + "";
+        // Generate strong password components
+        String upperCase = faker.regexify("[A-Z]{1}");
+        String lowerCase = faker.regexify("[a-z]{1}");
+        String digit = faker.regexify("\\d{1}");
+        String specialChar = faker.regexify("[@#$%^&+=!?]{1}");
+        String remainingChars = faker.lorem().characters(8, 124);
+        String password = upperCase + lowerCase + digit + specialChar + remainingChars;
 
         RegisterUserRequest registerUserRequest = new RegisterUserRequest();
         registerUserRequest.setEmail(email);
         registerUserRequest.setPassword(password);
-        registerUserRequest.setPasswordRepeat(passwordRepeat);
+        registerUserRequest.setPasswordRepeat(password);
 
         User user = new User();
 
+        given(passwordBreachService.isPasswordBreached(password)).willReturn(false);
         given(userService.register(registerUserRequest)).willReturn(user);
 
         // when
@@ -192,13 +208,18 @@ class PublicUserControllerTest {
 
         // given
         String token = faker.lorem().word();
-        String password = faker.lorem().characters(6, 52);
-        String passwordRepeat = password + "";
+        // Generate strong password components
+        String upperCase = faker.regexify("[A-Z]{1}");
+        String lowerCase = faker.regexify("[a-z]{1}");
+        String digit = faker.regexify("\\d{1}");
+        String specialChar = faker.regexify("[@#$%^&+=!?]{1}");
+        String remainingChars = faker.lorem().characters(8, 124);
+        String password = upperCase + lowerCase + digit + specialChar + remainingChars;
 
         PasswordForgotValidateRequest passwordForgotValidateRequest = new PasswordForgotValidateRequest();
         passwordForgotValidateRequest.setToken(token);
         passwordForgotValidateRequest.setNewPassword(password);
-        passwordForgotValidateRequest.setNewPasswordConfirm(passwordRepeat);
+        passwordForgotValidateRequest.setNewPasswordConfirm(password);
 
         // when
         mockMvc.perform(post("/api/public/account/password/forgot/validate")

@@ -19,9 +19,9 @@ spring:
       maximum-pool-size: 2
       minimum-idle: 1
       pool-name: data-source
-    url: jdbc:mysql://localhost:3306/keyist?useSSL=false&useUnicode=yes&characterEncoding=UTF-8
-    password: password
-    username: username
+    url: ${DATABASE_URL}
+    password: ${DATABASE_PASSWORD}
+    username: ${DATABASE_USERNAME}
   jpa:
     properties:
       hibernate:
