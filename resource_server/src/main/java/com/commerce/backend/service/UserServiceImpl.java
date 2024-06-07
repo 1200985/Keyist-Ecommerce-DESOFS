@@ -10,6 +10,7 @@ import com.commerce.backend.model.request.user.RegisterUserRequest;
 import com.commerce.backend.model.request.user.UpdateUserAddressRequest;
 import com.commerce.backend.model.request.user.UpdateUserRequest;
 import com.commerce.backend.model.response.user.UserResponse;
+import com.commerce.backend.security.PasswordBreachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -43,6 +44,10 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         user.setEmail(registerUserRequest.getEmail());
+        if (PasswordBreachService.isPasswordBreached(registerUserRequest.getPassword())) {
+            System.out.println("entrou");
+            throw new IllegalArgumentException("The password you introduced seems to belong to a database of breached password, please choose a different one.");
+        }
         user.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
         user.setEmailVerified(0);
 
