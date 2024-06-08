@@ -45,12 +45,11 @@ export class SignupComponent implements OnInit {
     this.authState = this.store.select('auth');
   }
 
-  togglePasswordVisibility(show: boolean): void {
-    const passwordInput = document.getElementById('newPassword') as HTMLInputElement;
+  togglePasswordVisibility(show: boolean, elementId: string): void {
+    const passwordInput = document.getElementById(elementId) as HTMLInputElement;
     passwordInput.type = show ? 'text' : 'password';
     this.showPassword = show;
   }
-
 
   onSubmitted() {
     this.store.dispatch(new AuthActions.SignUp(

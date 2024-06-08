@@ -80,8 +80,8 @@ export class PasswordForgotVerificationComponent implements OnInit, OnDestroy {
     }
   }
 
-  togglePasswordVisibility(show: boolean): void {
-    const passwordInput = document.getElementById('newPassword') as HTMLInputElement;
+  togglePasswordVisibility(show: boolean, elementId: string): void {
+    const passwordInput = document.getElementById(elementId) as HTMLInputElement;
     passwordInput.type = show ? 'text' : 'password';
     this.showPassword = show;
   }

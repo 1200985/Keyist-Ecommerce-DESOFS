@@ -53,9 +53,9 @@
                 <button
                 class="btn-toggle-password"
                 type="button"
-                (mousedown)="togglePasswordVisibility(true)" 
-                (mouseup)="togglePasswordVisibility(false)"
-                (mouseleave)="togglePasswordVisibility(false)">
+                (mousedown)="togglePasswordVisibility(true, 'newPassword')" 
+                (mouseup)="togglePasswordVisibility(false, 'newPassword')"
+                (mouseleave)="togglePasswordVisibility(false, 'newPassword')">
                   <i class="fa" [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
                 </button>
               </div>
@@ -74,8 +74,26 @@
           </div>
           <div class="form-group">
             <label for="newPasswordConfirm">PASSWORD REPEAT</label>
-            <input type="password" id="newPasswordConfirm" class="form-control" name="newPasswordConfirm"
-              formControlName="newPasswordConfirm" [maxlength]="240">
+            <div class="password-container">
+              <input
+                type="password"
+                id="newPasswordConfirm"
+                class="form-control"
+                name="newPasswordConfirm"
+                formControlName="newPasswordConfirm"
+                [maxlength]="240"
+              />
+              <div class="input-group-append">
+                <button
+                class="btn-toggle-password"
+                type="button"
+                (mousedown)="togglePasswordVisibility(true, 'newPasswordConfirm')" 
+                (mouseup)="togglePasswordVisibility(false, 'newPasswordConfirm')"
+                (mouseleave)="togglePasswordVisibility(false, 'newPasswordConfirm')">
+                  <i class="fa" [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+                </button>
+              </div>
+            </div>
             <span
               *ngIf="signUpForm.get('passwordGroup.newPasswordConfirm').invalid && signUpForm.get('passwordGroup.newPasswordConfirm').touched">
               <span *ngIf="signUpForm.get('passwordGroup.newPasswordConfirm').errors['required']"
