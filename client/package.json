@@ -7,7 +7,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --ssl true",
     "build": "ng build --prod --aot --output-hashing=none",
     "test": "ng test",
     "test:nowatch": "ng test --watch=false --code-coverage",
