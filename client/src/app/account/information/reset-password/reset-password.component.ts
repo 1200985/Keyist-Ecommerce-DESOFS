@@ -14,6 +14,7 @@ import { catchError, take } from 'rxjs/operators';
 export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
   innerLoading = false;
+  showPassword = false;
 
   constructor(private accountService: AccountService) {}
 
@@ -22,26 +23,34 @@ export class ResetPasswordComponent implements OnInit {
       oldPassword: new FormControl(null, [
         Validators.required,
         BlankValidators.checkIfBlankValidator,
-        Validators.minLength(6),
-        Validators.maxLength(52),
+        Validators.minLength(12),
+        Validators.maxLength(128),
       ]),
       newPasswordGroup: new FormGroup(
         {
           newPassword: new FormControl(null, [
             Validators.required,
             BlankValidators.checkIfBlankValidator,
-            Validators.minLength(6),
-            Validators.maxLength(52),
+            Validators.minLength(12),
+            Validators.maxLength(128),
+            PasswordValidators.passwordStrengthCheckValidator
           ]),
           newPasswordConfirm: new FormControl(null, [
             Validators.required,
             BlankValidators.checkIfBlankValidator,
-            Validators.minLength(6),
+            Validators.minLength(12),
+            Validators.maxLength(128),
           ]),
         },
         PasswordValidators.passwordMatchCheckValidator
       ),
     });
+  }
+
+  togglePasswordVisibility(show: boolean, elementId: string): void {
+    const passwordInput = document.getElementById(elementId) as HTMLInputElement;
+    passwordInput.type = show ? 'text' : 'password';
+    this.showPassword = show;
   }
 
   onSubmitResetPassword() {

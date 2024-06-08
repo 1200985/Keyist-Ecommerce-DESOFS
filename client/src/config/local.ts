@@ -1,11 +1,12 @@
+import { environment } from 'src/environments/environment';
 import { Configuration } from './model';
 
 
 export const config: Configuration = {
-  apiUrl: 'http://localhost:8080',
-  authUrl: 'http://localhost:8081',
-  clientId: 'test',
-  clientSecret: 'test',
+  apiUrl: environment.apiUrl,
+  authUrl: environment.authUrl,
+  clientId: environment.clientId,
+  clientSecret: environment.clientSecret,
   carausel: [
     {
       title: 'Title',

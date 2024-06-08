@@ -97,7 +97,7 @@ class ProductControllerTest {
         void it_should_not_get_all_product_variants_if_invalid_page_param() throws Exception {
 
                 // given
-                Integer page = (int) faker.number().randomDigit() * -1;
+                Integer page = (int) faker.number().randomDigitNotZero() * -1;
                 Integer size = (int) faker.number().randomDigit();
 
                 // when
@@ -119,10 +119,7 @@ class ProductControllerTest {
 
                 // given
                 Integer page = (int) faker.number().randomDigit();
-                Integer size = (int) faker.number().randomDigit() * -1;
-
-                System.out.println("PAGE: " + page);
-                System.out.println();
+                Integer size = (int) faker.number().randomDigitNotZero() * -1;
 
                 // when
                 LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();

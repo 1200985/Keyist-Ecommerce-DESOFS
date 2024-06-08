@@ -16,6 +16,7 @@ export class SignupComponent implements OnInit {
 
   signUpForm: FormGroup;
   emailPattern = '^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$';
+  showPassword = false;
 
   authState: Observable<AuthState>;
 
@@ -27,14 +28,28 @@ export class SignupComponent implements OnInit {
     this.signUpForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
       passwordGroup: new FormGroup({
-        newPassword: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(52)]),
-        newPasswordConfirm: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(52)]),
+        newPassword: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(12),
+          Validators.maxLength(128),
+          PasswordValidators.passwordStrengthCheckValidator
+        ]),
+        newPasswordConfirm: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(12),
+          Validators.maxLength(128)
+        ]),
       }, PasswordValidators.passwordMatchCheckValidator.bind(this))
     });
 
     this.authState = this.store.select('auth');
   }
 
+  togglePasswordVisibility(show: boolean, elementId: string): void {
+    const passwordInput = document.getElementById(elementId) as HTMLInputElement;
+    passwordInput.type = show ? 'text' : 'password';
+    this.showPassword = show;
+  }
 
   onSubmitted() {
     this.store.dispatch(new AuthActions.SignUp(
@@ -44,5 +59,4 @@ export class SignupComponent implements OnInit {
         passwordRepeat: this.signUpForm.value.passwordGroup.newPasswordConfirm
       }));
   }
-
 }

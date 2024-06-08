@@ -16,7 +16,7 @@ public class PostOrderRequest {
 
     @NotBlank
     @Size(min = 3, max = 240)
-    @Pattern(regexp = "[0-9a-zA-Z #,-]+")
+    @Pattern(regexp = "[0-9a-zA-Z #,'-]+")
     private String shipAddress;
 
     @NotBlank

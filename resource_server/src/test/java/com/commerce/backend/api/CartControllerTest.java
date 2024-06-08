@@ -193,7 +193,7 @@ class CartControllerTest {
                 // given
                 DecrementCartItemRequest decrementCartItemRequest = new DecrementCartItemRequest();
                 decrementCartItemRequest.setAmount(faker.number().randomDigitNotZero());
-                decrementCartItemRequest.setCartItemId(faker.number().randomNumber());
+                decrementCartItemRequest.setCartItemId(faker.number().numberBetween(1l, 1000l));
 
                 CartResponse cartResponseExpected = new CartResponse();
 

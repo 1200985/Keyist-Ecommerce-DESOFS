@@ -10,6 +10,7 @@ import com.commerce.backend.model.request.user.RegisterUserRequest;
 import com.commerce.backend.model.request.user.UpdateUserAddressRequest;
 import com.commerce.backend.model.request.user.UpdateUserRequest;
 import com.commerce.backend.model.response.user.UserResponse;
+import com.commerce.backend.security.PasswordBreachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,13 +27,16 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserResponseConverter userResponseConverter;
 
+    private final PasswordBreachService passwordBreachService;
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            PasswordEncoder passwordEncoder,
-                           UserResponseConverter userResponseConverter) {
+                           UserResponseConverter userResponseConverter, PasswordBreachService passwordBreachService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userResponseConverter = userResponseConverter;
+        this.passwordBreachService = passwordBreachService;
     }
 
     @Override
@@ -43,8 +47,11 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         user.setEmail(registerUserRequest.getEmail());
+        if (passwordBreachService.isPasswordBreached(registerUserRequest.getPassword())) {
+            throw new IllegalArgumentException("The password you introduced seems to belong to a database of breached password, please choose a different one.");
+        }
         user.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
-        user.setEmailVerified(1);
+        user.setEmailVerified(0);
 
         return userRepository.save(user);
     }
@@ -135,6 +142,9 @@ public class UserServiceImpl implements UserService {
             return;
         }
 
+        if (passwordBreachService.isPasswordBreached(passwordResetRequest.getNewPassword())) {
+            throw new IllegalArgumentException("The password you introduced seems to belong to a database of breached password, please choose a different one.");
+        }
         user.setPassword(passwordEncoder.encode(passwordResetRequest.getNewPassword()));
         userRepository.save(user);
     }
