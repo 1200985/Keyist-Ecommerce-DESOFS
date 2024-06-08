@@ -233,7 +233,7 @@ public class CartServiceImpl implements CartService {
             return false;
         }
 
-            // Introduce a delay of 2 seconds (2000 milliseconds)
+             
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

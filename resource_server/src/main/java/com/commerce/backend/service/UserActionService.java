@@ -20,14 +20,12 @@ public class UserActionService {
         }
     
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime oneHourAgo = now.minusHours(1);
-        //System.out.println(userId + "USERIDDD");
+        LocalDateTime oneHourAgo = now.minusHours(1); 
         Map<LocalDateTime, Integer> actions = userActions.getOrDefault(userId, new HashMap<>());
         
         actions.entrySet().removeIf(entry -> entry.getKey().isBefore(oneHourAgo));
     
-        int count = actions.values().stream().mapToInt(Integer::intValue).sum() + 1;
-        //System.out.println(count + " COUNTTTT");
+        int count = actions.values().stream().mapToInt(Integer::intValue).sum() + 1; 
         return count < MAX_CART_CONFIRMATIONS_PER_HOUR;
     }
     

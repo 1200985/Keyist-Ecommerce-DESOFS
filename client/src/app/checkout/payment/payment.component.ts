@@ -23,7 +23,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new OrderActions.SetCheckoutStep(2));
     this.days = [...Array(12).keys()].map(i => i + 1);
-    this.months = [...Array(20).keys()].map(i => i + 2019);
+    this.months = [...Array(20).keys()].map(i => i + 2024);
     this.paymentForm = new FormGroup({
       cardNo: new FormControl(123456789, Validators.required),
       cardOwner: new FormControl('DEMO', Validators.required),
