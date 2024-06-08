@@ -17,7 +17,8 @@ export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   emailPattern = '^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$';
   showPassword = false;
-
+  showPasswordConfirm = false;
+  
   authState: Observable<AuthState>;
 
 
@@ -45,10 +46,16 @@ export class SignupComponent implements OnInit {
     this.authState = this.store.select('auth');
   }
 
-  togglePasswordVisibility(show: boolean, elementId: string): void {
-    const passwordInput = document.getElementById(elementId) as HTMLInputElement;
+  togglePasswordVisibility(show: boolean): void {
+    const passwordInput = document.getElementById('newPassword') as HTMLInputElement;
     passwordInput.type = show ? 'text' : 'password';
     this.showPassword = show;
+  }
+
+  togglePasswordConfirmVisibility(show: boolean): void {
+    const passwordInput = document.getElementById('newPasswordConfirm') as HTMLInputElement;
+    passwordInput.type = show ? 'text' : 'password';
+    this.showPasswordConfirm = show;
   }
 
   onSubmitted() {

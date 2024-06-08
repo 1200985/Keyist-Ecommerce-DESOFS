@@ -53,9 +53,9 @@
                 <button
                 class="btn-toggle-password"
                 type="button"
-                (mousedown)="togglePasswordVisibility(true, 'newPassword')" 
-                (mouseup)="togglePasswordVisibility(false, 'newPassword')"
-                (mouseleave)="togglePasswordVisibility(false, 'newPassword')">
+                (mousedown)="togglePasswordVisibility(true)" 
+                (mouseup)="togglePasswordVisibility(false)"
+                (mouseleave)="togglePasswordVisibility(false)">
                   <i class="fa" [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
                 </button>
               </div>
@@ -87,10 +87,10 @@
                 <button
                 class="btn-toggle-password"
                 type="button"
-                (mousedown)="togglePasswordVisibility(true, 'newPasswordConfirm')" 
-                (mouseup)="togglePasswordVisibility(false, 'newPasswordConfirm')"
-                (mouseleave)="togglePasswordVisibility(false, 'newPasswordConfirm')">
-                  <i class="fa" [ngClass]="{'fa-eye': showPassword, 'fa-eye-slash': !showPassword}"></i>
+                (mousedown)="togglePasswordConfirmVisibility(true)" 
+                (mouseup)="togglePasswordConfirmVisibility(false)"
+                (mouseleave)="togglePasswordConfirmVisibility(false)">
+                  <i class="fa" [ngClass]="{'fa-eye': showPasswordConfirm, 'fa-eye-slash': !showPasswordConfirm}"></i>
                 </button>
               </div>
             </div>
