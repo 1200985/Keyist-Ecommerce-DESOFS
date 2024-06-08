@@ -8,6 +8,13 @@ server:
     whitelabel:
       enabled: true
   port: 8080
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:resource_server.p12
+    key-store-password: rockuS
+    key-alias: resource_server
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
