@@ -11,9 +11,9 @@ server:
   ssl:
     enabled: true
     key-store-type: PKCS12
-    key-store: classpath:keystore/baeldung.p12
+    key-store: classpath:resource_server.p12
     key-store-password: rockuS
-    key-alias: baeldung
+    key-alias: resource_server
 
 spring:
   datasource:
