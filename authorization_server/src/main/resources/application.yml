@@ -1,7 +1,7 @@
 logging:
   level:
     root: INFO
-    com.commerce.oauth: DEBUG  # Adicione esta linha para definir o nível de logging para o seu pacote específico
+    com.commerce.oauth: DEBUG # Adicione esta linha para definir o nível de logging para o seu pacote específico
     org:
       hibernate:
         SQL: INFO
@@ -11,6 +11,13 @@ server:
     whitelabel:
       enabled: true
   port: 8081
+  ssl:
+    enabled: false
+    key-store-type: PKCS12
+    key-store: classpath:authorization_server.p12
+    key-store-password: rockuS
+    key-alias: authorization_server
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
