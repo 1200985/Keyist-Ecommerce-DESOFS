@@ -2,7 +2,6 @@ FROM maven:3.6-adoptopenjdk-11 AS build
 
 WORKDIR /build
 
-COPY .env .
 COPY pom.xml .
 COPY src src
 
