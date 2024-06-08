@@ -22,6 +22,7 @@ export class PasswordForgotVerificationComponent implements OnInit, OnDestroy {
   forgotPasswordResetForm: FormGroup;
   passwordForgotToken: string;
   showPassword = false;
+  showPasswordConfirm = false;
 
   constructor(
     private store: Store<fromApp.AppState>,
@@ -80,10 +81,16 @@ export class PasswordForgotVerificationComponent implements OnInit, OnDestroy {
     }
   }
 
-  togglePasswordVisibility(show: boolean, elementId: string): void {
-    const passwordInput = document.getElementById(elementId) as HTMLInputElement;
+  togglePasswordVisibility(show: boolean): void {
+    const passwordInput = document.getElementById('newPassword') as HTMLInputElement;
     passwordInput.type = show ? 'text' : 'password';
     this.showPassword = show;
+  }
+
+  togglePasswordConfirmVisibility(show: boolean): void {
+    const passwordInput = document.getElementById('newPasswordConfirm') as HTMLInputElement;
+    passwordInput.type = show ? 'text' : 'password';
+    this.showPasswordConfirm = show;
   }
 
   onForgotPasswordResetFormSubmit() {
