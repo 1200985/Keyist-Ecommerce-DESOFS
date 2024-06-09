@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 public class PostOrderRequest {
 
     @NotBlank
-    @Size(min = 3, max = 70)
+    @Size(min = 3, max = 240)
     @Pattern(regexp = "^[a-zA-Z\\s']+$")
     private String shipName;
 
