@@ -2,7 +2,6 @@ FROM maven:3.6-adoptopenjdk-11 AS build
 
 WORKDIR /build
 
-COPY .env .
 COPY pom.xml .
 COPY src src
 
@@ -13,7 +12,6 @@ FROM adoptopenjdk:11-jre-hotspot
 WORKDIR /app
 
 COPY --from=build /build/target/*.jar authorization_server.jar
-COPY --from=build /build/.env .
 
 EXPOSE 8081
 ENTRYPOINT ["java", "-jar", "authorization_server.jar"]

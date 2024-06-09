@@ -23,9 +23,9 @@ spring:
       maximum-pool-size: 5
       minimum-idle: 2
       pool-name: data-source
-    url: ${DATABASE_URL}
-    password: ${DATABASE_PASSWORD}
-    username: ${DATABASE_USERNAME}
+    url: ${SPRING_DATASOURCE_URL}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    username: ${SPRING_DATASOURCE_USERNAME}
   jackson:
     date-format: MMMM dd yyyy / HH:mm
   jpa:

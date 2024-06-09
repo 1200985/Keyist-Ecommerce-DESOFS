@@ -1,9 +1,12 @@
 package com.commerce.backend.service;
 
 import com.commerce.backend.converter.user.UserResponseConverter;
+import com.commerce.backend.dao.RoleRepository;
 import com.commerce.backend.dao.UserRepository;
 import com.commerce.backend.error.exception.InvalidArgumentException;
 import com.commerce.backend.error.exception.ResourceNotFoundException;
+import com.commerce.backend.model.entity.Role;
+import com.commerce.backend.model.entity.RoleEnum;
 import com.commerce.backend.model.entity.User;
 import com.commerce.backend.model.request.user.PasswordResetRequest;
 import com.commerce.backend.model.request.user.RegisterUserRequest;
@@ -55,6 +58,9 @@ class UserServiceImplTest {
 
     @Mock
     private PasswordBreachService passwordBreachService;
+
+    @Mock
+    private RoleRepository roleRepository;
 
     private Faker faker;
 
@@ -122,10 +128,18 @@ class UserServiceImplTest {
         registerUserRequest.setPassword(password);
 
         ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
+
+        Role role = new Role();
+        role.setId(1L);
+        role.setName(RoleEnum.USER);
+
+        roleRepository.save(role);
+
         User userExpected = new User();
 
         given(passwordBreachService.isPasswordBreached(password)).willReturn(false);
         given(userRepository.existsByEmail(email)).willReturn(false);
+        given(roleRepository.findByName(RoleEnum.USER)).willReturn(Optional.of(role));
         given(passwordEncoder.encode(password)).willReturn(password);
         given(userRepository.save(any(User.class))).willReturn(userExpected);
 

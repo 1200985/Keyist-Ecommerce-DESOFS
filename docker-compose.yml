@@ -6,11 +6,8 @@ services:
     container_name: mysql
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_DATABASE: keyist
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: keyistuser
-      MYSQL_PASSWORD: keyistpassword
+    env_file:
+      - ./.env
     volumes:
       - "./sql/script.sql/:/docker-entrypoint-initdb.d/script.sql"
 
@@ -21,11 +18,8 @@ services:
     container_name: authorization_server
     depends_on:
       - mysql
-    environment:
-      - >-
-        SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/keyist?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
-      - SPRING_DATASOURCE_USERNAME=keyistuser
-      - SPRING_DATASOURCE_PASSWORD=keyistpassword
+    env_file:
+      - ./.env
     ports:
       - "8081:8081"
 
@@ -37,15 +31,8 @@ services:
     depends_on:
       - mysql
       - authorization_server
-    environment:
-      - >-
-        SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/keyist?useSSL=false&useUnicode=yes&characterEncoding=UTF-8&allowPublicKeyRetrieval=true
-      - SPRING_DATASOURCE_USERNAME=keyistuser
-      - SPRING_DATASOURCE_PASSWORD=keyistpassword
-      - "SECURITY_AUTH_URL=http://authorization_server:8081/oauth/check_token"
-      - SECURITY_AUTH_CLIENT_ID=test
-      - >-
-        SECURITY_AUTH_CLIENT_PASSWORD=test
+    env_file:
+      - ./.env
     ports:
       - "8080:8080"
 

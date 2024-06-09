@@ -26,9 +26,9 @@ spring:
       maximum-pool-size: 2
       minimum-idle: 1
       pool-name: data-source
-    url: ${DATABASE_URL}
-    password: ${DATABASE_PASSWORD}
-    username: ${DATABASE_USERNAME}
+    url: ${SPRING_DATASOURCE_URL}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    username: ${SPRING_DATASOURCE_USERNAME}
   jpa:
     properties:
       hibernate:
@@ -36,3 +36,5 @@ spring:
         format_sql: true
   mvc:
     throw-exception-if-no-handler-found: true
+  recaptcha:
+    secret: ${GOOGLE_RECAPTCHA_SECRET}

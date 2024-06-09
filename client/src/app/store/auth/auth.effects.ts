@@ -44,8 +44,8 @@ export class AuthEffects {
       map((action: AuthActions.SignIn) => {
         return action.payload;
       }),
-      switchMap((credentials: { email: string, password: string, password2: string }) => {
-        return this.tokenService.obtainAccessToken(credentials.email, credentials.password)
+      switchMap((credentials: { email: string, password: string, recaptchaResponse: string }) => {
+        return this.tokenService.obtainAccessToken(credentials.email, credentials.password, credentials.recaptchaResponse)
           .pipe(switchMap(res => {
             this.tokenService.saveToken(res);
             this.router.navigate(['/']);
