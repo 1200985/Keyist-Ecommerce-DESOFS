@@ -31,7 +31,7 @@ public class UserBootstrapper implements CommandLineRunner {
         if (userRepository.findByEmail("admin@email.com").isEmpty()) {
             User admin = new User();
             admin.setEmail("admin@email.com");
-            admin.setPassword(passwordEncoder.encode("123123"));
+            admin.setPassword(passwordEncoder.encode("Olaaaa1234??"));
             admin.setEmailVerified(1);
 
             Optional<Role> role = roleRepository.findByName(RoleEnum.ADMIN);
@@ -48,7 +48,7 @@ public class UserBootstrapper implements CommandLineRunner {
         if (userRepository.findByEmail("manager@email.com").isEmpty()) {
             User manager = new User();
             manager.setEmail("manager@email.com");
-            manager.setPassword(passwordEncoder.encode("123123"));
+            manager.setPassword(passwordEncoder.encode("Olaaaa1234??"));
             manager.setEmailVerified(1);
 
             Optional<Role> role = roleRepository.findByName(RoleEnum.MANAGER);
@@ -65,7 +65,7 @@ public class UserBootstrapper implements CommandLineRunner {
         if (userRepository.findByEmail("user@email.com").isEmpty()) {
             User user = new User();
             user.setEmail("user@email.com");
-            user.setPassword(passwordEncoder.encode("123123"));
+            user.setPassword(passwordEncoder.encode("Olaaaa1234??"));
             user.setEmailVerified(1);
 
             Optional<Role> role = roleRepository.findByName(RoleEnum.USER);
