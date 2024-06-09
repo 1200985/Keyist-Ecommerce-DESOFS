@@ -63,4 +63,8 @@ public class User {
 
     @Column(name = "address")
     private String address;
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    private Role role;
 }
