@@ -32,7 +32,15 @@ export class SigninComponent implements OnInit {
     });
 
     this.authState = this.store.select('auth');
+    this.loadRecaptchaScript();
   }
+
+  loadRecaptchaScript() {
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js';
+    document.body.appendChild(script);
+  }
+
 
   togglePasswordVisibility(show: boolean): void {
     const passwordInput = document.getElementById('password') as HTMLInputElement;
@@ -42,7 +50,6 @@ export class SigninComponent implements OnInit {
 
   onSubmitted() {
     const recaptchaResponse = (document.querySelector('.g-recaptcha-response') as HTMLInputElement).value;
-
     if (!recaptchaResponse) {
       alert('Complete de reCAPTCHA to continue');
       return;

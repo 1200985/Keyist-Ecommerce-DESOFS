@@ -14,6 +14,7 @@ export class TokenService {
 
 
   obtainAccessToken(email: string, password: string, recaptchaResponse: string) {
+    console.log("OLAAAAAAAAAAAAAA" + recaptchaResponse);
     let body: HttpParams = new HttpParams();
     body = body.append('username', email);
     body = body.append('password', password);
