@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @Order(SecurityProperties.BASIC_AUTH_ORDER)
@@ -47,7 +48,8 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler())
                 .and().csrf().disable()
-                .formLogin().successHandler(customAuthenticationSuccessHandler);
+                .formLogin().successHandler(customAuthenticationSuccessHandler)
+                .and().addFilterBefore(new CaptchaAuthenticationFilter(authenticationManagerBean()), UsernamePasswordAuthenticationFilter.class);
     }
 
 }

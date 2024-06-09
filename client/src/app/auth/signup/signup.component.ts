@@ -16,7 +16,9 @@ export class SignupComponent implements OnInit {
 
   signUpForm: FormGroup;
   emailPattern = '^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$';
-
+  showPassword = false;
+  showPasswordConfirm = false;
+  
   authState: Observable<AuthState>;
 
 
@@ -27,14 +29,34 @@ export class SignupComponent implements OnInit {
     this.signUpForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.pattern(this.emailPattern)]),
       passwordGroup: new FormGroup({
-        newPassword: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(52)]),
-        newPasswordConfirm: new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(52)]),
+        newPassword: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(12),
+          Validators.maxLength(128),
+          PasswordValidators.passwordStrengthCheckValidator
+        ]),
+        newPasswordConfirm: new FormControl(null, [
+          Validators.required,
+          Validators.minLength(12),
+          Validators.maxLength(128)
+        ]),
       }, PasswordValidators.passwordMatchCheckValidator.bind(this))
     });
 
     this.authState = this.store.select('auth');
   }
 
+  togglePasswordVisibility(show: boolean): void {
+    const passwordInput = document.getElementById('newPassword') as HTMLInputElement;
+    passwordInput.type = show ? 'text' : 'password';
+    this.showPassword = show;
+  }
+
+  togglePasswordConfirmVisibility(show: boolean): void {
+    const passwordInput = document.getElementById('newPasswordConfirm') as HTMLInputElement;
+    passwordInput.type = show ? 'text' : 'password';
+    this.showPasswordConfirm = show;
+  }
 
   onSubmitted() {
     this.store.dispatch(new AuthActions.SignUp(
@@ -44,5 +66,4 @@ export class SignupComponent implements OnInit {
         passwordRepeat: this.signUpForm.value.passwordGroup.newPasswordConfirm
       }));
   }
-
 }

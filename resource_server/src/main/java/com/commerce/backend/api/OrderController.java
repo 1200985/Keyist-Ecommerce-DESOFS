@@ -30,7 +30,8 @@ public class OrderController extends ApiController {
     }
 
     @GetMapping(value = "/order")
-    public ResponseEntity<List<OrderResponse>> getAllOrders(@RequestParam("page") Integer page, @RequestParam("size") Integer pageSize) {
+    public ResponseEntity<List<OrderResponse>> getAllOrders(@RequestParam("page") Integer page,
+            @RequestParam("size") Integer pageSize) {
         if (Objects.isNull(page) || page < 0) {
             throw new InvalidArgumentException("Invalid page");
         }
@@ -41,7 +42,7 @@ public class OrderController extends ApiController {
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/order")
+    @PostMapping(value = "/order", consumes = { "application/json" })
     public ResponseEntity<OrderResponse> postOrder(@RequestBody @Valid PostOrderRequest postOrderRequest) {
         OrderResponse orderResponse = orderService.postOrder(postOrderRequest);
         return new ResponseEntity<>(orderResponse, HttpStatus.OK);

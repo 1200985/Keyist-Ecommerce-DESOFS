@@ -1,15 +1,19 @@
 package com.commerce.backend.service;
 
 import com.commerce.backend.converter.user.UserResponseConverter;
+import com.commerce.backend.dao.RoleRepository;
 import com.commerce.backend.dao.UserRepository;
 import com.commerce.backend.error.exception.InvalidArgumentException;
 import com.commerce.backend.error.exception.ResourceNotFoundException;
+import com.commerce.backend.model.entity.Role;
+import com.commerce.backend.model.entity.RoleEnum;
 import com.commerce.backend.model.entity.User;
 import com.commerce.backend.model.request.user.PasswordResetRequest;
 import com.commerce.backend.model.request.user.RegisterUserRequest;
 import com.commerce.backend.model.request.user.UpdateUserAddressRequest;
 import com.commerce.backend.model.request.user.UpdateUserRequest;
 import com.commerce.backend.model.response.user.UserResponse;
+import com.commerce.backend.security.PasswordBreachService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,14 +29,20 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserResponseConverter userResponseConverter;
+    private final RoleRepository roleRepository;
+
+    private final PasswordBreachService passwordBreachService;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
-                           PasswordEncoder passwordEncoder,
-                           UserResponseConverter userResponseConverter) {
+            PasswordEncoder passwordEncoder,
+            UserResponseConverter userResponseConverter, PasswordBreachService passwordBreachService,
+            RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userResponseConverter = userResponseConverter;
+        this.passwordBreachService = passwordBreachService;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -43,8 +53,20 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         user.setEmail(registerUserRequest.getEmail());
+        if (passwordBreachService.isPasswordBreached(registerUserRequest.getPassword())) {
+            throw new IllegalArgumentException(
+                    "The password you introduced seems to belong to a database of breached password, please choose a different one.");
+        }
         user.setPassword(passwordEncoder.encode(registerUserRequest.getPassword()));
-        user.setEmailVerified(1);
+        user.setEmailVerified(0);
+
+        Optional<Role> role = roleRepository.findByName(RoleEnum.USER);
+
+        if (role.isEmpty()) {
+            throw new InvalidArgumentException("Couldn't find the User role");
+        }
+
+        user.setRole(role.get());
 
         return userRepository.save(user);
     }
@@ -135,6 +157,10 @@ public class UserServiceImpl implements UserService {
             return;
         }
 
+        if (passwordBreachService.isPasswordBreached(passwordResetRequest.getNewPassword())) {
+            throw new IllegalArgumentException(
+                    "The password you introduced seems to belong to a database of breached password, please choose a different one.");
+        }
         user.setPassword(passwordEncoder.encode(passwordResetRequest.getNewPassword()));
         userRepository.save(user);
     }

@@ -1,6 +1,7 @@
 package com.commerce.backend.model.request.user;
 
 import com.commerce.backend.validator.CustomEmail;
+import com.commerce.backend.validator.PasswordIsStrong;
 import com.commerce.backend.validator.PasswordMatches;
 import lombok.Data;
 
@@ -17,10 +18,11 @@ public class RegisterUserRequest {
     private String email;
 
     @NotBlank
-    @Size(min = 12, max = 64)
+    @Size(min = 12, max = 128)
+    @PasswordIsStrong
     private String password;
 
     @NotBlank
-    @Size(min = 12, max = 64)
+    @Size(min = 12, max = 128)
     private String passwordRepeat;
 }

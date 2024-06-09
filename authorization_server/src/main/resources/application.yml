@@ -1,7 +1,7 @@
 logging:
   level:
     root: INFO
-    com.commerce.oauth: DEBUG  # Adicione esta linha para definir o nível de logging para o seu pacote específico
+    com.commerce.oauth: DEBUG # Adicione esta linha para definir o nível de logging para o seu pacote específico
     org:
       hibernate:
         SQL: INFO
@@ -11,6 +11,13 @@ server:
     whitelabel:
       enabled: true
   port: 8081
+  ssl:
+    enabled: false
+    key-store-type: PKCS12
+    key-store: classpath:authorization_server.p12
+    key-store-password: rockuS
+    key-alias: authorization_server
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -19,9 +26,9 @@ spring:
       maximum-pool-size: 2
       minimum-idle: 1
       pool-name: data-source
-    url: jdbc:mysql://localhost:3306/keyist?useSSL=false&useUnicode=yes&characterEncoding=UTF-8
-    password: password
-    username: username
+    url: ${SPRING_DATASOURCE_URL}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    username: ${SPRING_DATASOURCE_USERNAME}
   jpa:
     properties:
       hibernate:
@@ -29,3 +36,5 @@ spring:
         format_sql: true
   mvc:
     throw-exception-if-no-handler-found: true
+  recaptcha:
+    secret: ${GOOGLE_RECAPTCHA_SECRET}

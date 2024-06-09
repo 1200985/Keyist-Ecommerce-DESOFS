@@ -1,15 +1,19 @@
 package com.commerce.backend.service;
 
 import com.commerce.backend.converter.user.UserResponseConverter;
+import com.commerce.backend.dao.RoleRepository;
 import com.commerce.backend.dao.UserRepository;
 import com.commerce.backend.error.exception.InvalidArgumentException;
 import com.commerce.backend.error.exception.ResourceNotFoundException;
+import com.commerce.backend.model.entity.Role;
+import com.commerce.backend.model.entity.RoleEnum;
 import com.commerce.backend.model.entity.User;
 import com.commerce.backend.model.request.user.PasswordResetRequest;
 import com.commerce.backend.model.request.user.RegisterUserRequest;
 import com.commerce.backend.model.request.user.UpdateUserAddressRequest;
 import com.commerce.backend.model.request.user.UpdateUserRequest;
 import com.commerce.backend.model.response.user.UserResponse;
+import com.commerce.backend.security.PasswordBreachService;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,10 +56,15 @@ class UserServiceImplTest {
     @Mock
     private UserResponseConverter userResponseConverter;
 
+    @Mock
+    private PasswordBreachService passwordBreachService;
+
+    @Mock
+    private RoleRepository roleRepository;
+
     private Faker faker;
 
     private String userName;
-
 
     @BeforeEach
     public void setUp() {
@@ -98,25 +107,39 @@ class UserServiceImplTest {
 
             }
 
-
         });
     }
-
 
     @Test
     void it_should_register_a_user() {
 
         // given
         String email = faker.lorem().word();
-        String password = faker.lorem().word();
+        // Generate strong password components
+        String upperCase = faker.regexify("[A-Z]{1}");
+        String lowerCase = faker.regexify("[a-z]{1}");
+        String digit = faker.regexify("\\d{1}");
+        String specialChar = faker.regexify("[@#$%^&+=!?]{1}");
+        String remainingChars = faker.lorem().characters(8, 124);
+        String password = upperCase + lowerCase + digit + specialChar + remainingChars;
+
         RegisterUserRequest registerUserRequest = new RegisterUserRequest();
         registerUserRequest.setEmail(email);
         registerUserRequest.setPassword(password);
 
         ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
+
+        Role role = new Role();
+        role.setId(1L);
+        role.setName(RoleEnum.USER);
+
+        roleRepository.save(role);
+
         User userExpected = new User();
 
+        given(passwordBreachService.isPasswordBreached(password)).willReturn(false);
         given(userRepository.existsByEmail(email)).willReturn(false);
+        given(roleRepository.findByName(RoleEnum.USER)).willReturn(Optional.of(role));
         given(passwordEncoder.encode(password)).willReturn(password);
         given(userRepository.save(any(User.class))).willReturn(userExpected);
 
@@ -129,9 +152,7 @@ class UserServiceImplTest {
         then(userArgumentCaptor.getValue().getEmail()).isEqualTo(email);
         then(userArgumentCaptor.getValue().getPassword()).isEqualTo(password);
         then(userArgumentCaptor.getValue().getEmailVerified()).isEqualTo(0);
-
     }
-
 
     @Test
     void it_should_not_register_a_user_when_it_exists() {
@@ -209,7 +230,6 @@ class UserServiceImplTest {
             public void setAuthenticated(boolean b) throws IllegalArgumentException {
 
             }
-
 
         });
 
@@ -289,7 +309,6 @@ class UserServiceImplTest {
             public void setAuthenticated(boolean b) throws IllegalArgumentException {
 
             }
-
 
         });
 
@@ -473,7 +492,13 @@ class UserServiceImplTest {
         // given
         String oldPassword = faker.howIMetYourMother().character();
         String newPassword = faker.random().hex();
-        String activePassword = faker.random().hex();
+        // Generate strong password components
+        String upperCase = faker.regexify("[A-Z]{1}");
+        String lowerCase = faker.regexify("[a-z]{1}");
+        String digit = faker.regexify("\\d{1}");
+        String specialChar = faker.regexify("[@#$%^&+=!?]{1}");
+        String remainingChars = faker.lorem().characters(8, 124);
+        String activePassword = upperCase + lowerCase + digit + specialChar + remainingChars;
 
         PasswordResetRequest passwordResetRequest = new PasswordResetRequest();
         passwordResetRequest.setOldPassword(oldPassword);
@@ -484,6 +509,7 @@ class UserServiceImplTest {
 
         ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
 
+        given(passwordBreachService.isPasswordBreached(newPassword)).willReturn(false);
         given(userRepository.findByEmail(userName)).willReturn(Optional.of(user));
         given(passwordEncoder.matches(oldPassword, activePassword)).willReturn(true);
         given(passwordEncoder.matches(newPassword, activePassword)).willReturn(false);
@@ -503,10 +529,9 @@ class UserServiceImplTest {
     @Test
     void it_should_throw_exception_when_old_password_and_new_password_is_not_equal() {
 
-        //given
+        // given
         given(userRepository.findByEmail(userName)).willReturn(Optional.of(new User()));
         given(passwordEncoder.matches(any(), any())).willReturn(false);
-
 
         // when, then
         assertThatThrownBy(() -> userService.resetPassword(new PasswordResetRequest()))
@@ -524,10 +549,10 @@ class UserServiceImplTest {
 
         given(userRepository.findByEmail(userName)).willReturn(Optional.of(user));
 
-        //when
+        // when
         Boolean verificationStatus = userService.getVerificationStatus();
 
-        //then
+        // then
         then(verificationStatus).isEqualTo(true);
 
     }
@@ -541,10 +566,10 @@ class UserServiceImplTest {
 
         given(userRepository.findByEmail(userName)).willReturn(Optional.of(user));
 
-        //when
+        // when
         Boolean verificationStatus = userService.getVerificationStatus();
 
-        //then
+        // then
         then(verificationStatus).isEqualTo(false);
 
     }
