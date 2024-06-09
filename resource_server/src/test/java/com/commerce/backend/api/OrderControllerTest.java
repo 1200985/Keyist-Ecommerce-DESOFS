@@ -104,10 +104,6 @@ class OrderControllerTest {
     @Test
     void it_should_not_get_all_orders_if_missing_params() throws Exception {
 
-        // given
-        Integer page = (int) faker.number().randomNumber();
-        Integer pageSize = (int) faker.number().randomNumber();
-
         // when
         MvcResult result = mockMvc.perform(get("/api/order")
                 .accept(MediaType.APPLICATION_JSON))
@@ -122,8 +118,8 @@ class OrderControllerTest {
     void it_should_not_get_all_orders_if_page_is_invalid() throws Exception {
 
         // given
-        Integer page = (int) faker.number().randomNumber() * -1;
-        Integer pageSize = (int) faker.number().randomNumber();
+        Integer page = (int) faker.number().randomDigitNotZero() * -1;
+        Integer pageSize = (int) faker.number().randomDigit();
 
         // when
         LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
@@ -143,8 +139,8 @@ class OrderControllerTest {
     void it_should_not_get_all_orders_if_size_is_invalid() throws Exception {
 
         // given
-        Integer page = (int) faker.number().randomNumber();
-        Integer pageSize = (int) faker.number().randomNumber() * -1;
+        Integer page = (int) faker.number().randomDigit();
+        Integer pageSize = (int) faker.number().randomDigitNotZero() * -1;
 
         // when
         LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
