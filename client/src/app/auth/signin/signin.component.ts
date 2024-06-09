@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
 import * as AuthActions from '../../store/auth/auth.actions';
 import { Observable } from 'rxjs';
+import { config } from 'src/config/local';
 
 @Component({
   selector: 'app-signin',
@@ -16,6 +17,7 @@ export class SigninComponent implements OnInit {
   signInForm: FormGroup;
   emailPattern = '^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$';
   showPassword = false;
+  siteKey = config.recaptchaKey;
 
   authState: Observable<AuthState>;
 
@@ -29,8 +31,6 @@ export class SigninComponent implements OnInit {
       password: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(128)]),
     });
 
-
-
     this.authState = this.store.select('auth');
   }
 
@@ -41,9 +41,17 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmitted() {
+    const recaptchaResponse = (document.querySelector('.g-recaptcha-response') as HTMLInputElement).value;
+
+    if (!recaptchaResponse) {
+      alert('Complete de reCAPTCHA to continue');
+      return;
+    }
+
     this.store.dispatch(new AuthActions.SignIn({
       email: this.signInForm.value.email,
-      password: this.signInForm.value.password
+      password: this.signInForm.value.password,
+      recaptchaResponse: recaptchaResponse
     }));
   }
 

@@ -13,10 +13,11 @@ export class TokenService {
   }
 
 
-  obtainAccessToken(email: string, password: string) {
+  obtainAccessToken(email: string, password: string, recaptchaResponse: string) {
     let body: HttpParams = new HttpParams();
     body = body.append('username', email);
     body = body.append('password', password);
+    body = body.append('recaptcha_response', recaptchaResponse)
     body = body.append('scope', 'read write');
     body = body.append('grant_type', 'password');
     body = body.append('client_id', config.clientId);
