@@ -7,6 +7,7 @@ export const config: Configuration = {
   authUrl: environment.authUrl,
   clientId: environment.clientId,
   clientSecret: environment.clientSecret,
+  recaptchaKey: environment.recaptchaKey,
   carausel: [
     {
       title: 'Title',

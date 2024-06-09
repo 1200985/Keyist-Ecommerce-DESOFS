@@ -9,6 +9,7 @@ export interface Configuration {
   authUrl: string;
   clientId: string;
   clientSecret: string;
+  recaptchaKey: string;
   carausel: Array<Carausel>;
   bannerUrl: string;
 }
