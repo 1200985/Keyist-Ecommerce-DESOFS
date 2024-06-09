@@ -174,8 +174,6 @@ class OrderControllerTest {
         postOrderRequest.setCountry(faker.address().country());
         postOrderRequest.setPhone(faker.number().digits(12));
 
-        System.out.println(postOrderRequest.getCountry());
-
         OrderResponse orderResponse = new OrderResponse();
 
         given(orderService.postOrder(postOrderRequest)).willReturn(orderResponse);

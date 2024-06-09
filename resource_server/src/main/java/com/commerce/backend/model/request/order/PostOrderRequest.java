@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 public class PostOrderRequest {
 
     @NotBlank
-    @Size(min = 3, max = 52)
+    @Size(min = 3, max = 70)
     @Pattern(regexp = "^[a-zA-Z\\s']+$")
     private String shipName;
 
@@ -30,7 +30,7 @@ public class PostOrderRequest {
     private String city;
 
     @NotBlank
-    @Size(min = 3, max = 40)
+    @Size(min = 3, max = 60)
     @Pattern(regexp = "^[a-zA-Z\\s']+$")
     private String state;
 
@@ -40,7 +40,7 @@ public class PostOrderRequest {
     private String zip;
 
     @NotBlank
-    @Size(min = 3, max = 40)
+    @Size(min = 3, max = 60)
     @Pattern(regexp = "^[a-zA-Z\\s']+$")
     private String country;
 
