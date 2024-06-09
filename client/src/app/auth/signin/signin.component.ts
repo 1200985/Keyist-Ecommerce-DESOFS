@@ -51,7 +51,7 @@ export class SigninComponent implements OnInit {
   onSubmitted() {
     const recaptchaResponse = (document.querySelector('.g-recaptcha-response') as HTMLInputElement).value;
     if (!recaptchaResponse) {
-      alert('Complete de reCAPTCHA to continue');
+      alert('Complete the reCAPTCHA to continue');
       return;
     }
 

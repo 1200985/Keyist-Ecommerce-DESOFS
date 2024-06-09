@@ -50,7 +50,7 @@ export class TokenService {
   }
 
   saveToken(token): void {
-    Cookies.set('usr', JSON.stringify(token), { expires: 365 });
+    Cookies.set('usr', JSON.stringify(token), { expires: 30 });
   }
 
 
