@@ -7,7 +7,7 @@ COPY src src
 
 RUN mvn package -DskipTests
 
-FROM adoptopenjdk:11-jre-hotspot
+FROM openjdk:11-jre-slim
 WORKDIR /app
 
 COPY --from=build /build/target/*.jar resource_server.jar
